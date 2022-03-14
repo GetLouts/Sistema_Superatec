@@ -1,10 +1,11 @@
+
 @extends('layouts.auth_app')
 @section('title')
     Admin Login
 @endsection
 @section('content')
-    <div class="card card-primary">
-        <div class="card-header"><h4>Superatec<span>Catia</span></h4></div>
+    <div class="card bg-white">
+        <div class="card-header"><h4 id="titulo-superatec">Superatec Catia</h4></div>
 
         <div class="card-body">
             <form method="POST" action="{{ route('login') }}">
@@ -58,7 +59,7 @@
                 </div>
 
                 <div class="form-group">
-                    <button type="submit" class="btn btn-primary btn-lg btn-block" tabindex="4">
+                    <button type="submit" class="btn btn-lg btn-block" tabindex="4" id="inicio">
                         Iniciar Sesion
                     </button>
                 </div>
