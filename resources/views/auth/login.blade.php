@@ -50,11 +50,6 @@
                         <input type="checkbox" name="remember" class="custom-control-input" tabindex="3"
                                id="remember"{{ (Cookie::get('remember') !== null) ? 'checked' : '' }}>
                         <label class="custom-control-label" for="remember">Recordar Contraseña</label>
-                        <div class="float-right">
-                            <a href="{{ route('password.request') }}" class="text-small">
-                                Olvido su Contraseña?
-                            </a>
-                        </div>
                     </div>
                 </div>
 
