@@ -27,7 +27,7 @@
                             {!! Form::open(array('route'=>'alumnos.store', 'method'=>'POST')) !!}
                                 <div class="row">
                                     <td>
-                                        <div class="col-xs-12 col-sm-12 col-md-6">
+                                    <div class="col-xs-12 col-sm-12 col-md-6">
                                         <div class="form-group">
                                             <label for="name">Nombres</label>
                                             {!! Form::text('nombres', null, array('class'=>'form-control')) !!}
