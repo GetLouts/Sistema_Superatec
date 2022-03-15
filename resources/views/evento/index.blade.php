@@ -46,6 +46,8 @@
                       
 
                     <form action="">
+
+                    {!! csrf_field() !!}
                         
                         <div class="form-group">
                           <label for="id">ID</label>
@@ -66,13 +68,13 @@
 
                     <div class="form-group">
                       <label for="start">start</label>
-                      <input type="text" class="form-control" name="start" id="start" aria-describedby="helpId" placeholder="">
+                      <input type="date" class="form-control" name="start" id="start" aria-describedby="helpId" placeholder="">
                       <small id="helpId" class="form-text text-muted">Help text</small>
                     </div>
 
                     <div class="form-group">
                       <label for="end">end</label>
-                      <input type="text" name="end" id="end" class="form-control" placeholder="" aria-describedby="helpId">
+                      <input type="date" name="end" id="end" class="form-control" placeholder="" aria-describedby="helpId">
                       <small id="helpId" class="text-muted">Help text</small>
                     </div>
 
