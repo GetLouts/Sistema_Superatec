@@ -7,6 +7,12 @@ use App\Http\Controllers\UsuarioController;
 use App\Http\Controllers\AlumnoController;
 use App\Http\Controllers\PeriodoController;
 use App\Http\Controllers\EventoController;
+use App\Http\Controllers\GraficacomunidadController;
+use App\Http\Controllers\GraficaalumnoController;
+use App\Http\Controllers\GraficacursoController;
+use App\Http\Controllers\GraficapatrocinadorController;
+use App\Http\Controllers\GraficaedadesController;
+use App\Http\Controllers\GraficaingresoController;
 
 /*
 |--------------------------------------------------------------------------
@@ -34,4 +40,10 @@ Route::group(['middleware' => ['auth']], function(){
 	Route::resource('alumnos', AlumnoController::class);
 	Route::resource('periodos', PeriodoController::class);
 	Route::resource('cronogramas', EventoController::class);
+	Route::resource('gcomunidad', GraficacomunidadController::class);
+	Route::resource('galumnos', GraficaalumnoController::class);
+	Route::resource('gcursos', GraficacursoController::class);
+	Route::resource('gpatrocinadores', GraficapatrocinadorController::class);
+	Route::resource('gedades', GraficaedadesController::class);
+	Route::resource('gingresos', GraficaingresoController::class);
 });
