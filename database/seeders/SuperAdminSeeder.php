@@ -7,6 +7,7 @@ use Illuminate\Database\Seeder;
 use App\Models\User;
 use Spatie\Permission\Models\Permission;
 use Spatie\Permission\Models\Role;
+use Illuminate\Support\Facades\Hash;
 
 class SuperAdminSeeder extends Seeder
 {
@@ -20,7 +21,7 @@ class SuperAdminSeeder extends Seeder
         $usuario = User::create([
             'name' => 'Administrador',
             'email' => 'admin@admin.com',
-            'password' => bcrypt('administrador'),
+            'password' => Hash::make('administrador'),
         ]);
 
         $rol = Role::create(['name'=>'Administrador']);

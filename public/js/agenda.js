@@ -11,9 +11,9 @@ document.addEventListener('DOMContentLoaded', function() {
       locale:"es",
 
       headerToolbar: {
-          left: 'prev,nex today',
+          left: 'prev,next today',
           center: 'title',
-          right: 'dayGridMonth,timeGridWeek,listWeek'
+          right: 'dayGridMonth,timeGridWeek,timeGridDay'
       },
 
       events: "http://127.0.0.1:8000/cronogramas/public/evento/mostrar" ,
