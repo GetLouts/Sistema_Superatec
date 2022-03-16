@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class GraficacomunidadController extends Controller
 {
@@ -14,6 +15,16 @@ class GraficacomunidadController extends Controller
     public function index()
     {
         return view('graficas.gcomunidad');
+        
+    }
+    public function all(Request $request)
+    {
+        $comunidadData = DB::table('alumnos')
+        ->select('comunidad.*')
+        ->orderBy('id','DESC')
+        ->get();
+        return response(json_encode($comunidadData),200)->header('content-type','text/plain');
+        
     }
 
     /**

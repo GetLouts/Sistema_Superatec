@@ -5,7 +5,7 @@
 @section('content')
     <section class="section">
         <div class="section-header">
-            <h3 class="page__heading">Graficas de los Alumnos</h3>
+            <h3 class="page__heading">Graficas de Alumnos</h3>
         </div>
         <div class="section-body">
             <div class="row">
@@ -17,11 +17,11 @@
                             <div id="container"></div>
 
                             <script src="https://code.highcharts.com/highcharts.js"></script>
-                            <script>
-                                var userData=<?php echo json_encode($userData)?>;
+                            <script>                        
+                                var alumnosData=<?php echo json_encode($alumnosData)?>;
                                 Highcharts.chart('container',{
                                     title:{
-                                        text:"Graficas de nuevos Usuarios"
+                                        text:"Graficas de Alumnos"
                                     },
                                     xAxis:{
                                         categories:['Enero','Febrero','Marzo','Abril','Mayo','Junio',
@@ -30,13 +30,13 @@
                             
                                     yAxis:{
                                         title:{
-                                            text:"Numeros de nuevos usuarios"
+                                            text:"Numeros de Alumnos"
                                         }
                                     },
                                     
                                     series:[{
-                                        name:"Nuevos Usuarios",
-                                        data:userData
+                                        name:"Nuevos Alumnos",
+                                        data:alumnosData
                                     }],
                                 });
                             </script>
