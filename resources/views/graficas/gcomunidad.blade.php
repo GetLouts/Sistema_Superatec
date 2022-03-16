@@ -15,11 +15,9 @@
                             <div> <canvas id="myChart" width="400" height="400"></canvas> </div>
                             <div id="container"></div>
                             <tbody id="tbody"></tbody>
+                            <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
                             <script src="https://cdn.jsdelivr.net/npm/chart.js@3.7.1/dist/chart.min.js"></script>
                             <script src="{{ asset('js/gcomunidad.js') }}"></script>
-                        
-                                
-                               
                         </div>
                     </div>
                 </div>
