@@ -39,7 +39,12 @@
             "Illuminate\\Foundation\\ComposerScripts::postAutoloadDump",
             "@php artisan package:discover --ansi"
         ],
+        "post-install-cmd": [
+            "npm install",
+            "@php artisan vendor:publish --tag=laravel-assets --ansi --force"
+        ],
         "post-update-cmd": [
+            "npm install",
             "@php artisan vendor:publish --tag=laravel-assets --ansi --force"
         ],
         "post-root-package-install": [
@@ -48,6 +53,8 @@
         "post-create-project-cmd": [
             "@php artisan key:generate --ansi"
         ]
+
+        
     },
     "extra": {
         "laravel": {
