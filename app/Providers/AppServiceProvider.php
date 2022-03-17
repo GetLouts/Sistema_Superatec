@@ -30,8 +30,8 @@ class AppServiceProvider extends ServiceProvider
         Paginator::useBootstrap();
 
         $this->publishes([
-            __DIR__.'/../../node_modules/chart.js/dist/Chart.min.js' => public_path('plugins/chart.js'),
+            __DIR__.'/../../node_modules/chart.js/dist' => public_path('plugins/chart.js'),
             __DIR__.'/../../node_modules/jquery/dist' => public_path('plugins/jquery'),
-        ]);
+        ], 'laravel-assets');
     }
 }
