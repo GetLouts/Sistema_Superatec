@@ -46,7 +46,6 @@ Route::group(['middleware' => ['auth']], function(){
 	Route::resource('periodos', PeriodoController::class);
 	Route::resource('cronogramas', EventoController::class);
 	Route::resource('gcomunidad', GraficacomunidadController::class);
-	Route::resource('gcomunidad/all', GraficacomunidadController::class,);
 	Route::resource('galumnos', GraficaalumnoController::class);
 	Route::resource('gcursos', GraficacursoController::class);
 	Route::resource('gpatrocinadores', GraficapatrocinadorController::class);

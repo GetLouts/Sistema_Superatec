@@ -3,9 +3,10 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Alumno;
 use Illuminate\Support\Facades\DB;
 
-class GraficacomunidadController extends Controller //Alejandro marico
+class GraficacomunidadController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,16 +16,36 @@ class GraficacomunidadController extends Controller //Alejandro marico
     public function index()
     {
         return view('graficas.gcomunidad');
-        
     }
-    public function all(Request $request)
+    public function ordersChart(Request $request)
     {
-        $comunidadData = DB::table('alumnos')
-        ->select('comunidad.*')
-        ->orderBy('id','DESC')
+        $entries = Alumno::select([
+            DB::raw('MONTH(created_at) as month'),
+            //DB::raw('YEAR(created_at) as year'),
+            DB::raw('SUM(total) as total'),
+            DB::raw('COUNT(*) as count'),
+        ])
+        ->whereYear('created_at', 2022)
+        ->group([
+            'month', 'year'
+        ])
+        -orderBy('month')
         ->get();
-        return response(json_encode($comunidadData),200)->header('content-type','text/plain');
-        
+
+        $labels = [
+            1 => 'Enero','Febrero','Marzo','Abril','Mayo','Junio',
+            'Julio','Agosto','Septiembre','Octubre','Noviembre','Diciembre',
+        ];
+        $dataset = [];
+
+        foreach ($entries as $entry) {
+            $dataset['total'][]=$entry->total;
+            $dataset['count'][]=$entry->count;
+        }
+        return [
+            'labels' => $labels,
+            'dataset' => $dataset,
+        ];
     }
 
     /**
