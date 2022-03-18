@@ -17,7 +17,7 @@
     <script src="https://cdn.jsdelivr.net/npm/fullcalendar@5.10.2/main.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/fullcalendar@5.10.2/locales-all.js"></script>
     <script  type="text/javascript">
-        var baseURL= {!! json_encode(url('/')) !!}
+        var baseURL= {!! json_encode(url('/cronogramas')) !!}
     </script>
     
     @yield('page_css')

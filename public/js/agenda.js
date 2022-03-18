@@ -16,7 +16,7 @@ document.addEventListener('DOMContentLoaded', function() {
           right: 'dayGridMonth,timeGridWeek,timeGridDay'
       },
 
-      events: "http://127.0.0.1:8000/cronogramas/public/evento/mostrar" ,
+      events: "http://127.0.0.1:8000/evento/mostrar" ,
 
       dateClick:function(info){
 
@@ -73,12 +73,12 @@ document.addEventListener('DOMContentLoaded', function() {
         });
         
         function enviarDatos(url){
-          const axios= axios;
+          
           const datos= new FormData(formulario);
 
           const nuevaURL =  baseURL+url;
 
-          axios.post(nuevaURL).
+          axios.post(nuevaURL, datos).
           then(
             (respuesta) =>{
               calendar.refetchEvents();
