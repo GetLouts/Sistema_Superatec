@@ -16,6 +16,9 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/fullcalendar@5.10.2/main.css">
     <script src="https://cdn.jsdelivr.net/npm/fullcalendar@5.10.2/main.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/fullcalendar@5.10.2/locales-all.js"></script>
+    <script  type="text/javascript">
+        var baseURL= {!! json_encode(url('/')) !!}
+    </script>
     
     @yield('page_css')
 <!-- Template CSS -->
@@ -50,6 +53,7 @@
 
 @include('profile.change_password')
 @include('profile.edit_profile')
+
 
 </body>
 <script src="{{ asset('assets/js/jquery.min.js') }}"></script>

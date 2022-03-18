@@ -2,10 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
-use App\Models\Alumno;
+USE App\Models\Curso;
 use Illuminate\Support\Facades\DB;
-class GraficaalumnoController extends Controller
+use Illuminate\Http\Request;
+
+class CursoController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,24 +15,8 @@ class GraficaalumnoController extends Controller
      */
     public function index()
     {
-        $alumnosData =Alumno::Select (DB::raw("COUNT(*) as count"))
-        ->whereYear('created_at', date('Y'))
-        ->groupBy(DB::raw("Month(created_at)"))
-        ->pluck('count');
-        
-
-        $months =Alumno::Select (DB::raw("Month(created_at) as month"))
-        ->whereYear('created_at', date('Y'))
-        ->groupBy(DB::raw("Month(created_at)"))
-        ->pluck('month');
-
-        $datas = array(0,0,0,0,0,0,0,0,0,0,0,0,0);
-        foreach ($months as $index => $month)
-        {
-            $datas[$month] = $alumnosData[$index];
-        }
-
-        return view('graficas.galumnos', compact('datas'));
+        $cursos = Curso::paginate(5);
+        return view('cursos.index', compact('cursos'));
     }
 
     /**
@@ -41,7 +26,8 @@ class GraficaalumnoController extends Controller
      */
     public function create()
     {
-        //
+        $cursos = Curso::get();
+        return view('cursos.crear', compact('cursos'));
     }
 
     /**
@@ -52,7 +38,11 @@ class GraficaalumnoController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $cursos = new Curso();
+        $cursos->cursos = $request->cursos;
+
+        $cursos->save();
+        return redirect()->route('cursos.index');
     }
 
     /**
@@ -74,7 +64,10 @@ class GraficaalumnoController extends Controller
      */
     public function edit($id)
     {
-        //
+        $cursos = Curso::find($id);
+        $cursos = Curso::pluck('cursos', 'cursos')->all();
+        $cursos = $cursos->cursos->pluck('cursos', 'cursos')->all();
+        return view('cursos.editar', compact('cursos', 'cursos', 'cursos'));
     }
 
     /**
@@ -86,7 +79,15 @@ class GraficaalumnoController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $this->validate($request, [
+            'cursos' => 'required', 
+        ]);
+        
+        $cursos = Curso::find($id);
+        $cursos->cursos = $request->input('cursos');
+        $cursos->save();
+
+        return redirect()->route('cursos.index');
     }
 
     /**
@@ -97,6 +98,7 @@ class GraficaalumnoController extends Controller
      */
     public function destroy($id)
     {
-        //
+        DB::table('cursos')->where('id', $id)->delete();
+        return redirect()->route('cursos.index');
     }
 }

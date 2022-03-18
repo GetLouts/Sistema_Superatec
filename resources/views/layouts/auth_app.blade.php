@@ -17,6 +17,9 @@
     <link href="{{ asset('assets/css/sweetalert.css') }}" rel="stylesheet" type="text/css"/>
     <link href="{{ asset('assets/css/select2.min.css') }}" rel="stylesheet" type="text/css"/>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/fullcalendar@5.10.2/main.css">
+    <script  type="text/javascript">
+        var baseURL= {!! json_encode(url('/')) !!}
+    </script>
 </head>
 
 <body>

@@ -24,7 +24,7 @@
                             </div>
                             @endif
 
-                            {!! Form::open(array('route'=>'alumnos.store', 'method'=>'POST')) !!}
+                            {!! Form::open(array('route'=>'alumnos.store', 'method'=>'POST', 'id'=>'formalumno')) !!}
                                 <div class="row">
                                     <td>
                                     <div class="col-xs-12 col-sm-12 col-md-6">
