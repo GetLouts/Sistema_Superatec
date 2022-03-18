@@ -65,8 +65,8 @@ class CursoController extends Controller
     public function edit($id)
     {
         $cursos = Curso::find($id);
-        $cursos = Curso::pluck('name', 'name')->all();
-        $cursos = $cursos->cursos->pluck('name', 'name')->all();
+        $cursos = Curso::pluck('cursos', 'cursos')->all();
+        $cursos = $cursos->cursos->pluck('cursos', 'cursos')->all();
         return view('cursos.editar', compact('cursos', 'cursos', 'cursos'));
     }
 
