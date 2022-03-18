@@ -13,6 +13,7 @@ use App\Http\Controllers\GraficacursoController;
 use App\Http\Controllers\GraficapatrocinadorController;
 use App\Http\Controllers\GraficaedadesController;
 use App\Http\Controllers\GraficaingresoController;
+use Illuminate\Support\Facades\Auth;
 
 /*
 |--------------------------------------------------------------------------
