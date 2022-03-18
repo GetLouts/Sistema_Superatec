@@ -15,39 +15,25 @@ class GraficacomunidadController extends Controller
      */
     public function index()
     {
-        return view('graficas.gcomunidad');
-    }
-    public function ordersChart(Request $request)
-    {
-        $entries = Alumno::select([
-            DB::raw('MONTH(created_at) as month'),
-            //DB::raw('YEAR(created_at) as year'),
-            DB::raw('SUM(total) as total'),
-            DB::raw('COUNT(*) as count'),
-        ])
-        ->whereYear('created_at', 2022)
-        ->group([
-            'month', 'year'
-        ])
-        -orderBy('month')
-        ->get();
+        $alumnosData =Alumno::Select (DB::raw("COUNT(*) as count"))
+        ->whereYear('created_at', date('Y'))
+        ->groupBy(DB::raw("Month(created_at)"))
+        ->pluck('count');
+        
 
-        $labels = [
-            1 => 'Enero','Febrero','Marzo','Abril','Mayo','Junio',
-            'Julio','Agosto','Septiembre','Octubre','Noviembre','Diciembre',
-        ];
-        $dataset = [];
+        $months =Alumno::Select (DB::raw("Month(created_at) as month"))
+        ->whereYear('created_at', date('Y'))
+        ->groupBy(DB::raw("Month(created_at)"))
+        ->pluck('month');
 
-        foreach ($entries as $entry) {
-            $dataset['total'][]=$entry->total;
-            $dataset['count'][]=$entry->count;
+        $datas = array(0,0,0,0,0,0,0,0,0,0,0,0,0);
+        foreach ($months as $index => $month)
+        {
+            $datas[$month] = $alumnosData[$index];
         }
-        return [
-            'labels' => $labels,
-            'dataset' => $dataset,
-        ];
-    }
 
+        return view('graficas.gcomunidad', compact('datas'));
+    }
     /**
      * Show the form for creating a new resource.
      *

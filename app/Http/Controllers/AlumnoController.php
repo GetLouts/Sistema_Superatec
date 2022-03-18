@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Alumno;
+use App\Models\Curso;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Arr;
 
@@ -94,8 +95,9 @@ class AlumnoController extends Controller
     public function edit($id)
     {
         $alumnos = Alumno::find($id);
-
-        return view('alumnos.editar', compact('alumnos', 'alumnos'));
+        $cursos = Curso::pluck('cursos', 'cursos')->all();
+        $alumnoCurso = $cursos->alumnos->pluck('cursos', 'cursos')->all();
+        return view('alumnos.editar', compact('alumnos', 'cursos', 'alumnoCurso'));
     }
 
     /**

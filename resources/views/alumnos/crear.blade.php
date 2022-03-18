@@ -97,10 +97,17 @@
                                     </div>
                                 </td>
                                 <td>
-                                    <div class="col-xs-12 col-sm-12 col-md-6">
+                               <!--     <div class="col-xs-12 col-sm-12 col-md-6">
                                         <div class="form-group">
                                             <label for="name">Curso</label>
                                             {!! Form::text('curso', null, array('class'=>'form-control')) !!}
+                                        </div>
+                                    </div>
+                                -->
+                                    <div class="col-xs-12 col-sm-12 col-md-6">
+                                        <div class="form-group">
+                                            <label form="name">Curso</label>
+                                            {!! Form::select('cursos[]', $cursos,$alumnoCurso, array('class' => 'form-control')) !!}
                                         </div>
                                     </div>
                                     <div class="col-xs-12 col-sm-12 col-md-6">

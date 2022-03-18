@@ -13,7 +13,7 @@ use App\Http\Controllers\GraficacursoController;
 use App\Http\Controllers\GraficapatrocinadorController;
 use App\Http\Controllers\GraficaedadesController;
 use App\Http\Controllers\GraficaingresoController;
-
+use App\Http\Controllers\CursoController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -35,7 +35,7 @@ Route::post('/evento/agregar', [App\Http\Controllers\EventoController::class, 's
 Route::post('/evento/editar/{id}', [App\Http\Controllers\EventoController::class, 'edit']);
 Route::post('/evento/actualizar/{evento}', [App\Http\Controllers\EventoController::class, 'update']);
 Route::post('/evento/borrar/{id}', [App\Http\Controllers\EventoController::class, 'destroy']);
-
+Route::get('/charts/orders', [App\Http\Controllers\GraficacomunidadController::class, 'ordersChart'])->name('charts.orders');
 Auth::routes();
 
 
@@ -46,6 +46,7 @@ Route::group(['middleware' => ['auth']], function(){
 	Route::resource('periodos', PeriodoController::class);
 	Route::resource('cronogramas', EventoController::class);
 	Route::resource('gcomunidad', GraficacomunidadController::class);
+	Route::resource('cursos', CursoController::class);
 	Route::resource('galumnos', GraficaalumnoController::class);
 	Route::resource('gcursos', GraficacursoController::class);
 	Route::resource('gpatrocinadores', GraficapatrocinadorController::class);
