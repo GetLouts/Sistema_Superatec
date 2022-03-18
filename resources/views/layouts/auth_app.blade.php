@@ -8,6 +8,7 @@
     <!-- General CSS Files -->
     <link href="{{ asset('assets/css/bootstrap.min.css') }}" rel="stylesheet" type="text/css"/>
     <link rel="stylesheet" href="{{ asset('css/font-awesome.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/app.css') }}">
 
     <!-- Template CSS -->
     <link rel="stylesheet" href="{{ asset('web/css/style.css') }}">
@@ -25,8 +26,8 @@
             <div class="row">
                 <div class="col-md-6 offset-md-3">
                     <div class="login-brand">
-                        <img src="{{ asset('img/logo.png') }}" alt="logo" width="100"
-                             class="shadow-light">
+                        <img src="{{ asset('img/logo.png') }}" alt="logo" width="300"
+                             class="">
                     </div>
                     @yield('content')
                     <div class="simple-footer">

@@ -21,6 +21,7 @@
 <!-- Template CSS -->
     <link rel="stylesheet" href="{{ asset('web/css/style.css') }}">
     <link rel="stylesheet" href="{{ asset('web/css/components.css')}}">
+    <link rel="stylesheet" href="{{ asset('assets/css/app.css') }}">
     @yield('page_css')
 
     @yield('css')
