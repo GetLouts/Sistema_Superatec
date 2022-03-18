@@ -41,7 +41,7 @@
         ],
         "post-install-cmd": [
             "npm install",
-            "@php artisan vendor:publish --tag=laravel-assets --force"
+            "@php artisan vendor:publish --tag=laravel --force"
         ],
         "post-update-cmd": [
             "npm install",
