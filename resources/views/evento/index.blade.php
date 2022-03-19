@@ -45,9 +45,10 @@
                   <div class="modal-body">
                       
 
-                    <form action="" id="form">
+                    <form action="" id="form" method="POST">
 
                     {!! csrf_field() !!}
+                    @method('PUT')
                         
                         <div class="form-group">
                           <label for="id">ID</label>
