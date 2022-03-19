@@ -45,7 +45,7 @@
                   <div class="modal-body">
                       
 
-                    <form action="">
+                    <form action="" id="form">
 
                     {!! csrf_field() !!}
                         
@@ -94,4 +94,6 @@
               </div>
           </div>
       </div>
+      <script src="{{ asset('js/agenda.js') }}"></script>
+      
 @endsection

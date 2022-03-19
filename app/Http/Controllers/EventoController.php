@@ -2,10 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\EventoStoreRequest;
 use App\Models\Evento;
 use Illuminate\Http\Request;
 
 use Carbon\Carbon;
+
 
 class EventoController extends Controller
 {
@@ -35,10 +37,11 @@ class EventoController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(EventoStoreRequest $request)
     {
-        request()->validate(Evento::$rules);
+        // request()->validate(Evento::$rules);
         $evento= Evento::create($request->all());
+        return response()->json($evento,200);
     }
 
     /**

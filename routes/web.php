@@ -14,6 +14,8 @@ use App\Http\Controllers\GraficapatrocinadorController;
 use App\Http\Controllers\GraficaedadesController;
 use App\Http\Controllers\GraficaingresoController;
 use App\Http\Controllers\CursoController;
+use Illuminate\Support\Facades\Auth;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
