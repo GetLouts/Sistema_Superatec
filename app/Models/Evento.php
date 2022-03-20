@@ -16,5 +16,5 @@ class Evento extends Model
         'end'=>'required',
     ];
 
-    protected $fillable=['title','descipcion','start','end'];
+    protected $fillable=['title','descripcion','start','end'];
 }

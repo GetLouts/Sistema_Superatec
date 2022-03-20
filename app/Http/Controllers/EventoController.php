@@ -37,11 +37,11 @@ class EventoController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(EventoStoreRequest $request)
+    public function store(Request $request)
     {
-        // request()->validate(Evento::$rules);
+        request()->validate(Evento::$rules);
         $evento= Evento::create($request->all());
-        return response()->json($evento,200);
+
     }
 
     /**
