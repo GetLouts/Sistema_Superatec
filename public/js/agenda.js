@@ -73,8 +73,8 @@ document.addEventListener("DOMContentLoaded", function () {
         });
 
     function enviarDatos(url) {
-        const datos = new FormData(formulario);
-        console.log(datos)
+        const datos = new FormData(document.getElementById('form'));
+        console.log(datos, $('#form').serializeArray())
 
         const nuevaURL = baseURL+url;
 

@@ -18,13 +18,13 @@
 
                             <script src="https://code.highcharts.com/highcharts.js"></script>
                             <script>                        
-                                var datas=<?php echo json_encode($datas)?>;
+                                var aux=<?php echo json_encode($aux)?>;
                                 Highcharts.chart('container',{
                                     title:{
                                         text:"Graficas de Alumnos"
                                     },
                                     xAxis:{
-                                        categories:['0','Enero','Febrero','Marzo','Abril','Mayo','Junio',
+                                        categories:['Enero','Febrero','Marzo','Abril','Mayo','Junio',
                                         'Julio','Agosto','Septiembre','Octubre','Noviembre','Diciembre']
                                     },
                             
@@ -36,7 +36,7 @@
                                     
                                     series:[{
                                         name:"Nuevos Alumnos",
-                                        data:datas
+                                        data:aux
                                     }],
                                 });
                             </script>
