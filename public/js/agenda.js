@@ -1,10 +1,11 @@
 document.addEventListener("DOMContentLoaded", function () {
 
-    let formulario = document.querySelector("#form");
+    let formulario = document.getElementById("form");
+    let calendarEl = document.getElementById("agenda");
 
-    var calendarEl = document.getElementById("agenda");
+    // console.log(formulario)
 
-    var calendar = new FullCalendar.Calendar(calendarEl, {
+    let calendar = new FullCalendar.Calendar(calendarEl, {
         initialView: "dayGridMonth",
         locale: "es",
 
@@ -39,7 +40,6 @@ document.addEventListener("DOMContentLoaded", function () {
             axios.post(baseURL+"cronogramas/editar/"+info.event.id).
             then(
                 (respuesta) => {
-                    formulario.id.value = respuesta.data.id;
                     formulario.title.value = respuesta.data.title;
 
                     formulario.descripcion.value = respuesta.data.descripcion;
@@ -47,6 +47,8 @@ document.addEventListener("DOMContentLoaded", function () {
                     formulario.start.value = respuesta.data.start;
 
                     formulario.end.value = respuesta.data.end;
+
+                     
 
                     $("#evento").modal("show");
                 })
@@ -57,36 +59,44 @@ document.addEventListener("DOMContentLoaded", function () {
                 });
         },
     });
-    calendar.render();
 
-    document.getElementById("btnGuardar").addEventListener("click",function() {
 
-            enviarDatos("cronogramas/agregar");
-        });
-    document.getElementById("btnModificar").addEventListener("click",function() {
+    function enviarDatos(url, formulario) {
 
-            enviarDatos("cronogramas/actualizar/"+formulario.id.value);
-        });
-    document.getElementById("btnEliminar").addEventListener("click",function() {
-
-            enviarDatos("cronogramas/borrar/"+formulario.id.value);
-        });
-
-    function enviarDatos(url) {
-        const datos = new FormData(document.getElementById('form'));
-        console.log(datos, $('#form').serializeArray())
-
+        const datos = new FormData(formulario);
+        // data = $('#form').serializeArray()
+        // console.log(datos)
+        // console.log(data)
+        
         const nuevaURL = baseURL+url;
+        // console.log(nuevaURL)
 
-        axios.post(nuevaURL, datos).
-        then(
+        axios.post(nuevaURL, data).then(
             (respuesta) => {
-                calendar.refetchEvents();
+                console.log(respuesta)
                 $("#evento").modal("hide");
+                // console.log(datos)
             }
             ).catch(
                 error=>{if(error.response){ console.log(error.response.data);
                 }
             });
     }
+
+    calendar.render();
+
+    document.getElementById("btnGuardar").addEventListener("click",function() {
+            // $("#evento").modal("hide");
+            enviarDatos("/cronogramas/agregar",formulario);
+        });
+    document.getElementById("btnModificar").addEventListener("click",function() {
+
+            enviarDatos("/cronogramas/actualizar/"+formulario.id.value);
+        });
+    document.getElementById("btnEliminar").addEventListener("click",function() {
+
+            enviarDatos("/cronogramas/borrar/"+formulario.id.value);
+        });
+
+    
 });

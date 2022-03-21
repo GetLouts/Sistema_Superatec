@@ -45,37 +45,32 @@
                   <div class="modal-body">
                       
 
-                    <form action="" id="form" method="POST">
+                    <form id="form" method="POST">
 
                     {!! csrf_field() !!}
                     @method('PUT')
                         
-                        <div class="form-group">
-                          <label for="id">ID</label>
-                          <input type="text" class="form-control" name="id" id="id" aria-describedby="helpId" placeholder="">
-                          <small id="helpId" class="form-text text-muted">Help text</small>
-                        </div>
 
                     <div class="form-group">
                         <label for="title">Curso</label>
-                        <input type="text" class="form-control" name="title" id="title" aria-describedby="helpId" placeholder="Nombre del Curso">
+                        <input type="text" class="form-control" name="title" id="title" aria-describedby="helpId" placeholder="Nombre del Curso" required>
                         <small id="helpId" class="form-text text-muted">Help text</small>
                     </div>
 
                     <div class="form-group">
                       <label for="descripcion">Descripcion</label>
-                      <textarea class="form-control" name="descripcion" id="descripcion" rows="3"></textarea>
+                      <textarea class="form-control" name="descripcion" id="descripcion" rows="3" required></textarea>
                     </div>
 
                     <div class="form-group">
                       <label for="start">Empieza</label>
-                      <input type="date" class="form-control" name="start" id="start" aria-describedby="helpId" placeholder="">
+                      <input type="date" class="form-control" name="start" id="start" aria-describedby="helpId" placeholder="" required>
                       <small id="helpId" class="form-text text-muted">Help text</small>
                     </div>
 
                     <div class="form-group">
                       <label for="end">Termina</label>
-                      <input type="date" name="end" id="end" class="form-control" placeholder="" aria-describedby="helpId">
+                      <input type="date" name="end" id="end" class="form-control" placeholder="" aria-describedby="helpId" required>
                       <small id="helpId" class="text-muted">Help text</small>
                     </div>
 
