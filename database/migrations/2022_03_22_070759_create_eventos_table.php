@@ -13,10 +13,16 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('estado', function (Blueprint $table) {
+        Schema::create('eventos', function (Blueprint $table) {
             $table->id();
-            $table->string('estado');
+            $table->unsignedBigInteger('periodos_has_cursos');
+            $table->dateTime('start');
+            $table->dateTime('end');
+            $table->integer('creado_por');
+            $table->integer('actualizado_por');
             $table->timestamps();
+
+            $table->foreign('periodos_has_cursos')->references('id')->on('periodos_has_cursos');
         });
     }
 
@@ -27,6 +33,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('estado');
+        Schema::dropIfExists('eventos');
     }
 };

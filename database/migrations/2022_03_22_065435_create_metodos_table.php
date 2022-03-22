@@ -13,10 +13,11 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('periodos', function (Blueprint $table) {
+        Schema::create('metodos', function (Blueprint $table) {
             $table->id();
-            $table->string('nombre_perido');
-            $table->string('estado');
+            $table->string('metodo_pago');
+            $table->integer('creado_por');
+            $table->integer('actualizado_por');
             $table->timestamps();
         });
     }
@@ -28,6 +29,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('periodos');
+        Schema::dropIfExists('metodos');
     }
 };

@@ -15,8 +15,16 @@ return new class extends Migration
     {
         Schema::create('cursos', function (Blueprint $table) {
             $table->id();
-            $table->string("cursos",255);
+            $table->string('cursos');
+            $table->text('descripcion');
+            $table->string('cantidad_alumnos');
+            $table->integer('clases');
+            $table->unsignedBigInteger('estado_id');
+            $table->integer('creado_por');
+            $table->integer('actualizado_por');
             $table->timestamps();
+
+            $table->foreign('estado_id')->references('id')->on('estados');
         });
     }
 

@@ -18,22 +18,26 @@ return new class extends Migration
             $table->string('nombres');
             $table->string('apellidos');
             $table->string('cedula');
-            $table->string('telefono');
-            $table->string('telefono_local');
+            $table->integer('telefono');
+            $table->integer('telefono_local');
             $table->string('direccion');
             $table->string('correo');
             $table->string('nivel_de_estudio');
-            $table->string('edad');
+            $table->date('fecha_nac');
             $table->string('comunidad');
             $table->string('curso');
             $table->string('pago');
             $table->string('metodo_pago');
-            $table->string('fecha_pago');
+            $table->date('fecha_pago');
             $table->string('numero_referencia');
             $table->string('patrocinador');
-            $table->string('fecha_registro');
-            $table->string('estado');
-            $table->timestamps();
+            $table->unsignedBigInteger('estado_id');
+            $table->integer('creado_por');
+            $table->integer('actualizado_por');
+            $table->timestamps('fecha_registro');
+            $table->timestamps('updated_at');
+
+            $table->foreign('estado_id')->references('id')->on('estados');
         });
     }
 
