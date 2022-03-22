@@ -25,17 +25,12 @@ return new class extends Migration
             $table->string('nivel_de_estudio');
             $table->date('fecha_nac');
             $table->string('comunidad');
-            $table->string('curso');
-            $table->string('pago');
-            $table->string('metodo_pago');
-            $table->date('fecha_pago');
             $table->string('numero_referencia');
             $table->string('patrocinador');
             $table->unsignedBigInteger('estado_id');
             $table->integer('creado_por');
             $table->integer('actualizado_por');
-            $table->timestamps('fecha_registro');
-            $table->timestamps('updated_at');
+            $table->timestamps();
 
             $table->foreign('estado_id')->references('id')->on('estados');
         });

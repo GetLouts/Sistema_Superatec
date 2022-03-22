@@ -15,6 +15,7 @@ return new class extends Migration
     {
         Schema::create('metodos', function (Blueprint $table) {
             $table->id();
+            $table->string('pago');
             $table->string('metodo_pago');
             $table->integer('creado_por');
             $table->integer('actualizado_por');

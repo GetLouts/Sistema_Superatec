@@ -24,7 +24,7 @@ return new class extends Migration
 
             $table->foreign('alumno_id')->references('id')->on('alumnos');
             $table->foreign('periodo_id')->references('id')->on('periodos');
-            $table->foreign('estado_id')->references('id')->on('estados');
+            $table->foreign('curso_id')->references('id')->on('cursos');
         });
     }
 
