@@ -15,13 +15,15 @@ return new class extends Migration
     {
         Schema::create('metodos_has_alumnos', function (Blueprint $table) {
             $table->id();
-            $table->integer('metodo_id');
-            $table->integer('alumno_id');
+            $table->unsignedBigInteger('metodo_id');
+            $table->unsignedBigInteger('alumno_id');
             $table->unsignedBigInteger('periodos_has_cursos_id');
             $table->integer('creado_por');
             $table->integer('actualizado_por');
             $table->timestamps();
 
+            $table->foreign('metodo_id')->references('id')->on('metodos');
+            $table->foreign('alumno_id')->references('id')->on('alumnos');
             $table->foreign('periodos_has_cursos_id')->references('id')->on('periodos_has_cursos');
         });
     }

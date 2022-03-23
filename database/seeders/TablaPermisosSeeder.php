@@ -33,20 +33,24 @@ class TablaPermisosSeeder extends Seeder
             ['id' => 10, 'name' => 'crear-alumnos', 'guard_name' => 'web'],
             ['id' => 11, 'name' => 'editar-alumnos', 'guard_name' => 'web'],
             ['id' => 12, 'name' => 'borrar-alumnos', 'guard_name' => 'web'],
-            //tabla vistas;
-            ['id' => 13, 'name' => 'ver-menu', 'guard_name' => 'web'],
-            ['id' => 14, 'name' => 'ver-menu-roles', 'guard_name' => 'web'],
-            ['id' => 15, 'name' => 'ver-menu-usuarios', 'guard_name' => 'web'],
-            ['id' => 16, 'name' => 'ver-menu-alumnosa', 'guard_name' => 'web'],
-            ['id' => 17, 'name' => 'ver-menu-periodos', 'guard_name' => 'web'],
-            ['id' => 18, 'name' => 'ver-menu-graficas', 'guard_name' => 'web'],
+            //tabla alumnos inactivos
+            ['id' => 13, 'name' => 'ver-alumnos-inactivos', 'guard_name' => 'web'],
+            ['id' => 14, 'name' => 'editar-alumnos-inactivos', 'guard_name' => 'web'],
+            //vistas menu 
+            ['id' => 15, 'name' => 'ver-menu', 'guard_name' => 'web'],
+            ['id' => 16, 'name' => 'ver-menu-roles', 'guard_name' => 'web'],
+            ['id' => 17, 'name' => 'ver-menu-usuarios', 'guard_name' => 'web'],
+            ['id' => 18, 'name' => 'ver-menu-alumnosa', 'guard_name' => 'web'],
+            ['id' => 19, 'name' => 'ver-menu-periodos', 'guard_name' => 'web'],
+            ['id' => 20, 'name' => 'ver-menu-graficas', 'guard_name' => 'web'],
+            ['id' => 21, 'name' => 'ver-menu-cronogramas', 'guard_name' => 'web'],
             //tabla periodo
-            ['id' => 19, 'name' => 'ver-periodo', 'guard_name' => 'web'],
-            ['id' => 20, 'name' => 'crear-periodo', 'guard_name' => 'web'],
-            ['id' => 21, 'name' => 'editar-periodo', 'guard_name' => 'web'],
-            ['id' => 22, 'name' => 'borrar-periodo', 'guard_name' => 'web'],
+            ['id' => 22, 'name' => 'ver-periodo', 'guard_name' => 'web'],
+            ['id' => 23, 'name' => 'crear-periodo', 'guard_name' => 'web'],
+            ['id' => 24, 'name' => 'editar-periodo', 'guard_name' => 'web'],
+            ['id' => 25, 'name' => 'borrar-periodo', 'guard_name' => 'web'],
             //tabla panel de control
-            ['id' => 23, 'name' => 'ver-card', 'guard_name' => 'web'],
+            ['id' => 26, 'name' => 'ver-card', 'guard_name' => 'web'],
 
         ]);
         $permisos->each( function ($permiso) {
