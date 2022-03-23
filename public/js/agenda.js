@@ -1,11 +1,10 @@
-document.addEventListener("DOMContentLoaded", function () {
 
-    let formulario = document.getElementById("form");
-    let calendarEl = document.getElementById("agenda");
+    var formulario = document.getElementById("form");
+    var calendarEl = document.getElementById("agenda");
 
     // console.log(formulario)
 
-    let calendar = new FullCalendar.Calendar(calendarEl, {
+    var calendar = new FullCalendar.Calendar(calendarEl, {
         initialView: "dayGridMonth",
         locale: "es",
 
@@ -48,7 +47,6 @@ document.addEventListener("DOMContentLoaded", function () {
 
                     formulario.end.value = respuesta.data.end;
 
-                     
 
                     $("#evento").modal("show");
                 })
@@ -61,20 +59,18 @@ document.addEventListener("DOMContentLoaded", function () {
     });
 
 
-    function enviarDatos(url, formulario) {
+    function enviarDatos(url, data) {
 
-        const datos = new FormData(formulario);
-        // data = $('#form').serializeArray()
-        // console.log(datos)
-        // console.log(data)
-        
+        const datos = new FormData(data);
         const nuevaURL = baseURL+url;
         // console.log(nuevaURL)
 
-        axios.post(nuevaURL, data).then(
+        axios.post(nuevaURL, datos).then(
             (respuesta) => {
-                console.log(respuesta)
+
                 $("#evento").modal("hide");
+                calendar.refetchEvents();
+                
                 // console.log(datos)
             }
             ).catch(
@@ -86,17 +82,15 @@ document.addEventListener("DOMContentLoaded", function () {
     calendar.render();
 
     document.getElementById("btnGuardar").addEventListener("click",function() {
-            // $("#evento").modal("hide");
-            enviarDatos("/cronogramas/agregar",formulario);
-        });
-    document.getElementById("btnModificar").addEventListener("click",function() {
-
-            enviarDatos("/cronogramas/actualizar/"+formulario.id.value);
-        });
-    document.getElementById("btnEliminar").addEventListener("click",function() {
-
-            enviarDatos("/cronogramas/borrar/"+formulario.id.value);
-        });
-
+        // $("#evento").modal("hide");
+        enviarDatos("/cronogramas/agregar",formulario);
+    });
     
-});
+    document.getElementById("btnModificar").addEventListener("click",function() {
+    
+        enviarDatos("/cronogramas/actualizar"+formulario.id.value);
+    });
+    document.getElementById("btnEliminar").addEventListener("click",function() {
+    
+        enviarDatos("/cronogramas/borrar"+formulario.id.value);
+    });

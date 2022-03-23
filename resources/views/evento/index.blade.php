@@ -45,10 +45,10 @@
                   <div class="modal-body">
                       
 
-                    <form id="form" method="POST">
+                    <form id="form" method="">
 
                     {!! csrf_field() !!}
-                    @method('PUT')
+                    {{-- @method('PUT') --}}
                         
 
                     <div class="form-group">
