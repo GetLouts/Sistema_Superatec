@@ -45,7 +45,7 @@
                   <div class="modal-body">
                       
 
-                    <form id="form" method="">
+                    <form id="formulario" method="">
 
                     {!! csrf_field() !!}
                     {{-- @method('PUT') --}}

@@ -1,5 +1,6 @@
-
-    var formulario = document.getElementById("form");
+document.addEventListener('DOMContentLoaded', function(){
+    
+    let formulario = document.querySelector("#formulario");
     var calendarEl = document.getElementById("agenda");
 
     // console.log(formulario)
@@ -7,6 +8,7 @@
     var calendar = new FullCalendar.Calendar(calendarEl, {
         initialView: "dayGridMonth",
         locale: "es",
+        timeZone: 'local',
 
         headerToolbar: {
             left: "prev,next today",
@@ -25,7 +27,8 @@
 
 
         dateClick: function (info) {
-            formulario.reset();
+            // console.log(info.date.toString())
+            // formulario.reset();
            // formulario.start.value=info.dataStr;
           //  formulario.end.value=info.dataStr;
 
@@ -94,3 +97,5 @@
     
         enviarDatos("/cronogramas/borrar"+formulario.id.value);
     });
+
+})
