@@ -17,9 +17,12 @@ return new class extends Migration
             $table->id();
             $table->string('pago');
             $table->string('metodo_pago');
-            $table->integer('creado_por');
-            $table->integer('actualizado_por');
+            $table->unsignedBigInteger('creado_por');
+            $table->unsignedBigInteger('actualizado_por');
             $table->timestamps();
+
+            $table->foreign('creado_por')->references('id')->on('users');
+            $table->foreign('actualizado_por')->references('id')->on('users');
         });
     }
 

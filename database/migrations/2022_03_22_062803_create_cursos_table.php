@@ -20,11 +20,13 @@ return new class extends Migration
             $table->string('cantidad_alumnos');
             $table->integer('clases');
             $table->unsignedBigInteger('estado_id');
-            $table->integer('creado_por');
-            $table->integer('actualizado_por');
+            $table->unsignedBigInteger('creado_por');
+            $table->unsignedBigInteger('actualizado_por');
             $table->timestamps();
 
             $table->foreign('estado_id')->references('id')->on('estados');
+            $table->foreign('creado_por')->references('id')->on('users');
+            $table->foreign('actualizado_por')->references('id')->on('users');
         });
     }
 

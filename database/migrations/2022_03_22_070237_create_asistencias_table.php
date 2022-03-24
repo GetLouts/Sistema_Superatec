@@ -16,12 +16,14 @@ return new class extends Migration
         Schema::create('asistencias', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('alumnos_has_periodos_id');
-            $table->integer('creado_por');
-            $table->integer('actualizado_por');
+            $table->unsignedBigInteger('creado_por');
+            $table->unsignedBigInteger('actualizado_por');
             $table->unsignedBigInteger('evento_id');
             $table->timestamps();
 
             $table->foreign('alumnos_has_periodos_id')->references('id')->on('alumnos_has_periodos');
+            $table->foreign('creado_por')->references('id')->on('users');
+            $table->foreign('actualizado_por')->references('id')->on('users');
             $table->foreign('evento_id')->references('id')->on('eventos');
         });
     }

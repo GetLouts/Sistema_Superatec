@@ -16,11 +16,13 @@ return new class extends Migration
         Schema::create('periodos', function (Blueprint $table) {
             $table->id();
             $table->string('nombre_periodo');
-            $table->integer('creado_por');
-            $table->integer('actualizado_por');
+            $table->unsignedBigInteger('creado_por');
+            $table->unsignedBigInteger('actualizado_por');
             $table->unsignedBigInteger('estado_id');
             $table->timestamps();
 
+            $table->foreign('creado_por')->references('id')->on('users');
+            $table->foreign('actualizado_por')->references('id')->on('users');
             $table->foreign('estado_id')->references('id')->on('estados');
         });
     }

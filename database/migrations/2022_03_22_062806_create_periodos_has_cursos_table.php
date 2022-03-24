@@ -17,12 +17,14 @@ return new class extends Migration
             $table->id();
             $table->unsignedBigInteger('periodo_id');
             $table->unsignedBigInteger('curso_id');
-            $table->integer('creado_por');
-            $table->integer('actualizado_por');
+            $table->unsignedBigInteger('creado_por');
+            $table->unsignedBigInteger('actualizado_por');
             $table->timestamps();
 
             $table->foreign('periodo_id')->references('id')->on('periodos');
             $table->foreign('curso_id')->references('id')->on('cursos');
+            $table->foreign('creado_por')->references('id')->on('users');
+            $table->foreign('actualizado_por')->references('id')->on('users');
         });
     }
 

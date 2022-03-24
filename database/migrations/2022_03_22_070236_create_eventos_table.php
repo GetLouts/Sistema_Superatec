@@ -18,11 +18,13 @@ return new class extends Migration
             $table->unsignedBigInteger('periodos_has_cursos_id');
             $table->dateTime('start');
             $table->dateTime('end');
-            $table->integer('creado_por');
-            $table->integer('actualizado_por');
+            $table->unsignedBigInteger('creado_por');
+            $table->unsignedBigInteger('actualizado_por');
             $table->timestamps();
 
             $table->foreign('periodos_has_cursos_id')->references('id')->on('periodos_has_cursos');
+            $table->foreign('creado_por')->references('id')->on('users');
+            $table->foreign('actualizado_por')->references('id')->on('users');
         });
     }
 
