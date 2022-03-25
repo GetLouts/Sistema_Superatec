@@ -20,8 +20,9 @@
                                 <thead style="background-color: #6777ef;">
                                     <th style="color: #fff;">ID</th>
                                     <th style="color: #fff;">Nombre</th>
-                                    <th style="color: #fff;">Descripción</th>
                                     <th style="color: #fff;">Cantidad</th>
+                                    <th style="color: #fff;">Clases</th>
+                                    <th style="color: #fff;">Descripción</th>
                                     <th style="color: #fff;">Acciones</th>
                                 </thead>
                                 <tbody>
