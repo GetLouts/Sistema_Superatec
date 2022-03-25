@@ -5,6 +5,7 @@ namespace Database\Seeders;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
+use Carbon\Carbon;
 
 class MetodosDePagoSeeder extends Seeder
 {
@@ -16,19 +17,14 @@ class MetodosDePagoSeeder extends Seeder
     public function run()
     {
         $metodos = [
-        	(object) ['id' => 1, 'metodo_pago' => 'Bolivares', 'creado_por' => false, 'actualizado_por' => false],
-            (object) ['id' => 2, 'metodo_pago' => 'Divisa', 'creado_por' => false, 'actualizado_por' => false],
-            (object) ['id' => 3, 'metodo_pago' => 'Pago Movil', 'creado_por' => false, 'actualizado_por' => false],
-            (object) ['id' => 4, 'metodo_pago' => 'Transferencia', 'creado_por' => false, 'actualizado_por' => false],
+        	['metodo_pago' => 'Bolivares', 'creado_por' => 1, 'created_at' => Carbon::now()],
+            ['metodo_pago' => 'Divisa', 'creado_por' => 1, 'created_at' => Carbon::now()],
+            ['metodo_pago' => 'Pago Movil', 'creado_por' => 1, 'created_at' => Carbon::now()],
+            ['metodo_pago' => 'Transferencia', 'creado_por' => 1, 'created_at' => Carbon::now()],
         ];
 
         foreach ($metodos as $value) {
-        	DB::table('metodos')->insert([
-        		'id' => $value->id,
-	            'metodo_pago' => $value->metodo_pago,
-                'creado_por' => $value->creado_por,
-                'actualizado_por' => $value->actualizado_por,
-	        ]);
+            DB::table('metodos')->insert($value);
         }
     }
 }
