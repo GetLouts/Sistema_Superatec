@@ -16,15 +16,21 @@ class Alumno extends Model
         'direccion',
         'correo',
         'nivel_de_estudio',
-        'edad',
+        'fecha_nac',
         'comunidad',
-        'curso',
         'pago',
         'metodo_pago',
-        'fecha_pago',
         'numero_referencia',
         'patrocinador',
         'fecha_registro',
         'estado',
     ];
+    public function cursos ()
+    {
+        return $this->hasOne(Curso::class, 'id', 'curso');
+    }
+    public function estados ()
+    {
+        return $this->hasOne(Estado::class, 'id', 'estado');
+    }
 }

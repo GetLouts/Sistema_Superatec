@@ -5,12 +5,12 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Periodo extends Model
+class PhasC extends Model
 {
     protected $fillable = [
-        'nombre_perido',
+        'periodo_id',
+        'curso_id',
         'creado_por',
         'actualizado_por',
-        'estado_id',
     ];
 }

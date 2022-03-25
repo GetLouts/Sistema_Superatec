@@ -56,16 +56,16 @@ class AlumnoController extends Controller
             $alumnos->direccion = $request->direccion;
             $alumnos->correo = $request->correo;
             $alumnos->nivel_de_estudio = $request->nivel_de_estudio;
-            $alumnos->edad = $request->edad;
+            $alumnos->fecha_nac = $request->fecha_nac;
             $alumnos->comunidad = $request->comunidad;
-            $alumnos->curso = $request->curso;
+            //$alumnos->curso = $request->curso;
             $alumnos->pago = $request->pago;
-            $alumnos->metodo_pago = $request->metodo_pago;
-            $alumnos->fecha_pago = $request->fecha_pago;
+           // $alumnos->metodo_pago = $request->metodo_pago;
+            //$alumnos->fecha_pago = $request->fecha_pago;
             $alumnos->numero_referencia = $request->numero_referencia;
             $alumnos->patrocinador = $request->patrocinador;
-            $alumnos->fecha_registro = $request->fecha_registro;
-            $alumnos->estado = $request->estado;
+            //$alumnos->fecha_registro = $request->fecha_registro;
+            $alumnos->estado_id = $request->estado_id;
            
             
             

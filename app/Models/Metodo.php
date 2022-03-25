@@ -5,12 +5,11 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Periodo extends Model
+class Metodo extends Model
 {
     protected $fillable = [
-        'nombre_perido',
+        'metodo_pago',
         'creado_por',
         'actualizado_por',
-        'estado_id',
     ];
 }

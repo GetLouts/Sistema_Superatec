@@ -9,5 +9,11 @@ class Curso extends Model
 {
     protected $fillable = [
         'cursos',
+        'descripcion',
+        'cantidad_alumnos',
+        'clases',
+        'estado_id',
+        'creado_por',
+        'actualizado_por',
     ];
 }

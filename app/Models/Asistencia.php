@@ -5,12 +5,11 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Periodo extends Model
+class Asistencia extends Model
 {
     protected $fillable = [
-        'nombre_perido',
+        'alumnos_has_periodos_id',
         'creado_por',
         'actualizado_por',
-        'estado_id',
     ];
 }
