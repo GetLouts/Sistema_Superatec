@@ -40,6 +40,13 @@ class CursoController extends Controller
     {
         $cursos = new Curso();
         $cursos->cursos = $request->cursos;
+        $cursos->descripcion = $request->descripcion;
+        $cursos->cantidad_alumnos = $request->cantidad_alumnos;
+        $cursos->clases = $request->clases;
+        $cursos->estado_id = $request->estado_id|1;
+        $cursos->creado_por = $request->creado_por|null;
+        //$cursos->estado_id = $request->estado_id;
+        
 
         $cursos->save();
         return redirect()->route('cursos.index');

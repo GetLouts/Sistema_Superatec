@@ -13,4 +13,8 @@ class PhasC extends Model
         'creado_por',
         'actualizado_por',
     ];
+    public function periodos ()
+    {
+        return $this->hasOne(Periodo::class, 'id', 'estado_id');
+    }
 }

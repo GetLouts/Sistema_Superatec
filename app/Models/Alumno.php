@@ -33,4 +33,8 @@ class Alumno extends Model
     {
         return $this->hasOne(Estado::class, 'id', 'estado');
     }
+    public function metodo_pago ()
+    {
+        return $this->hasOne(Metodo::class, 'id', 'metodo_pago');
+    }
 }

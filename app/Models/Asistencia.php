@@ -12,4 +12,12 @@ class Asistencia extends Model
         'creado_por',
         'actualizado_por',
     ];
+    public function ahasp ()
+    {
+        return $this->hasOne(AhasP::class, 'id', 'alumnos_has_periodos_id');
+    }
+    public function users ()
+    {
+        return $this->hasOne(User::class, 'id', 'creado_por');
+    }
 }

@@ -16,4 +16,12 @@ class Curso extends Model
         'creado_por',
         'actualizado_por',
     ];
+    public function estados ()
+    {
+        return $this->hasOne(Estado::class, 'id', 'estado_id');
+    }
+    public function user ()
+    {
+        return $this->hasOne(User::class, 'id', 'creado_por');
+    }
 }

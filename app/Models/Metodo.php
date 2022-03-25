@@ -12,4 +12,8 @@ class Metodo extends Model
         'creado_por',
         'actualizado_por',
     ];
+    public function users ()
+    {
+        return $this->hasOne(User::class, 'id', 'creado_por');
+    }
 }
