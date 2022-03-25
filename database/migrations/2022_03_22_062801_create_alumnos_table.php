@@ -30,7 +30,7 @@ return new class extends Migration
             $table->string('patrocinador');
             $table->unsignedBigInteger('estado_id');
             $table->unsignedBigInteger('creado_por');
-            $table->unsignedBigInteger('actualizado_por');
+            $table->unsignedBigInteger('actualizado_por')->nullable();
             $table->timestamps();
 
             $table->foreign('estado_id')->references('id')->on('estados');

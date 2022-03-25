@@ -17,7 +17,7 @@ return new class extends Migration
             $table->id();
             $table->unsignedBigInteger('alumnos_has_periodos_id');
             $table->unsignedBigInteger('creado_por');
-            $table->unsignedBigInteger('actualizado_por');
+            $table->unsignedBigInteger('actualizado_por')->nullable();
             $table->unsignedBigInteger('evento_id');
             $table->timestamps();
 

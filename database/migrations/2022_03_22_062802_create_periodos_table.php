@@ -17,7 +17,7 @@ return new class extends Migration
             $table->id();
             $table->string('nombre_periodo');
             $table->unsignedBigInteger('creado_por');
-            $table->unsignedBigInteger('actualizado_por');
+            $table->unsignedBigInteger('actualizado_por')->nullable();
             $table->unsignedBigInteger('estado_id');
             $table->timestamps();
 

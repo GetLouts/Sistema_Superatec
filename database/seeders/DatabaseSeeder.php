@@ -18,6 +18,7 @@ class DatabaseSeeder extends Seeder
             TablaPermisosSeeder::class,
             SuperAdminSeeder::class,
             MetodosDePagoSeeder::class,
+            EstadoSeeder::class,
         ]);
     }
 }

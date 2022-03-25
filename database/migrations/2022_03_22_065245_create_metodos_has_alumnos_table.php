@@ -19,7 +19,7 @@ return new class extends Migration
             $table->unsignedBigInteger('alumno_id');
             $table->unsignedBigInteger('periodos_has_cursos_id');
             $table->unsignedBigInteger('creado_por');
-            $table->unsignedBigInteger('actualizado_por');
+            $table->unsignedBigInteger('actualizado_por')->nullable();
             $table->timestamps();
 
             $table->foreign('metodo_id')->references('id')->on('metodos');

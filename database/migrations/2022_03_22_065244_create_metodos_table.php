@@ -17,7 +17,7 @@ return new class extends Migration
             $table->id();
             $table->string('metodo_pago');
             $table->unsignedBigInteger('creado_por');
-            $table->unsignedBigInteger('actualizado_por');
+            $table->unsignedBigInteger('actualizado_por')->nullable();
             $table->timestamps();
 
             $table->foreign('creado_por')->references('id')->on('users');
