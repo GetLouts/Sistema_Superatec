@@ -14,6 +14,9 @@ class AhasP extends Model
         'creado_por',
         'actualizado_por',
     ];
+
+    //Relacion uno a uno
+/*
     public function alumnos ()
     {
         return $this->hasOne(Alumno::class, 'id', 'alumno_id');
@@ -29,5 +32,23 @@ class AhasP extends Model
     public function creado_por ()
     {
         return $this->hasOne(User::class, 'id', 'creado_id');
+    }
+*/
+    // Relacion uno a muchos
+    public function alumnos(){
+        return $this->hasMany('App\Models\Alumno');
+    }
+    public function periodos(){
+        return $this->hasMany('App\Models\Periodo');
+    }
+    public function cursos(){
+        return $this->hasMany('App\Models\Curso');
+    }
+    public function users(){
+        return $this->hasMany('App\Models\User');
+    }
+    // Relacion uno a muchos (inversa)
+    public function asistencia(){
+        return $this->belongsTo('App\Models\Asistencia');
     }
 }

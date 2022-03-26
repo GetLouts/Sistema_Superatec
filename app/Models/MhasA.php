@@ -14,20 +14,18 @@ class MhasA extends Model
         'creado_por',
         'actualizado_por',
     ];
-    public function metodos ()
-    {
-        return $this->hasOne(Metodo::class, 'id', 'metodo_id');
+
+    // Relacion uno a muchos
+    public function metodos(){
+        return $this->hasMany('App\Models\Metodo');
     }
-    public function alumnos ()
-    {
-        return $this->hasOne(Alumno::class, 'id', 'alumno_id');
+    public function alumnos(){
+        return $this->hasMany('App\Models\Alumno');
     }
-    public function phasc ()
-    {
-        return $this->hasOne(PhasC::class, 'id', 'periodo_has_cursos_id');
+    public function phasc(){
+        return $this->hasMany('App\Models\PhasC');
     }
-    public function users ()
-    {
-        return $this->hasOne(User::class, 'id', 'creado_por');
+    public function users(){
+        return $this->hasMany('App\Models\User');
     }
 }

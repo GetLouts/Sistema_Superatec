@@ -13,12 +13,17 @@ class Periodo extends Model
         'actualizado_por',
         'estado_id',
     ];
-    public function users ()
-    {
-        return $this->hasOne(User::class, 'id', 'creado_por');
-    }
+    // Relacion uno a uno
     public function estados ()
     {
         return $this->hasOne(Estado::class, 'id', 'estado_id');
+    }
+    // Relacion uno a muchos
+    public function users(){
+        return $this->hasMany('App\Models\User');
+    }
+    //Relacion uno a muchos (inversa)
+    public function ahasp(){
+        return $this->belongsTo('App\Models\AhasP');
     }
 }

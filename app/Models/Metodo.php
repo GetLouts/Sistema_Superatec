@@ -12,8 +12,15 @@ class Metodo extends Model
         'creado_por',
         'actualizado_por',
     ];
-    public function users ()
-    {
-        return $this->hasOne(User::class, 'id', 'creado_por');
+    // Relacion uno a muchos
+    public function alumnos(){
+       return $this->hasMany('App\Models\Alumno');
+    }
+    //Relacion uno a muchos (inversa)
+    public function user(){
+        return $this->belongsTo('App\Models\User');
+    }
+    public function mhasa(){
+        return $this->belongsTo('App\Models\MhasA');
     }
 }

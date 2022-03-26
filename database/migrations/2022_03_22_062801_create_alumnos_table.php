@@ -29,13 +29,13 @@ return new class extends Migration
             $table->string('numero_referencia');
             $table->string('patrocinador');
             $table->unsignedBigInteger('estado_id');
-            $table->unsignedBigInteger('creado_por');
+            $table->unsignedBigInteger('creado_por')->nullable();
             $table->unsignedBigInteger('actualizado_por')->nullable();
             $table->timestamps();
 
             $table->foreign('estado_id')->references('id')->on('estados');
-            $table->foreign('creado_por')->references('id')->on('users');
-            $table->foreign('actualizado_por')->references('id')->on('users');
+            $table->foreign('creado_por')->references('id')->on('users')->onDelete('set null');
+            $table->foreign('actualizado_por')->references('id')->on('users')->onDelete('set null');
         });
     }
 

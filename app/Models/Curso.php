@@ -20,8 +20,18 @@ class Curso extends Model
     {
         return $this->hasOne(Estado::class, 'id', 'estado_id');
     }
-    public function user ()
-    {
-        return $this->hasOne(User::class, 'id', 'creado_por');
+    // Relacion uno a muchos
+    public function alumnos(){
+        return $this->hasMany('App\Models\Alumno');
+    }
+    public function users(){
+        return $this->hasMany('App\Models\User');
+    }
+    //Relacion uno a muchos (inversa)
+    public function ahasp(){
+        return $this->belongsTo('App\Models\AhasP');
+    }
+    public function phasc(){
+        return $this->belongsTo('App\Models\PhasC');
     }
 }

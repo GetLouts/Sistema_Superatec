@@ -17,4 +17,15 @@ class PhasC extends Model
     {
         return $this->hasOne(Periodo::class, 'id', 'estado_id');
     }
+    //Relacion uno a muchos
+    public function cursos(){
+        return $this->hasMany('App\Models\Curso');
+    }
+    public function users(){
+        return $this->hasMany('App\Models\User');
+    }
+    //Relacion uno a muchos (inversa)
+    public function mhasa(){
+        return $this->belongsTo('App\Models\MhasA');
+    }
 }

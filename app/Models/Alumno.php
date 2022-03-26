@@ -25,16 +25,37 @@ class Alumno extends Model
         'fecha_registro',
         'estado',
     ];
-    public function cursos ()
+
+    
+    //Relacion uno a uno
+/* public function cursos ()
     {
         return $this->hasOne(Curso::class, 'id', 'curso');
-    }
-    public function estados ()
-    {
-        return $this->hasOne(Estado::class, 'id', 'estado');
     }
     public function metodo_pago ()
     {
         return $this->hasOne(Metodo::class, 'id', 'metodo_pago');
+   }
+*/
+    public function estados ()
+    {
+    return $this->hasOne('App\Models\Estado');
     }
+    //Relacion uno a muchos (inversa)
+    public function user(){
+        return $this->belongsTo('App\Models\User');
+    }
+    public function metodo(){
+        return $this->belongsTo('App\Models\Metodo');
+    }
+    public function curso(){
+        return $this->belongsTo('App\Models\Curso');
+    }
+    public function ahasp(){
+        return $this->belongsTo('App\Models\AhasP');
+    }
+    public function mhasa(){
+        return $this->belongsTo('App\Models\MhasA');
+    }
+    
 }
