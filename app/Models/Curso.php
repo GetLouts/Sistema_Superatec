@@ -20,18 +20,11 @@ class Curso extends Model
     {
         return $this->hasOne(Estado::class, 'id', 'estado_id');
     }
-    // Relacion uno a muchos
+    // Relacion muchos a muchos
     public function alumnos(){
-        return $this->hasMany('App\Models\Alumno');
+        return $this->belongsToMany('App\Models\Alumno');
     }
     public function users(){
-        return $this->hasMany('App\Models\User');
-    }
-    //Relacion uno a muchos (inversa)
-    public function ahasp(){
-        return $this->belongsTo('App\Models\AhasP');
-    }
-    public function phasc(){
-        return $this->belongsTo('App\Models\PhasC');
+        return $this->belongsToMany('App\Models\User');
     }
 }

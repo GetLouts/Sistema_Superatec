@@ -18,12 +18,8 @@ class Periodo extends Model
     {
         return $this->hasOne(Estado::class, 'id', 'estado_id');
     }
-    // Relacion uno a muchos
+    //Relacion muchos a muchos
     public function users(){
-        return $this->hasMany('App\Models\User');
-    }
-    //Relacion uno a muchos (inversa)
-    public function ahasp(){
-        return $this->belongsTo('App\Models\AhasP');
+        return $this->belongsToMany('App\Models\User');
     }
 }

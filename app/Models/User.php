@@ -47,26 +47,20 @@ class User extends Authenticatable
     
     // Relacion uno a muchos
     public function alumnos(){
-        return $this->hasMany('App\Models\Alumno');
+        return $this->belongsToMany('App\Models\Alumno');
+    }
+        
+    // Relacion uno a muchos
+    public function asistencias(){
+        return $this->belongsToMany('App\Models\Asistencia');
+    }
+    public function cursos(){
+        return $this->belongsToMany('App\Models\Curso');
     }
     public function metodos(){
-        return $this->hasMany('App\Models\Metodo');
+        return $this->belongsToMany('App\Models\Metodo');
     }
-    
-    // Relacion uno a muchos (inversa)
-    public function ahasp(){
-        return $this->belongsTo('App\Models\AhasP');
-    }
-    public function asistencia(){
-        return $this->belongsTo('App\Models\Asistencia');
-    }
-    public function curso(){
-        return $this->belongsTo('App\Models\Curso');
-    }
-    public function mhasa(){
-        return $this->belongsTo('App\Models\MhasA');
-    }
-    public function phasc(){
-        return $this->belongsTo('App\Models\PhasC');
+    public function periodos(){
+        return $this->belongsToMany('App\Models\Periodo');
     }
 }

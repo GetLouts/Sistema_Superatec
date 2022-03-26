@@ -41,21 +41,15 @@ class Alumno extends Model
     {
     return $this->hasOne('App\Models\Estado');
     }
-    //Relacion uno a muchos (inversa)
-    public function user(){
-        return $this->belongsTo('App\Models\User');
+    //Relacion muchos a muchos
+    public function users(){
+        return $this->belongsToMany('App\Models\User');
     }
-    public function metodo(){
-        return $this->belongsTo('App\Models\Metodo');
+    public function metodos(){
+        return $this->belongsToMany('App\Models\Metodo');
     }
-    public function curso(){
-        return $this->belongsTo('App\Models\Curso');
-    }
-    public function ahasp(){
-        return $this->belongsTo('App\Models\AhasP');
-    }
-    public function mhasa(){
-        return $this->belongsTo('App\Models\MhasA');
+    public function cursos(){
+        return $this->belongsToMany('App\Models\Curso');
     }
     
 }

@@ -12,11 +12,8 @@ class Asistencia extends Model
         'creado_por',
         'actualizado_por',
     ];
-    //Relacion uno a muchos
-    public function ahasp(){
-        return $this->hasMany('App\Models\AhasP');
-    }
+    //Relacion muchos a muchos
     public function users(){
-        return $this->hasMany('App\Models\User');
+        return $this->belongsToMany('App\Models\User');
     }
 }
