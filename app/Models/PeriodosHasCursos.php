@@ -5,25 +5,27 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Periodo extends Model
+class PeriodosHasCursos extends Model
 {
     protected $fillable = [
-        'nombre_perido',
+        'periodo_id',
+        'curso_id',
         'creado_por',
         'actualizado_por',
-        'estado_id',
     ];
     //Relacion uno a muchos
-    public function alumnoshasperiodos(){
-        return $this->hasMany('App\Models\AlumnosHasPeriodos');
+    public function metodohasalumnos(){
+        return $this->hasMany('App\Models\MetodosHasAlumnos');
     }
-    public function periodoshascursos(){
-        return $this->hasMany('App\Models\PeriodosHasCursos');
+    public function eventos(){
+        return $this->hasMany('App\Models\Evento');
     }
-    // Un Alumno pertenece a un estado.
-    public function estados ()
-    {
-        return $this->belongsTo(Estado::class, 'estado_id', 'id');
+    //Relacion inversa
+    public function cursos(){
+        return $this->belongsTo('App\Models\Curso');
+    }
+    public function periodo(){
+        return $this->belongsTo('App\Models\Periodo');
     }
     /**
      * Lo mismo con el creado y editado. Pertenecen a un usuario, el que lo crea\edita
@@ -32,4 +34,5 @@ class Periodo extends Model
     public function creadoPor(){
         return $this->belongsTo('App\Models\User', 'creado_por');
     }
+    
 }

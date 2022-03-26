@@ -7,6 +7,8 @@ use Illuminate\Database\Eloquent\Model;
 
 class Alumno extends Model
 {
+    use HasFactory;
+
     protected $fillable = [
         'nombres',
         'apellidos',
@@ -26,30 +28,46 @@ class Alumno extends Model
         'estado',
     ];
 
-    
-    //Relacion uno a uno
-/* public function cursos ()
-    {
-        return $this->hasOne(Curso::class, 'id', 'curso');
-    }
-    public function metodo_pago ()
-    {
-        return $this->hasOne(Metodo::class, 'id', 'metodo_pago');
-   }
-*/
+    /**
+     * Un Alumno pertenece a un estado.
+     *
+     * la mayoria de las relaciones con la tabla estado van de esta manera
+     */
     public function estados ()
     {
-    return $this->hasOne('App\Models\Estado');
+        return $this->belongsTo(Estado::class, 'estado_id', 'id');
     }
-    //Relacion muchos a muchos
-    public function users(){
-        return $this->belongsToMany('App\Models\User');
+
+    /**
+     * Lo mismo con el creado y editado. Pertenecen a un usuario, el que lo crea\edita
+     * es dueño del registro
+     */
+    public function creadoPor(){
+        return $this->belongsTo('App\Models\User', 'creado_por');
     }
-    public function metodos(){
-        return $this->belongsToMany('App\Models\Metodo');
+
+    /**
+     * Un Alumno tiene muchos cursos "posiblemente" agregados.
+     *
+     * Se debe condicionar por el periodo activo en el sistema,
+     * por que el periodo debe estar almacenado en una variable global de sistema
+     *
+     * Buscar en google...
+     */
+    public function cursosPeriodoActivo()
+    {
+        return $this->hasMany('App\Models\AlumnosHasPeriodos')->where('periodo_id', 1);
     }
-    public function cursos(){
-        return $this->belongsToMany('App\Models\Curso');
+
+    // Relacion uno a muchos
+    public function metodohasalumnos(){
+        return $this->hasMany('App\Models\MetodosHasAlumnos');
     }
-    
+    public function periodoshascursos(){
+        return $this->hasMany('App\Models\PeriodosHasCursos');
+    }
+    public function alumnoshasperiodos(){
+        return $this->hasMany('App\Models\AlumnosHasPeriodos');
+    }
+
 }

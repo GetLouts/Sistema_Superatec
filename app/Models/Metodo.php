@@ -12,12 +12,15 @@ class Metodo extends Model
         'creado_por',
         'actualizado_por',
     ];
-
-    //Relacion uno a muchos 
-    public function alumnos(){
-        return $this->belongsToMany('App\Models\Alumno');
+    /**
+     * Lo mismo con el creado y editado. Pertenecen a un usuario, el que lo crea\edita
+     * es dueño del registro
+     */
+    public function creadoPor(){
+        return $this->belongsTo('App\Models\User', 'creado_por');
     }
-    public function users(){
-        return $this->belongsToMany('App\Models\User');
+    //Relacion uno a muchos
+    public function metodohasalumnos(){
+        return $this->hasMany('App\Models\MetodosHasAlumnos');
     }
 }
