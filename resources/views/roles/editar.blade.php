@@ -44,7 +44,7 @@
                                     </div>
                                 </div>
                                 <div class="col-xs-12 col-sm-12 col-md-12">
-                                    <button type="submit" class="btn btn-success">Guardar</button>
+                                    <button type="submit" class="btn btn-success">Actualizar Rol</button>
                                     <a class="btn btn-primary" href="{{route('roles.index') }}">Volver</a>
                                 </div>
                             </div>

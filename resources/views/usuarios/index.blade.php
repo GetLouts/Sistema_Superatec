@@ -15,7 +15,7 @@
                             @can('crear-usuario')
                             <a class="btn btn-success" href="{{ route ('usuarios.create')}}">Nuevo Usuario</a>
                             @endcan
-
+                            <div class="table-responsive">
                             <table class="table table-striped mt-2">
                                 <thead style="background-color: #6777ef;">
                                     <th style="color: #fff;">ID</th>
@@ -43,13 +43,13 @@
                                         <td>
                                             @endcan
                                             @can('editar-usuario')
-                                            <a class="btn btn-info" href="{{ route('usuarios.edit', $usuario->id)}}">Editar</a>
+                                            <a class="btn btn-info" href="{{ route('usuarios.edit', $usuario->id)}}"><i class="fa fa-pen"></i></a>
                                             @endcan
                                             
                                             
                                             @can('borrar-usuario')
                                             {!! Form::open(['method'=> 'DELETE', 'route'=> ['usuarios.destroy', $usuario->id],'style'=>'display:inline']) !!}
-                                                {!! Form::submit('Borrar',['class'=> 'btn btn-danger']) !!}
+                                                {!! Form::button('<i class="fa fa-trash"></i>',  ['type' => 'submit', 'class'=> 'btn btn-danger']) !!}
                                             {!! Form::close() !!}
                                             @endcan
                                         </td>
@@ -57,6 +57,7 @@
                                     @endforeach
                                 </tbody>
                             </table>
+                            </div>
                             <div class="pagination justify-content-end">
                                 {!! $usuarios->links() !!}
                             </div>

@@ -85,8 +85,8 @@
                                 <td>
                                     <div class="col-xs-12 col-sm-12 col-md-6">
                                         <div class="form-group">
-                                            <label for="name">Fecha de Nacimiento</label>
-                                            {!! Form::number('fecha_nac', null, array('class'=>'form-control')) !!}
+                                            <label for="name">Edad</label>
+                                            {!! Form::number('edad', null, array('class'=>'form-control')) !!}
                                         </div>
                                     </div>
                                     <div class="col-xs-12 col-sm-12 col-md-6">
@@ -115,13 +115,10 @@
                                 </td>
                                 <td>
                                     <div class="col-xs-12 col-sm-12 col-md-6">
-                                        <label for="name">Metodo de Pago</label>
-                                        <select name="estado" class="form-control">
-                                           
-                                            @foreach ($metodos as $metodo)
-                                                <option value="{{ $metodo->id }}">{{ $metodo->metodo_pago }}</option>                                                   
-                                            @endforeach
-                                        </select>
+                                        <div class="form-group">
+                                            <label for="name">Metodo de Pago</label>
+                                            {!! Form::text('metodo_pago', null, array('class'=>'form-control')) !!}
+                                        </div>
                                     </div>
                                     <div class="col-xs-12 col-sm-12 col-md-6">
                                         <div class="form-group">
@@ -159,6 +156,7 @@
                                                 <option value="{{ $estado->id }}">{{ $estado->estado }}</option>      
                                             @endforeach
                                         </select>
+                                    </div>
                                 </td>
                                     <div class="col-xs-12 col-sm-12 col-md-12">
                                         <button type="submit" class="btn btn-success">Guardar</button>

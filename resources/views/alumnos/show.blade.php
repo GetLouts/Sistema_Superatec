@@ -89,7 +89,7 @@
                                 <div class="col-xs-12 col-sm-12 col-md-6">
                                     <div class="form-group">
                                         <label for="name">Curso</label>
-                                        {!! Form::text('curso', null, array('class'=>'form-control')) !!}
+                                        {!! Form::text('curso', $alumnos->cursos->cursos, array('class'=>'form-control')) !!}
                                     </div>
                                 </div>
                                 <div class="col-xs-12 col-sm-12 col-md-6">
@@ -137,7 +137,7 @@
                                 <div class="col-xs-12 col-sm-12 col-md-6">
                                     <div class="form-group">
                                         <label for="name">Estado</label>
-                                        {!! Form::text('estado', null, array('class'=>'form-control')) !!}
+                                        {!! Form::text('estado', $alumnos->estados->estado, array('class'=>'form-control')) !!}
                                     </div>
                                 </div>
                             </td>

@@ -160,7 +160,7 @@
                             </td>
                                 <div class="col-xs-12 col-sm-12 col-md-12">
                                     <button type="submit" class="btn btn-success">Actualizar Alumno</button>
-                                    <a class="btn btn-primary" href="{{route('alumnos.index') }}">Volver</a>
+                                    <a class="btn btn-primary" href="{{route('alumnosinactivos.index') }}">Volver</a>
                                 </div>
                             </div>
                             {!! Form::close() !!}

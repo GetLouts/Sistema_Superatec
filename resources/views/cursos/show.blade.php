@@ -19,7 +19,7 @@
                                 <div class="col-xs-12 col-sm-12 col-md-6">
                                     <div class="form-group">
                                         <label for="name">Curso</label>
-                                        {!! Form::text('cursos', $cursos->cursos, array('class'=>'form-control')) !!}
+                                        {!! Form::text('curso', $cursos->cursos, array('class'=>'form-control')) !!}
                                     </div>
                                 </div>
                             </td>

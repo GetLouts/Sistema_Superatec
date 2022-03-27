@@ -45,10 +45,9 @@
                   <div class="modal-body">
                       
 
-                    <form action="" id="form" method="POST">
+                    <form action="">
 
                     {!! csrf_field() !!}
-                    @method('PUT')
                         
                         <div class="form-group">
                           <label for="id">ID</label>
@@ -95,6 +94,4 @@
               </div>
           </div>
       </div>
-      <script src="{{ asset('js/agenda.js') }}"></script>
-      
 @endsection

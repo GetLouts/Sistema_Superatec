@@ -57,7 +57,7 @@
                                     </div>
                                 </div>
                                 <div class="col-xs-12 col-sm-12 col-md-12">
-                                    <button type="submit" class="btn btn-success">Guardar</button>
+                                    <button type="submit" class="btn btn-success">Actualizar Usuario</button>
                                     <a class="btn btn-primary" href="{{route('usuarios.index') }}">Volver</a>
                                 </div>
                             </div>

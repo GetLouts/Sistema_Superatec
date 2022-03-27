@@ -34,10 +34,13 @@
                                         </div>
                                     </div>
                                     <div class="col-xs-12 col-sm-12 col-md-6">
-                                        <div class="form-group">
-                                            <label for="name">Estado</label>
-                                            {!! Form::text('estado', null, array('class'=>'form-control')) !!}
-                                        </div>
+                                        <label for="name">Estado</label>
+                                        <select name="estado" class="form-control">
+       
+                                            @foreach ($estados as $estado)
+                                                <option value="{{ $estado->id }}">{{ $estado->estado }}</option>      
+                                            @endforeach
+                                        </select>
                                     </div>
                                     </td>
                                     <div class="col-xs-12 col-sm-12 col-md-12">

@@ -16,6 +16,7 @@
                             @can('crear-rol')
                             <a class="btn btn-success" href="{{route('roles.create') }}">Nuevo Rol</a>
                             @endcan
+                            <div class="table-responsive">
                             <table class="table table-striped mt-2">
                                 <thead style="background-color: #6777ef;">
                                     <th style="color: #fff;">Rol</th>
@@ -30,12 +31,12 @@
                                     @endcan
                                     
                                             @can('editar-rol')
-                                                <a class="btn btn-primary" href="{{route('roles.edit',$role->id)}}">Editar</a>
+                                                <a class="btn btn-primary" href="{{route('roles.edit',$role->id)}}"><i class="fa fa-pen"></i></a>
                                             @endcan
 
                                             @can('borrar-rol')
                                             {!! Form::open(['method'=> 'DELETE', 'route'=> ['roles.destroy', $role->id],'style'=>'display:inline']) !!}
-                                                {!! Form::submit('Borrar',['class'=> 'btn btn-danger']) !!}
+                                                {!! Form::button('<i class="fa fa-trash"></i>',  ['type' => 'submit', 'class'=> 'btn btn-danger']) !!}
                                             {!! Form::close() !!}
                                             @endcan
                                         </td>
@@ -43,6 +44,7 @@
                                     @endforeach
                                 </tbody>
                             </table>
+                            </div>
                             <div class="pagination justify-content-end">
                                 {!! $roles->links() !!}
                             </div>

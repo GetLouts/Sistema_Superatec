@@ -9,7 +9,7 @@
         @can('ver-menu-usuarios')<li><a class="nav-link" href="/usuarios"><i class="app-menu__icon fa fa-user"></i>Usuarios</a></li>@endcan
         @can('ver-menu-periodos')<li><a class="nav-link" href="/cursos"><i class="app-menu__icon fa fa-user"></i>Cursos</a></li>@endcan
         @can('ver-menu-alumnosa')<li><a class="nav-link" href="/alumnos"><i class="app-menu__icon fa fa-user"></i>Alumnos Activos</a></li>@endcan
-        @can('ver-menu-alumnosa')<li><a class="nav-link" href="#"><i class="app-menu__icon fa fa-user"></i>Alumnos Inactivos</a></li>@endcan
+        @can('ver-menu-alumnosa')<li><a class="nav-link" href="/alumnosinactivos"><i class="app-menu__icon fa fa-user"></i>Alumnos Inactivos</a></li>@endcan
         @can('ver-menu-periodos')<li><a class="nav-link" href="/periodos"><i class="app-menu__icon fa fa-user"></i>Periodos</a></li>@endcan
         </ul>
       </li>
