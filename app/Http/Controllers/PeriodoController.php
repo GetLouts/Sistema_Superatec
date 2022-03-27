@@ -33,7 +33,7 @@ class PeriodoController extends Controller
      */
     public function create()
     {
-        $periodos = Periodo::pluck('nombre_perido','nombre_perido')->all();
+        $periodos = Periodo::pluck('nombre_periodo','nombre_periodo')->all();
         return view('periodos.crear', compact('periodos'));
     }
 
@@ -47,7 +47,7 @@ class PeriodoController extends Controller
     {
         $periodos = new Periodo();
 
-            $periodos->nombre_perido = $request->nombre_perido;
+            $periodos->nombre_periodo = $request->nombre_periodo;
             $periodos->estado = $request->estado;
             
             $periodos->save();

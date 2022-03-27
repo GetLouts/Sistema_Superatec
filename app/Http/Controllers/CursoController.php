@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 USE App\Models\Curso;
+use App\Models\User;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 
@@ -27,7 +28,8 @@ class CursoController extends Controller
     public function create()
     {
         $cursos = Curso::get();
-        return view('cursos.crear', compact('cursos'));
+        $user = User::Pluck('name');
+        return view('cursos.crear', compact('cursos', 'user'));
     }
 
     /**
@@ -44,7 +46,7 @@ class CursoController extends Controller
         $cursos->cantidad_alumnos = $request->cantidad_alumnos;
         $cursos->clases = $request->clases;
         $cursos->estado_id = $request->estado_id|1;
-        $cursos->creado_por = $request->creado_por|null;
+        $cursos->creado_por = auth()->user()->id;
         //$cursos->estado_id = $request->estado_id;
         
 
