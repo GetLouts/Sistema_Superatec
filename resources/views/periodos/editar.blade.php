@@ -1,11 +1,11 @@
 @extends('layouts.app')
 @section('title')
-    Editar Periodos
+    Editar Periodo
 @endsection
 @section('content')
     <section class="section">
         <div class="section-header">
-            <h3 class="page__heading">Editar Periodos</h3>
+            <h3 class="page__heading">Editar Periodo</h3>
         </div>
         <div class="section-body">
             <div class="row">
@@ -35,7 +35,7 @@
                                 <div class="col-xs-12 col-sm-12 col-md-6">
                                     <label for="name">Estado</label>
                                     <select name="estado_id" class="form-control">
-                                        <option hidden selected>--> Selecione el Estado <--</option>
+                                        
                                         @foreach ($estados as $estado)
                                             <option value="{{ $estado->id }}">{{ $estado->estado }}</option>      
                                         @endforeach
@@ -43,7 +43,7 @@
                                 </div>
                                 <div class="col-xs-12 col-sm-12 col-md-12">
                                     <button type="submit" class="btn btn-success">Actualizar Periodo</button>
-                                    <a class="btn btn-primary" href="{{route('usuarios.index') }}">Volver</a>
+                                    <a class="btn btn-primary" href="{{route('periodos.index') }}">Volver</a>
                                 </div>
                             </div>
                             {!! Form::close() !!}

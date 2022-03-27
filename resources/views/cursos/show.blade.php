@@ -1,11 +1,11 @@
 @extends('layouts.app')
 @section('title')
-    Información del Estudiante
+    Información del Curso
 @endsection
 @section('content')
     <section class="section">
         <div class="section-header">
-            <h3 class="page__heading">Información del Estudiante</h3>
+            <h3 class="page__heading">Información del Curso</h3>
         </div>
         <div class="section-body">
             <div class="row">
@@ -18,8 +18,8 @@
                                 <td>
                                     <div class="col-xs-12 col-sm-12 col-md-6">
                                         <div class="form-group">
-                                            <label for="name">Nombre del Curso</label>
-                                            {!! Form::text('cursos', null, array('class'=>'form-control')) !!}
+                                            <label for="name">Nombre del Curso</label>                     
+                                            {{ $cursos->cursos }} 
                                         </div>
                                     </div>
                                 
@@ -27,7 +27,7 @@
                                     <div class="col-xs-12 col-sm-12 col-md-6">
                                         <div class="form-group">
                                             <label for="name">Cantidad de Alumnos</label>
-                                            {!! Form::text('cantidad_alumnos', null, array('class'=>'form-control')) !!}
+                                            {{ $cursos->cantidad_alumnos }} 
                                         </div>
                                     </div>        
                                 </td>
@@ -35,13 +35,13 @@
                                 <div class="col-xs-12 col-sm-12 col-md-6">
                                     <div class="form-group">
                                         <label for="name">Clases del Curso</label>
-                                        {!! Form::text('clases', null, array('class'=>'form-control')) !!}
+                                        {{ $cursos->clases }} 
                                     </div>
                                 </div>                               
                                     <div class="col-xs-12 col-sm-12 col-md-6">
                                         <div class="form-group">
                                             <label for="name">Descripción del Curso</label>
-                                            {!! Form::textarea('descripcion', null, array('class'=>'form-group')) !!}
+                                            {{ $cursos->descripcion }} 
                                         </div>
                                     </div>
                                 </td>

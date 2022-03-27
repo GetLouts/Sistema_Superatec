@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 USE App\Models\Curso;
-use App\Models\User;
+use App\Models\Estado;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 
@@ -28,8 +28,9 @@ class CursoController extends Controller
     public function create()
     {
         $cursos = Curso::get();
-        $user = User::Pluck('name');
-        return view('cursos.crear', compact('cursos', 'user'));
+        $estados = Estado::all();
+        
+        return view('cursos.crear', compact('cursos', 'estados'));
     }
 
     /**
@@ -45,7 +46,7 @@ class CursoController extends Controller
         $cursos->descripcion = $request->descripcion;
         $cursos->cantidad_alumnos = $request->cantidad_alumnos;
         $cursos->clases = $request->clases;
-        $cursos->estado_id = $request->estado_id|1;
+        $cursos->estado_id = $request->estado_id;
         $cursos->creado_por = auth()->user()->id;
         //$cursos->estado_id = $request->estado_id;
         
@@ -62,7 +63,9 @@ class CursoController extends Controller
      */
     public function show($id)
     {
-        //
+        $cursos = Curso::find($id);
+        $estados = Estado::all();
+        return view('cursos.show', compact('cursos', 'id', 'estados'));
     }
 
     /**
@@ -74,7 +77,8 @@ class CursoController extends Controller
     public function edit($id)
     {
         $cursos = Curso::find($id);
-        return view('cursos.editar', compact('cursos'));
+        $estados = Estado::all();
+        return view('cursos.editar', compact('cursos', 'estados'));
     }
 
     /**
@@ -88,12 +92,16 @@ class CursoController extends Controller
     {
         $this->validate($request, [
             'cursos' => 'required', 
+            'descripcion' => 'required', 
+            'cantidad_alumnos' => 'required', 
+            'clases' => 'required',
+            'estado_id' => 'required',  
         ]);
-        
+        $input = $request->all();
         $cursos = Curso::find($id);
         $cursos->cursos = $request->input('cursos');
         $cursos->actualizado_por = auth()->user()->id;
-        $cursos->save();
+        $cursos->update($input);
 
         return redirect()->route('cursos.index');
     }

@@ -22,7 +22,6 @@
                                     <th style="color: #fff;">Nombre</th>
                                     <th style="color: #fff;">Email</th>
                                     <th style="color: #fff;">Rol</th>
-                                    <th style="color: #fff;">Estado</th>
                                     <th style="color: #fff;">Acciones</th>
                                 </thead>
                                 <tbody>
@@ -39,7 +38,7 @@
                                                 @endforeach
                                             @endif
                                         </td>
-                                        <td>{{$usuario->estado}}</td>
+                                        
                                         <td>
                                             @endcan
                                             @can('editar-usuario')

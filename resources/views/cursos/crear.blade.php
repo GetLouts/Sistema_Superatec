@@ -48,7 +48,16 @@
                                         <label for="name">Clases del Curso</label>
                                         {!! Form::text('clases', null, array('class'=>'form-control')) !!}
                                     </div>
-                                </div>                               
+                                </div>          
+                                <div class="col-xs-12 col-sm-12 col-md-6">
+                                    <label for="name">Estado</label>
+                                    <select name="estado_id" class="form-control">
+                                        <option hidden selected>--> Selecione el Estado <--</option>
+                                        @foreach ($estados as $estado)
+                                            <option value="{{ $estado->id }}">{{ $estado->estado }}</option>      
+                                        @endforeach
+                                    </select>
+                                </div>                     
                                     <div class="col-xs-12 col-sm-12 col-md-6">
                                         <div class="form-group">
                                             <label for="name">Descripción del Curso</label>

@@ -20,8 +20,9 @@
                                 <thead style="background-color: #6777ef;">
                                     <th style="color: #fff;">ID</th>
                                     <th style="color: #fff;">Nombre</th>
+                                    <th style="color: #fff;">Alumnos</th>
+                                    <th style="color: #fff;">Clases</th>
                                     <th style="color: #fff;">Descripción</th>
-                                    <th style="color: #fff;">Cantidad</th>
                                     <th style="color: #fff;">Acciones</th>
                                 </thead>
                                 <tbody>
@@ -30,6 +31,9 @@
                                     <tr>
                                         <td>{{$curso->id}}</td>
                                         <td>{{$curso->cursos}}</td>
+                                        <td>{{$curso->cantidad_alumnos}}</td>
+                                        <td>{{$curso->clases}}</td>
+                                        <td>{{$curso->descripcion}}</td>
                                         <td>
                                             <a class="btn btn-primary" href="{{ route('cursos.show', $curso->id)}}""><i class="fa fa-eye"></i></a>
                                             @endcan
