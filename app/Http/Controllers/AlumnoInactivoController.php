@@ -7,11 +7,10 @@ use App\Models\Alumno;
 use App\Models\Curso;
 use App\Models\Estado;
 use App\Models\Metodo;
-use App\Models\AlumnosHasPeriodos;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Arr;
 
-class AlumnoController extends Controller
+class AlumnoInactivoController extends Controller
 {
     function __construct()
     {
@@ -28,7 +27,7 @@ class AlumnoController extends Controller
     public function index()
     {
         $alumnos = Alumno::paginate(10);
-        return view('alumnos.index', compact('alumnos'));
+        return view('alumnosinactivos.index', compact('alumnos'));
     }
 
     /**
@@ -38,11 +37,7 @@ class AlumnoController extends Controller
      */
     public function create()
     {
-        $cursos = Curso::all();
-        // $cursos = Periodo::where('id', $periodo activo)->get();
-        $estados = Estado::all();
-        $metodos = Metodo::all();
-       return view('alumnos.crear', compact('cursos', 'estados', 'metodos'));
+        //
     }
 
     /**
@@ -55,31 +50,32 @@ class AlumnoController extends Controller
     {       
         $alumnos = new Alumno();
 
-            $alumnos->nombres = $request->nombres;
-            $alumnos->apellidos = $request->apellidos;
-            $alumnos->cedula = $request->cedula;
-            $alumnos->telefono = $request->telefono;
-            $alumnos->telefono_local = $request->telefono_local;
-            $alumnos->direccion = $request->direccion;
-            $alumnos->correo = $request->correo;
-            $alumnos->nivel_de_estudio = $request->nivel_de_estudio;
-            $alumnos->fecha_nac = $request->fecha_nac;
-            $alumnos->comunidad = $request->comunidad;
-            //$alumnos->curso = $request->curso;
-            $alumnos->pago = $request->pago;
-           // $alumnos->metodo_pago = $request->metodo_pago;
-            //$alumnos->fecha_pago = $request->fecha_pago;
-            $alumnos->numero_referencia = $request->numero_referencia;
-            $alumnos->patrocinador = $request->patrocinador;
-            //$alumnos->fecha_registro = $request->fecha_registro;
-            $alumnos->estado_id = $request->estado_id;
-            $alumnos->creado_por = auth()->user()->id;
-            $alumnos->actualizado_por = auth()->user()->id;
+        $alumnos->nombres = $request->nombres;
+        $alumnos->apellidos = $request->apellidos;
+        $alumnos->cedula = $request->cedula;
+        $alumnos->telefono = $request->telefono;
+        $alumnos->telefono_local = $request->telefono_local;
+        $alumnos->direccion = $request->direccion;
+        $alumnos->correo = $request->correo;
+        $alumnos->nivel_de_estudio = $request->nivel_de_estudio;
+        $alumnos->fecha_nac = $request->fecha_nac;
+        $alumnos->comunidad = $request->comunidad;
+        //$alumnos->curso = $request->curso;
+        $alumnos->pago = $request->pago;
+       // $alumnos->metodo_pago = $request->metodo_pago;
+        //$alumnos->fecha_pago = $request->fecha_pago;
+        $alumnos->numero_referencia = $request->numero_referencia;
+        $alumnos->patrocinador = $request->patrocinador;
+        //$alumnos->fecha_registro = $request->fecha_registro;
+        $alumnos->estado_id = $request->estado_id;
+        $alumnos->creado_por = auth()->user()->id;
+        $alumnos->actualizado_por = auth()->user()->id;
            
+            
             
             $alumnos->save();
 
-            return redirect()->route('alumnos.index');
+            return redirect()->route('alumnosinactivos.index');
     }
 
     /**
@@ -89,10 +85,10 @@ class AlumnoController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function show($id)
-    {   $alumnos = Alumno::find($id);
+    {   
+        $alumnos = Alumno::find($id);
         $cursos = Curso::all();
-        $alumnoshasperiodos = AlumnosHasPeriodos::all();
-        return view('alumnos.show', compact('alumnos', 'id', 'cursos', 'alumnoshasperiodos'));
+        return view('alumnos.show', compact('alumnos', 'id', 'cursos'));
     }
 
     /**
@@ -107,7 +103,7 @@ class AlumnoController extends Controller
         $cursos = Curso::all();
         $estados = Estado::all();
         $metodos = Metodo::all();
-        return view('alumnos.editar', compact('alumnos', 'alumnos', 'cursos', 'estados', 'metodos'));
+        return view('alumnosinactivos.editar', compact('alumnos', 'cursos', 'estados', 'metodos'));
     }
 
     /**
@@ -128,14 +124,17 @@ class AlumnoController extends Controller
             'direccion' => 'required',
             'correo' => 'required',
             'nivel_de_estudio' => 'required',
-            'fecha_nac' => 'required',
+            'edad' => 'required',
             'comunidad' => 'required',
+            'curso' => 'required',
             'pago' => 'required',
+            'curso' => 'required',
+            'metodo_pago' => 'required',
+            'fecha_pago' => 'required',
             'numero_referencia' => 'required',
             'patrocinador' => 'required',
             'fecha_registro' => 'required',
             'estado_id' => 'required',
-           
             
             
         ]);
@@ -144,7 +143,7 @@ class AlumnoController extends Controller
         $alumno = Alumno::find($id);
         $alumno->update($input);
 
-        return redirect()->route('alumnos.index');
+        return redirect()->route('alumnosinactivos.index');
     }
 
     /**
@@ -156,6 +155,6 @@ class AlumnoController extends Controller
     public function destroy($id)
     {
         Alumno::find($id)->delete();
-        return redirect()->route('alumnos.index');
+        return redirect()->route('alumnosinactivos.index');
     }
 }

@@ -74,8 +74,8 @@
                             <td>
                                 <div class="col-xs-12 col-sm-12 col-md-6">
                                     <div class="form-group">
-                                        <label for="name">Edad</label>
-                                        {!! Form::number('edad', null, array('class'=>'form-control')) !!}
+                                        <label for="name">Fecha de Nacimiento</label>
+                                        {!! Form::date('fecha_nac', null, array('class'=>'form-control')) !!}
                                     </div>
                                 </div>
                                 <div class="col-xs-12 col-sm-12 col-md-6">
@@ -89,7 +89,7 @@
                                 <div class="col-xs-12 col-sm-12 col-md-6">
                                     <div class="form-group">
                                         <label for="name">Curso</label>
-                                        {!! Form::text('curso', $alumnos->cursos->cursos, array('class'=>'form-control')) !!}
+                                        {!! Form::text('curso', $alumnos->cursos->curso_id, array('class'=>'form-control')) !!}
                                     </div>
                                 </div>
                                 <div class="col-xs-12 col-sm-12 col-md-6">

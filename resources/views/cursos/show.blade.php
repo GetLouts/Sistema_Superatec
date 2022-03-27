@@ -18,8 +18,8 @@
                                 <td>
                                     <div class="col-xs-12 col-sm-12 col-md-6">
                                         <div class="form-group">
-                                            <label for="name">Nombre del Curso</label>                     
-                                            {{ $cursos->cursos }} 
+                                            <label for="name">Nombre del Curso</label>
+                                            <br> {{ $cursos->cursos }} </br> 
                                         </div>
                                     </div>
                                 
@@ -27,7 +27,7 @@
                                     <div class="col-xs-12 col-sm-12 col-md-6">
                                         <div class="form-group">
                                             <label for="name">Cantidad de Alumnos</label>
-                                            {{ $cursos->cantidad_alumnos }} 
+                                           <br> {{ $cursos->cantidad_alumnos }} </br>
                                         </div>
                                     </div>        
                                 </td>
@@ -35,13 +35,13 @@
                                 <div class="col-xs-12 col-sm-12 col-md-6">
                                     <div class="form-group">
                                         <label for="name">Clases del Curso</label>
-                                        {{ $cursos->clases }} 
+                                      <br>  {{ $cursos->clases }} </br>
                                     </div>
                                 </div>                               
                                     <div class="col-xs-12 col-sm-12 col-md-6">
                                         <div class="form-group">
                                             <label for="name">Descripción del Curso</label>
-                                            {{ $cursos->descripcion }} 
+                                          <br>  {{ $cursos->descripcion }} </br>
                                         </div>
                                     </div>
                                 </td>

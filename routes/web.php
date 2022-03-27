@@ -5,6 +5,7 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\RolController;
 use App\Http\Controllers\UsuarioController;
 use App\Http\Controllers\AlumnoController;
+use App\Http\Controllers\AlumnoInactivoController;
 use App\Http\Controllers\PeriodoController;
 use App\Http\Controllers\EventoController;
 use App\Http\Controllers\GraficacomunidadController;
@@ -45,6 +46,7 @@ Route::group(['middleware' => ['auth']], function(){
 	Route::resource('roles', RolController::class);
 	Route::resource('usuarios', UsuarioController::class);
 	Route::resource('alumnos', AlumnoController::class);
+	Route::resource('alumnosinactivos', AlumnoInactivoController::class);
 	Route::resource('periodos', PeriodoController::class);
 	Route::resource('cronogramas', EventoController::class);
 	Route::resource('gcomunidad', GraficacomunidadController::class);

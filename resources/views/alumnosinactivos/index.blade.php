@@ -27,7 +27,7 @@
                                 <tbody>
                                     @foreach ($alumnos as $alumno)
                                     <tr>
-                                        @if($alumno->estado==2)
+                                        @if($alumno->estado_id==2)
                                         <td>{{$alumno->id}}</td>
                                         <td>{{$alumno->nombres}}</td>
                                         <td>{{$alumno->apellidos}}</td>
@@ -35,7 +35,7 @@
                                         <td>{{$alumno->cedula}}</td>
                                         
                                         <td> 
-                                            @if ($alumno->estado==2)
+                                            @if ($alumno->estado_id==2)
                                             <span class="badge badge-danger">Inactivo</span>
                                              @endif
                                           </td>
