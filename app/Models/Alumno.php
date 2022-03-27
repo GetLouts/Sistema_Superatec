@@ -21,11 +21,12 @@ class Alumno extends Model
         'fecha_nac',
         'comunidad',
         'pago',
-        'metodo_pago',
         'numero_referencia',
         'patrocinador',
         'fecha_registro',
-        'estado',
+        'estado_id',
+        'creado_por',
+        'actualizado_por',
     ];
 
     /**

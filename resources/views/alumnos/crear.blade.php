@@ -85,8 +85,8 @@
                                 <td>
                                     <div class="col-xs-12 col-sm-12 col-md-6">
                                         <div class="form-group">
-                                            <label for="name">Edad</label>
-                                            {!! Form::number('edad', null, array('class'=>'form-control')) !!}
+                                            <label for="name">Fecha de Nacimiento</label>
+                                            {!! Form::date('fecha_nac', null, array('class'=>'form-control')) !!}
                                         </div>
                                     </div>
                                     <div class="col-xs-12 col-sm-12 col-md-6">
@@ -100,7 +100,7 @@
                                 <div class="col-xs-12 col-sm-12 col-md-6">
                                     <label for="name">Curso</label>
                                     <select name="curso" class="form-control">
-                                       
+                                        <option hidden selected>--> Selecione un Curso <--</option>
                                         @foreach ($cursos as $curso)
                                             <option value="{{ $curso->id }}">{{ $curso->cursos }}</option>                                                   
                                         @endforeach
@@ -115,10 +115,13 @@
                                 </td>
                                 <td>
                                     <div class="col-xs-12 col-sm-12 col-md-6">
-                                        <div class="form-group">
-                                            <label for="name">Metodo de Pago</label>
-                                            {!! Form::text('metodo_pago', null, array('class'=>'form-control')) !!}
-                                        </div>
+                                        <label for="name">Metodo de Pago</label>
+                                        <select name="metodo_pago" class="form-control">
+                                            <option hidden selected>--> Selecione un Metodo de Pago <--</option>
+                                            @foreach ($metodos as $metodo)
+                                                <option value="{{ $metodo->id }}">{{ $metodo->metodo_pago }}</option>      
+                                            @endforeach
+                                        </select>
                                     </div>
                                     <div class="col-xs-12 col-sm-12 col-md-6">
                                         <div class="form-group">
@@ -150,8 +153,8 @@
                                     </div>
                                     <div class="col-xs-12 col-sm-12 col-md-6">
                                         <label for="name">Estado</label>
-                                        <select name="estado" class="form-control">
-       
+                                        <select name="estado_id" class="form-control">
+                                            <option hidden selected>--> Selecione el Estado <--</option>
                                             @foreach ($estados as $estado)
                                                 <option value="{{ $estado->id }}">{{ $estado->estado }}</option>      
                                             @endforeach

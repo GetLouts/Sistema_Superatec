@@ -4,6 +4,9 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Alumno;
+use App\Models\Curso;
+use App\Models\Estado;
+use App\Models\Metodo;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Arr;
 
@@ -34,8 +37,11 @@ class AlumnoController extends Controller
      */
     public function create()
     {
-        $alumnos = Alumno::pluck('nombres','apellidos')->all();
-       return view('alumnos.crear', compact('alumnos'));
+        $cursos = Curso::all();
+        // $cursos = Periodo::where('id', $periodo activo)->get();
+        $estados = Estado::all();
+        $metodos = Metodo::all();
+       return view('alumnos.crear', compact('cursos', 'estados', 'metodos'));
     }
 
     /**
@@ -66,8 +72,9 @@ class AlumnoController extends Controller
             $alumnos->patrocinador = $request->patrocinador;
             //$alumnos->fecha_registro = $request->fecha_registro;
             $alumnos->estado_id = $request->estado_id;
+            $alumnos->creado_por = auth()->user()->id;
+            $alumnos->actualizado_por = auth()->user()->id;
            
-            
             
             $alumnos->save();
 
@@ -82,7 +89,8 @@ class AlumnoController extends Controller
      */
     public function show($id)
     {   $alumnos = Alumno::find($id);
-        return view('alumnos.show', compact('alumnos' ,'id'));
+        $cursos = Curso::all();
+        return view('alumnos.show', compact('alumnos', 'id', 'cursos'));
     }
 
     /**
@@ -94,8 +102,10 @@ class AlumnoController extends Controller
     public function edit($id)
     {
         $alumnos = Alumno::find($id);
-
-        return view('alumnos.editar', compact('alumnos', 'alumnos'));
+        $cursos = Curso::all();
+        $estados = Estado::all();
+        $metodos = Metodo::all();
+        return view('alumnos.editar', compact('alumnos', 'alumnos', 'cursos', 'estados', 'metodos'));
     }
 
     /**
@@ -116,17 +126,14 @@ class AlumnoController extends Controller
             'direccion' => 'required',
             'correo' => 'required',
             'nivel_de_estudio' => 'required',
-            'edad' => 'required',
+            'fecha_nac' => 'required',
             'comunidad' => 'required',
-            'curso' => 'required',
             'pago' => 'required',
-            'curso' => 'required',
-            'metodo_pago' => 'required',
-            'fecha_pago' => 'required',
             'numero_referencia' => 'required',
             'patrocinador' => 'required',
             'fecha_registro' => 'required',
-            'estado' => 'required',
+            'estado_id' => 'required',
+           
             
             
         ]);

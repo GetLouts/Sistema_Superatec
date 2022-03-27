@@ -38,17 +38,24 @@
                                     <div class="col-xs-12 col-sm-12 col-md-6">
                                         <div class="form-group">
                                             <label for="name">Cantidad de Alumnos</label>
-                                            {!! Form::text('cursos', null, array('class'=>'form-control')) !!}
+                                            {!! Form::text('cantidad_alumnos', null, array('class'=>'form-control')) !!}
                                         </div>
                                     </div>        
-                                </td>                            
+                                </td>
+                                <td>
+                                <div class="col-xs-12 col-sm-12 col-md-6">
+                                    <div class="form-group">
+                                        <label for="name">Clases del Curso</label>
+                                        {!! Form::text('clases', null, array('class'=>'form-control')) !!}
+                                    </div>
+                                </div>                               
                                     <div class="col-xs-12 col-sm-12 col-md-6">
                                         <div class="form-group">
                                             <label for="name">Descripción del Curso</label>
-                                            {!! Form::textarea('cursos', null, array('class'=>'form-group')) !!}
+                                            {!! Form::textarea('descripcion', null, array('class'=>'form-group')) !!}
                                         </div>
                                     </div>
-                                    
+                                </td>
                                     <div class="col-xs-12 col-sm-12 col-md-12">
                                         <button type="submit" class="btn btn-success">Guardar</button>
                                         <a class="btn btn-primary" href="{{route('cursos.index') }}">Volver</a>

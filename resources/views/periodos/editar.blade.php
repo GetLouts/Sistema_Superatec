@@ -29,14 +29,17 @@
                                 <div class="col-xs-12 col-sm-12 col-md-6">
                                     <div class="form-group">
                                         <label form="name">Nombre del Periodo</label>
-                                        {!! Form::text('nombre_perido', null, array('class' => 'form-control')) !!}
+                                        {!! Form::text('nombre_periodo', null, array('class' => 'form-control')) !!}
                                     </div>
                                 </div>
                                 <div class="col-xs-12 col-sm-12 col-md-6">
-                                    <div class="form-group">
-                                        <label form="name">Estado</label>
-                                        {!! Form::text('estado', null, array('class' => 'form-control')) !!}
-                                    </div>
+                                    <label for="name">Estado</label>
+                                    <select name="estado_id" class="form-control">
+                                        <option hidden selected>--> Selecione el Estado <--</option>
+                                        @foreach ($estados as $estado)
+                                            <option value="{{ $estado->id }}">{{ $estado->estado }}</option>      
+                                        @endforeach
+                                    </select>
                                 </div>
                                 <div class="col-xs-12 col-sm-12 col-md-12">
                                     <button type="submit" class="btn btn-success">Actualizar Periodo</button>

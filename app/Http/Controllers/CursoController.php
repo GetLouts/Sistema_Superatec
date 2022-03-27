@@ -74,9 +74,7 @@ class CursoController extends Controller
     public function edit($id)
     {
         $cursos = Curso::find($id);
-        $cursos = Curso::pluck('cursos', 'cursos')->all();
-        $cursos = $cursos->cursos->pluck('cursos', 'cursos')->all();
-        return view('cursos.editar', compact('cursos', 'cursos', 'cursos'));
+        return view('cursos.editar', compact('cursos'));
     }
 
     /**
@@ -94,6 +92,7 @@ class CursoController extends Controller
         
         $cursos = Curso::find($id);
         $cursos->cursos = $request->input('cursos');
+        $cursos->actualizado_por = auth()->user()->id;
         $cursos->save();
 
         return redirect()->route('cursos.index');

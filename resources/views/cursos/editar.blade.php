@@ -24,14 +24,38 @@
                                 </div>
                             @endif
 
-                            {!! Form::model($user, ['method' => 'PATCH','route' => ['cursos.update', $user->id]]) !!}
+                            {!! Form::model($cursos, ['method' => 'PATCH','route' => ['cursos.update', $cursos->id]]) !!}
                             <div class="row">
+                                <td>
+                                    <div class="col-xs-12 col-sm-12 col-md-6">
+                                        <div class="form-group">
+                                            <label for="name">Nombre del Curso</label>
+                                            {!! Form::text('cursos', null, array('class'=>'form-control')) !!}
+                                        </div>
+                                    </div>
+                                
+                                    
+                                    <div class="col-xs-12 col-sm-12 col-md-6">
+                                        <div class="form-group">
+                                            <label for="name">Cantidad de Alumnos</label>
+                                            {!! Form::text('cantidad_alumnos', null, array('class'=>'form-control')) !!}
+                                        </div>
+                                    </div>        
+                                </td>
+                                <td>
                                 <div class="col-xs-12 col-sm-12 col-md-6">
                                     <div class="form-group">
-                                        <label form="name">Curso</label>
-                                        {!! Form::text('cursos', null, array('class' => 'form-control')) !!}
+                                        <label for="name">Clases del Curso</label>
+                                        {!! Form::text('clases', null, array('class'=>'form-control')) !!}
                                     </div>
-                                </div>
+                                </div>                               
+                                    <div class="col-xs-12 col-sm-12 col-md-6">
+                                        <div class="form-group">
+                                            <label for="name">Descripción del Curso</label>
+                                            {!! Form::textarea('descripcion', null, array('class'=>'form-group')) !!}
+                                        </div>
+                                    </div>
+                                </td>
                                 <div class="col-xs-12 col-sm-12 col-md-12">
                                     <button type="submit" class="btn btn-success">Guardar</button>
                                     <a class="btn btn-primary" href="{{route('cursos.index') }}">Volver</a>

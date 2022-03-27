@@ -28,8 +28,12 @@
                                    @can('ver-periodo')
                                     <tr>
                                         <td>{{$periodo->id}}</td>
-                                        <td>{{$periodo->nombre_perido}}</td>
-                                        <td>{{$periodo->estado}}</td>
+                                        <td>{{$periodo->nombre_periodo}}</td>
+                                        <td> @if ($periodo->estado_id==1)
+                                            <span class="badge badge-success">Activo</span>
+                                            @else
+                                            <span class="badge badge-danger">Inactivo</span>
+                                            @endif</td>
                                         <td>
                                     @endcan
                                             @can('editar-periodo')
