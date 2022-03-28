@@ -35,7 +35,7 @@
                                             @if ($curso->cantidad_alumnos>=1)
                                             <span class="badge badge-success">{{$curso->cantidad_alumnos}}</span>
                                             @else
-                                            <span class="badge badge-danger">Sin Espacio</span>
+                                            <span class="badge badge-danger">Agotado</span>
                                             @endif
                                           </td>
                                        
