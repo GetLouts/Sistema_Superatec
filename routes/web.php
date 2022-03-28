@@ -14,8 +14,9 @@ use App\Http\Controllers\GraficapatrocinadorController;
 use App\Http\Controllers\GraficaedadesController;
 use App\Http\Controllers\GraficaingresoController;
 use App\Http\Controllers\CursoController;
+use App\Http\Controllers\FullCalenderController;
 use Illuminate\Support\Facades\Auth;
-use app\Http\Controllers\FullCalenderController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -33,8 +34,7 @@ Route::get('/', function () {
 });
 
 // Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-Route::get('fullcalender', [App\Http\Controllers\FullCalenderController::class, 'index']);
-Route::post('fullcalenderAjax', [App\Http\Controllers\FullCalenderController::class, 'ajax']);
+
 
 // Route::post('/cronogramas/mostrar', [App\Http\Controllers\EventoController::class, 'show']);
 // Route::post('/cronogramas/agregar', [App\Http\Controllers\EventoController::class, 'store']);
@@ -50,7 +50,7 @@ Route::group(['middleware' => ['auth']], function(){
 	Route::resource('usuarios', UsuarioController::class);
 	Route::resource('alumnos', AlumnoController::class);
 	Route::resource('periodos', PeriodoController::class);
-	Route::resource('cronogramas', EventoController::class);
+	//Route::resource('cronogramas', EventoController::class);
 	Route::resource('gcomunidad', GraficacomunidadController::class);
 	Route::resource('cursos', CursoController::class);
 	Route::resource('galumnos', GraficaalumnoController::class);
@@ -58,4 +58,8 @@ Route::group(['middleware' => ['auth']], function(){
 	Route::resource('gpatrocinadores', GraficapatrocinadorController::class);
 	Route::resource('gedades', GraficaedadesController::class);
 	Route::resource('gingresos', GraficaingresoController::class);
+});
+Route::controller(FullCalenderController::class)->group(function(){
+    Route::get('/fullcalender', 'index');
+    Route::post('/fullcalenderAjax', 'ajax');
 });

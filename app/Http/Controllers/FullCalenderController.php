@@ -1,9 +1,9 @@
 <?php
 
 namespace App\Http\Controllers;
-
+USE App\Models\Event;
 use Illuminate\Http\Request;
-use App\Models\Event;
+
 
 class FullCalenderController extends Controller
 {
@@ -23,7 +23,7 @@ class FullCalenderController extends Controller
             return response()->json($data);
         }
 
-        return view('fullcalender');
+        return view('/fullcalender');
     }
 
     /**

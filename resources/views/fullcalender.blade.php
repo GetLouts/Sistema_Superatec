@@ -48,7 +48,7 @@
                 selectable: true,
                 selectHelper: true,
                 select: function(start, end, allDay) {
-                    var title = prompt('Event Title:');
+                    var title = prompt('Titulo del Evento:');
                     if (title) {
                         var start = $.fullCalendar.formatDate(start, "Y-MM-DD");
                         var end = $.fullCalendar.formatDate(end, "Y-MM-DD");
@@ -62,7 +62,7 @@
                             },
                             type: "POST",
                             success: function(data) {
-                                displayMessage("Event Created Successfully");
+                                displayMessage("Evento Creado Satisfactoriamente");
 
                                 calendar.fullCalendar('renderEvent', {
                                     id: data.id,
@@ -92,12 +92,12 @@
                         },
                         type: "POST",
                         success: function(response) {
-                            displayMessage("Event Updated Successfully");
+                            displayMessage("Evento Actualizado Satisfactoriamente");
                         }
                     });
                 },
                 eventClick: function(event) {
-                    var deleteMsg = confirm("Do you really want to delete?");
+                    var deleteMsg = confirm("Estas Seguro de Borrar el Evento?");
                     if (deleteMsg) {
                         $.ajax({
                             type: "POST",
@@ -108,7 +108,7 @@
                             },
                             success: function(response) {
                                 calendar.fullCalendar('removeEvents', event.id);
-                                displayMessage("Event Deleted Successfully");
+                                displayMessage("Evento Borrado Satisfactoriamente");
                             }
                         });
                     }
