@@ -19,13 +19,13 @@
                                     <div class="col-xs-12 col-sm-12 col-md-6">
                                     <div class="form-group">
                                         <label for="name">Nombres</label>
-                                        {!! Form::text('nombres', null, array('class'=>'form-control')) !!}
+                                        <br> {{ $alumnos->nombres }} </br> 
                                     </div>
                                 </div>
                                 <div class="col-xs-12 col-sm-12 col-md-6">
                                     <div class="form-group">
                                         <label for="name">Apellidos</label>
-                                        {!! Form::text('apellidos', null, array('class'=>'form-control')) !!}
+                                        <br> {{ $alumnos->apellidos }} </br> 
                                     </div>
                                 </div>
                             </td>
@@ -33,13 +33,13 @@
                                 <div class="col-xs-12 col-sm-12 col-md-6">
                                     <div class="form-group">
                                         <label for="name">Cedula</label>
-                                        {!! Form::number('cedula', null, array('class'=>'form-control')) !!}
+                                        <br> {{ $alumnos->cedula }} </br> 
                                     </div>
                                 </div>
                                 <div class="col-xs-12 col-sm-12 col-md-6">
                                     <div class="form-group">
                                         <label for="name">Telefono</label>
-                                        {!! Form::number('telefono', null, array('class'=>'form-control')) !!}
+                                        <br> {{ $alumnos->telefono }} </br> 
                                     </div>
                                 </div>
                             </td>
@@ -47,13 +47,13 @@
                                 <div class="col-xs-12 col-sm-12 col-md-6">
                                     <div class="form-group">
                                         <label for="name">Telefono Local</label>
-                                        {!! Form::number('telefono_local', null, array('class'=>'form-control')) !!}
+                                        <br> {{ $alumnos->telefono_local }} </br> 
                                     </div>
                                 </div>
                                 <div class="col-xs-12 col-sm-12 col-md-6">
                                     <div class="form-group">
                                         <label for="name">Dirección</label>
-                                        {!! Form::text('direccion', null, array('class'=>'form-control')) !!}
+                                        <br> {{ $alumnos->direccion }} </br> 
                                     </div>
                                 </div>
                             </td>
@@ -61,27 +61,27 @@
                                 <div class="col-xs-12 col-sm-12 col-md-6">
                                     <div class="form-group">
                                         <label for="name">Correo</label>
-                                        {!! Form::text('correo', null, array('class'=>'form-control')) !!}
+                                        <br> {{ $alumnos->correo }} </br> 
                                     </div>
                                 </div>
                                 <div class="col-xs-12 col-sm-12 col-md-6">
                                     <div class="form-group">
                                         <label for="name">Nivel de Estudio</label>
-                                        {!! Form::text('nivel_de_estudio', null, array('class'=>'form-control')) !!}
+                                        <br> {{ $alumnos->nivel_de_estudio }} </br> 
                                     </div>
                                 </div>
                             </td>
                             <td>
                                 <div class="col-xs-12 col-sm-12 col-md-6">
                                     <div class="form-group">
-                                        <label for="name">Edad</label>
-                                        {!! Form::number('edad', null, array('class'=>'form-control')) !!}
+                                        <label for="name">Fecha de Nacimiento</label>
+                                        <br> {{ $alumnos->fecha_nac }} </br> 
                                     </div>
                                 </div>
                                 <div class="col-xs-12 col-sm-12 col-md-6">
                                     <div class="form-group">
                                         <label for="name">Comunidad</label>
-                                        {!! Form::text('comunidad', null, array('class'=>'form-control')) !!}
+                                        <br> {{ $alumnos->comunidad }} </br> 
                                     </div>
                                 </div>
                             </td>
@@ -89,13 +89,17 @@
                                 <div class="col-xs-12 col-sm-12 col-md-6">
                                     <div class="form-group">
                                         <label for="name">Curso</label>
-                                        {!! Form::text('curso', null, array('class'=>'form-control')) !!}
+                                       
+                                            @foreach ($cursos as $curso)
+                                                <br> {{ $alumnoshasperiodos->cursos }} </br> 
+                                            @endforeach
+                                        
                                     </div>
                                 </div>
                                 <div class="col-xs-12 col-sm-12 col-md-6">
                                     <div class="form-group">
                                         <label for="name">Pago</label>
-                                        {!! Form::text('pago', null, array('class'=>'form-control')) !!}
+                                        <br> {{ $alumnos->pago }} </br> 
                                     </div>
                                 </div>
                             </td>
@@ -103,13 +107,13 @@
                                 <div class="col-xs-12 col-sm-12 col-md-6">
                                     <div class="form-group">
                                         <label for="name">Metodo de Pago</label>
-                                        {!! Form::text('metodo_pago', null, array('class'=>'form-control')) !!}
+                                        <br> {{ $alumnos->metodo_id }} </br> 
                                     </div>
                                 </div>
                                 <div class="col-xs-12 col-sm-12 col-md-6">
                                     <div class="form-group">
                                         <label for="name">Fecha del Pago</label>
-                                        {!! Form::date('fecha_pago', null, array('class'=>'form-control')) !!}
+                                        <br> {{ $alumnos->fecha_pago }} </br> 
                                     </div>
                                 </div>
                             </td>
@@ -117,13 +121,13 @@
                                 <div class="col-xs-12 col-sm-12 col-md-6">
                                     <div class="form-group">
                                         <label for="name">Referencia</label>
-                                        {!! Form::text('numero_referencia', null, array('class'=>'form-control')) !!}
+                                        <br> {{ $alumnos->numero_referencia }} </br> 
                                     </div>
                                 </div>
                                 <div class="col-xs-12 col-sm-12 col-md-6">
                                     <div class="form-group">
                                         <label for="name">Patrocinador</label>
-                                        {!! Form::text('patrocinador', null, array('class'=>'form-control')) !!}
+                                        <br> {{ $alumnos->patrocinador }} </br> 
                                     </div>
                                 </div>
                             </td>
@@ -131,13 +135,13 @@
                                 <div class="col-xs-12 col-sm-12 col-md-6">
                                     <div class="form-group">
                                         <label for="name">Fecha de Registro</label>
-                                        {!! Form::date('fecha_registro', null, array('class'=>'form-control')) !!}
+                                        <br> {{ $alumnos->fecha_registro}} </br> 
                                     </div>
                                 </div>
                                 <div class="col-xs-12 col-sm-12 col-md-6">
                                     <div class="form-group">
                                         <label for="name">Estado</label>
-                                        {!! Form::text('estado', null, array('class'=>'form-control')) !!}
+                                        <br> {{ $alumnos->estado_id}} </br> 
                                     </div>
                                 </div>
                             </td>

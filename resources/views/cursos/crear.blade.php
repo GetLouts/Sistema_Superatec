@@ -26,13 +26,45 @@
 
                             {!! Form::open(array('route'=>'cursos.store', 'method'=>'POST')) !!}
                                 <div class="row">
-                                    <div class="col-xs-12 col-sm-12 col-md-12">
+                                    <td>
+                                    <div class="col-xs-12 col-sm-12 col-md-6">
                                         <div class="form-group">
-                                            <label for="name">Nombre del Rol</label>
+                                            <label for="name">Nombre del Curso</label>
                                             {!! Form::text('cursos', null, array('class'=>'form-control')) !!}
                                         </div>
                                     </div>
-
+                                
+                                    
+                                    <div class="col-xs-12 col-sm-12 col-md-6">
+                                        <div class="form-group">
+                                            <label for="name">Cantidad de Alumnos</label>
+                                            {!! Form::number('cantidad_alumnos', null, array('class'=>'form-control')) !!}
+                                        </div>
+                                    </div>        
+                                </td>
+                                <td>
+                                <div class="col-xs-12 col-sm-12 col-md-6">
+                                    <div class="form-group">
+                                        <label for="name">Clases del Curso</label>
+                                        {!! Form::number('clases', null, array('class'=>'form-control')) !!}
+                                    </div>
+                                </div>          
+                                <div class="col-xs-12 col-sm-12 col-md-6">
+                                    <label for="name">Estado</label>
+                                    <select name="estado_id" class="form-control">
+                                        <option hidden selected>--> Selecione el Estado <--</option>
+                                        @foreach ($estados as $estado)
+                                            <option value="{{ $estado->id }}">{{ $estado->estado }}</option>      
+                                        @endforeach
+                                    </select>
+                                </div>                     
+                                    <div class="col-xs-12 col-sm-12 col-md-6">
+                                        <div class="form-group">
+                                            <label for="name">Descripción del Curso</label>
+                                            {!! Form::textarea('descripcion', null, array('class'=>'form-group')) !!}
+                                        </div>
+                                    </div>
+                                </td>
                                     <div class="col-xs-12 col-sm-12 col-md-12">
                                         <button type="submit" class="btn btn-success">Guardar</button>
                                         <a class="btn btn-primary" href="{{route('cursos.index') }}">Volver</a>

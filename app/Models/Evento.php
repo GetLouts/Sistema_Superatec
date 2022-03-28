@@ -17,4 +17,13 @@ class Evento extends Model
     ];
 
     protected $fillable=['title','descripcion','start','end'];
+
+    //Relacion uno a muchos
+    public function asistencia(){
+        return $this->hasMany('App\Models\Asistencia');
+    }
+    //Relacion Inversa
+    public function periodoshascursos(){
+        return $this->belongsTo('App\Models\PeriodosHasCursos');
+    }
 }

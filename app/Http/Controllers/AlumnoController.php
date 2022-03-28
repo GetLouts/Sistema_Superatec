@@ -4,6 +4,11 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Alumno;
+use App\Models\Curso;
+use App\Models\Estado;
+use App\Models\Metodo;
+use App\Models\AlumnosHasPeriodos;
+use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Arr;
 
@@ -34,8 +39,12 @@ class AlumnoController extends Controller
      */
     public function create()
     {
-        $alumnos = Alumno::pluck('nombres','apellidos')->all();
-       return view('alumnos.crear', compact('alumnos'));
+        $cursos = Curso::all();
+        // $cursos = Periodo::where('id', $periodo activo)->get();
+        $estados = Estado::all();
+        $metodos = Metodo::all();
+        $alumnoshasperiodos = AlumnosHasPeriodos::all();
+       return view('alumnos.crear', compact('cursos', 'estados', 'metodos', 'alumnoshasperiodos'));
     }
 
     /**
@@ -56,20 +65,51 @@ class AlumnoController extends Controller
             $alumnos->direccion = $request->direccion;
             $alumnos->correo = $request->correo;
             $alumnos->nivel_de_estudio = $request->nivel_de_estudio;
-            $alumnos->edad = $request->edad;
+            $alumnos->fecha_nac = $request->fecha_nac;
             $alumnos->comunidad = $request->comunidad;
-            $alumnos->curso = $request->curso;
-            $alumnos->pago = $request->pago;
-            $alumnos->metodo_pago = $request->metodo_pago;
-            $alumnos->fecha_pago = $request->fecha_pago;
+            //$alumnos->curso = $request->curso;
+            //$alumnos->pago = $request->pago;
+            //$alumnos->metodo_pago = $request->metodo_pago;
+            //$alumnos->fecha_pago = $request->fecha_pago;
             $alumnos->numero_referencia = $request->numero_referencia;
             $alumnos->patrocinador = $request->patrocinador;
+            //$alumnos->fecha_registro = $request->fecha_registro;
             $alumnos->fecha_registro = $request->fecha_registro;
-            $alumnos->estado = $request->estado;
+            $alumnos->estado_id = $request->estado_id;
+            $alumnos->creado_por = auth()->user()->id;
+            $alumnos->actualizado_por = auth()->user()->id;
            
             
-            
             $alumnos->save();
+
+            Validator::make($request->all(), [
+                'categoria' => ['required', 'numeric'],
+            ])->validate();
+    
+            $marcacategoria = new MarcaByCategoria();
+            $marcacategoria->marca_id = $request->marca;
+            $marcacategoria->categoria_id = $request->categoria;
+    
+            try {
+                $marcacategoria->save();
+    
+                /* ========== Register action on bitacora ========== */
+                $bitacora = new \App\Models\AlumnosHasPeriodos();
+                $alumnos = \App\Modulo::where('modulo', 'marcas_has_categorias')->first();
+                $accion = \App\Accion::where('accion', 'Create')->first();
+                $descripcion = "Created Mark by Category";
+                $bitacora->registro($alumnos->id, $marcacategoria->id, $accion->id, \Request::ip(), $descripcion);
+                /* ================================================= */
+    
+                $httpStatus = HttpStatus::CREATED;
+                $this->respuesta["mensaje"] = HttpStatus::CREATED();
+            } catch (\Exception $e) {
+                $this->respuesta["mensaje"] = HttpStatus::ERROR();
+                $httpStatus = HttpStatus::ERROR;
+            }
+    
+            return response()->json($this->respuesta, $httpStatus);
+    
 
             return redirect()->route('alumnos.index');
     }
@@ -82,7 +122,9 @@ class AlumnoController extends Controller
      */
     public function show($id)
     {   $alumnos = Alumno::find($id);
-        return view('alumnos.show', compact('alumnos' ,'id'));
+        $cursos = Curso::all();
+        $alumnoshasperiodos = AlumnosHasPeriodos::all();
+        return view('alumnos.show', compact('alumnos', 'id', 'cursos', 'alumnoshasperiodos'));
     }
 
     /**
@@ -94,8 +136,10 @@ class AlumnoController extends Controller
     public function edit($id)
     {
         $alumnos = Alumno::find($id);
-
-        return view('alumnos.editar', compact('alumnos', 'alumnos'));
+        $cursos = Curso::all();
+        $estados = Estado::all();
+        $metodos = Metodo::all();
+        return view('alumnos.editar', compact('alumnos', 'alumnos', 'cursos', 'estados', 'metodos'));
     }
 
     /**
@@ -116,17 +160,14 @@ class AlumnoController extends Controller
             'direccion' => 'required',
             'correo' => 'required',
             'nivel_de_estudio' => 'required',
-            'edad' => 'required',
+            'fecha_nac' => 'required',
             'comunidad' => 'required',
-            'curso' => 'required',
             'pago' => 'required',
-            'curso' => 'required',
-            'metodo_pago' => 'required',
-            'fecha_pago' => 'required',
             'numero_referencia' => 'required',
             'patrocinador' => 'required',
             'fecha_registro' => 'required',
-            'estado' => 'required',
+            'estado_id' => 'required',
+           
             
             
         ]);

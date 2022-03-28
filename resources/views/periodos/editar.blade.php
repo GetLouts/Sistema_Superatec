@@ -1,11 +1,11 @@
 @extends('layouts.app')
 @section('title')
-    Editar Periodos
+    Editar Periodo
 @endsection
 @section('content')
     <section class="section">
         <div class="section-header">
-            <h3 class="page__heading">Editar Periodos</h3>
+            <h3 class="page__heading">Editar Periodo</h3>
         </div>
         <div class="section-body">
             <div class="row">
@@ -29,18 +29,21 @@
                                 <div class="col-xs-12 col-sm-12 col-md-6">
                                     <div class="form-group">
                                         <label form="name">Nombre del Periodo</label>
-                                        {!! Form::text('nombre_perido', null, array('class' => 'form-control')) !!}
+                                        {!! Form::text('nombre_periodo', null, array('class' => 'form-control')) !!}
                                     </div>
                                 </div>
                                 <div class="col-xs-12 col-sm-12 col-md-6">
-                                    <div class="form-group">
-                                        <label form="name">Estado</label>
-                                        {!! Form::text('estado', null, array('class' => 'form-control')) !!}
-                                    </div>
+                                    <label for="name">Estado</label>
+                                    <select name="estado_id" class="form-control">
+                                        
+                                        @foreach ($estados as $estado)
+                                            <option value="{{ $estado->id }}">{{ $estado->estado }}</option>      
+                                        @endforeach
+                                    </select>
                                 </div>
                                 <div class="col-xs-12 col-sm-12 col-md-12">
-                                    <button type="submit" class="btn btn-success">Guardar</button>
-                                    <a class="btn btn-primary" href="{{route('usuarios.index') }}">Volver</a>
+                                    <button type="submit" class="btn btn-success">Actualizar Periodo</button>
+                                    <a class="btn btn-primary" href="{{route('periodos.index') }}">Volver</a>
                                 </div>
                             </div>
                             {!! Form::close() !!}

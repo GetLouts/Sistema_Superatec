@@ -23,17 +23,19 @@ return new class extends Migration
             $table->string('direccion');
             $table->string('correo');
             $table->string('nivel_de_estudio');
-            $table->string('edad');
+            $table->date('fecha_nac');
             $table->string('comunidad');
-            $table->string('curso');
-            $table->string('pago');
-            $table->string('metodo_pago');
-            $table->string('fecha_pago');
             $table->string('numero_referencia');
             $table->string('patrocinador');
-            $table->string('fecha_registro');
-            $table->string('estado');
+            $table->date('fecha_registro');
+            $table->unsignedBigInteger('estado_id');
+            $table->unsignedBigInteger('creado_por')->nullable();
+            $table->unsignedBigInteger('actualizado_por')->nullable();
             $table->timestamps();
+
+            $table->foreign('estado_id')->references('id')->on('estados');
+            $table->foreign('creado_por')->references('id')->on('users')->onDelete('set null');
+            $table->foreign('actualizado_por')->references('id')->on('users')->onDelete('set null');
         });
     }
 

@@ -13,13 +13,15 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('eventos', function (Blueprint $table) {
+        Schema::create('metodos', function (Blueprint $table) {
             $table->id();
-            $table->string("title",255);
-            $table->text("descripcion");
-            $table->dateTime("start");
-            $table->dateTime("end");
+            $table->string('metodo_pago');
+            $table->unsignedBigInteger('creado_por');
+            $table->unsignedBigInteger('actualizado_por')->nullable();
             $table->timestamps();
+
+            $table->foreign('creado_por')->references('id')->on('users');
+            $table->foreign('actualizado_por')->references('id')->on('users');
         });
     }
 
@@ -30,6 +32,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('eventos');
+        Schema::dropIfExists('metodos');
     }
 };

@@ -30,19 +30,24 @@
                                     <div class="col-xs-12 col-sm-12 col-md-6">
                                         <div class="form-group">
                                             <label for="name">Nombre del Perido</label>
-                                            {!! Form::text('nombre_perido', null, array('class'=>'form-control')) !!}
+                                            {!! Form::text('nombre_periodo', null, array('class'=>'form-control')) !!}
                                         </div>
                                     </div>
+
                                     <div class="col-xs-12 col-sm-12 col-md-6">
-                                        <div class="form-group">
-                                            <label for="name">Estado</label>
-                                            {!! Form::text('estado', null, array('class'=>'form-control')) !!}
-                                        </div>
+                                        <label for="name">Estado</label>
+                                        <select name="estado_id" class="form-control">
+                                            <option hidden selected>--> Selecione el Estado <--</option>
+                                            @foreach ($estados as $estado)
+                                                <option value="{{ $estado->id }}">{{ $estado->estado }}</option>      
+                                            @endforeach
+                                        </select>
                                     </div>
+
                                     </td>
                                     <div class="col-xs-12 col-sm-12 col-md-12">
                                         <button type="submit" class="btn btn-success">Guardar</button>
-                                        <a class="btn btn-primary" href="{{route('usuarios.index') }}">Volver</a>
+                                        <a class="btn btn-primary" href="{{route('periodos.index') }}">Volver</a>
                                     </div>
 
                                 </div>

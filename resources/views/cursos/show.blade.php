@@ -1,36 +1,25 @@
 @extends('layouts.app')
 @section('title')
-    Editar Cursos
+    Información del Curso
 @endsection
 @section('content')
     <section class="section">
         <div class="section-header">
-            <h3 class="page__heading">Editar Curso</h3>
+            <h3 class="page__heading">Información del Curso</h3>
         </div>
         <div class="section-body">
             <div class="row">
                 <div class="col-lg-12">
                     <div class="card">
                         <div class="card-body">
-                            @if ($errors->any())
-                                <div class="alert alert-dark alert-dismissible fade show" role="alert">
-                                    <strong>Revise los campos></strong>
-                                    @foreach ($errors->all() as $error)
-                                        <span class="badge badge-danger">{{ $error }}</span>
-                                    @endforeach
-                                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                                        <span aria-hidden="true">&times;</span>
-                                    </button>
-                                </div>
-                            @endif
 
-                            {!! Form::model($cursos, ['method' => 'PATCH','route' => ['cursos.update', $cursos->id]]) !!}
+                            {!! Form::model($cursos, ['method' => 'PATCH','route' => ['cursos.show', $cursos->id]]) !!}
                             <div class="row">
                                 <td>
                                     <div class="col-xs-12 col-sm-12 col-md-6">
                                         <div class="form-group">
                                             <label for="name">Nombre del Curso</label>
-                                            {!! Form::text('cursos', null, array('class'=>'form-control')) !!}
+                                            <br> {{ $cursos->cursos }} </br> 
                                         </div>
                                     </div>
                                 
@@ -38,7 +27,7 @@
                                     <div class="col-xs-12 col-sm-12 col-md-6">
                                         <div class="form-group">
                                             <label for="name">Cantidad de Alumnos</label>
-                                            {!! Form::number('cantidad_alumnos', null, array('class'=>'form-control')) !!}
+                                           <br> {{ $cursos->cantidad_alumnos }} </br>
                                         </div>
                                     </div>        
                                 </td>
@@ -46,31 +35,22 @@
                                 <div class="col-xs-12 col-sm-12 col-md-6">
                                     <div class="form-group">
                                         <label for="name">Clases del Curso</label>
-                                        {!! Form::number('clases', null, array('class'=>'form-control')) !!}
+                                      <br>  {{ $cursos->clases }} </br>
                                     </div>
-                                </div>     
-                                <div class="col-xs-12 col-sm-12 col-md-6">
-                                    <label for="name">Estado</label>
-                                    <select name="estado_id" class="form-control">
-                                        
-                                        @foreach ($estados as $estado)
-                                            <option value="{{ $estado->id }}">{{ $estado->estado }}</option>      
-                                        @endforeach
-                                    </select>
-                                </div>                          
+                                </div>                               
                                     <div class="col-xs-12 col-sm-12 col-md-6">
                                         <div class="form-group">
                                             <label for="name">Descripción del Curso</label>
-                                            {!! Form::textarea('descripcion', null, array('class'=>'form-group')) !!}
+                                          <br>  {{ $cursos->descripcion }} </br>
                                         </div>
                                     </div>
                                 </td>
                                 <div class="col-xs-12 col-sm-12 col-md-12">
-                                    <button type="submit" class="btn btn-success">Guardar</button>
                                     <a class="btn btn-primary" href="{{route('cursos.index') }}">Volver</a>
                                 </div>
                             </div>
                             {!! Form::close() !!}
+                            
                     </div>
                 </div>
             </div>

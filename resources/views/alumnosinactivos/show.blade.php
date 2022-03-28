@@ -1,30 +1,19 @@
 @extends('layouts.app')
 @section('title')
-    Editar Usuarios
+    Información del Estudiante
 @endsection
 @section('content')
     <section class="section">
         <div class="section-header">
-            <h3 class="page__heading">Editar Usuarios</h3>
+            <h3 class="page__heading">Información del Estudiante</h3>
         </div>
         <div class="section-body">
             <div class="row">
                 <div class="col-lg-12">
                     <div class="card">
                         <div class="card-body">
-                            @if ($errors->any())
-                                <div class="alert alert-dark alert-dismissible fade show" role="alert">
-                                    <strong>Revise los campos></strong>
-                                    @foreach ($errors->all() as $error)
-                                        <span class="badge badge-danger">{{ $error }}</span>
-                                    @endforeach
-                                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                                        <span aria-hidden="true">&times;</span>
-                                    </button>
-                                </div>
-                            @endif
 
-                            {!! Form::model($alumnos, ['method' => 'PATCH','route' => ['alumnos.update', $alumnos->id]]) !!}
+                            {!! Form::model($alumnos, ['method' => 'PATCH','route' => ['alumnos.show', $alumnos->id]]) !!}
                             <div class="row">
                                 <td>
                                     <div class="col-xs-12 col-sm-12 col-md-6">
@@ -98,13 +87,10 @@
                             </td>
                             <td>
                                 <div class="col-xs-12 col-sm-12 col-md-6">
-                                    <label for="name">Curso</label>
-                                    <select name="curso" class="form-control">
-                                       
-                                        @foreach ($cursos as $curso)
-                                            <option value="{{ $curso->id }}">{{ $curso->cursos }}</option>                                                   
-                                        @endforeach
-                                    </select>
+                                    <div class="form-group">
+                                        <label for="name">Curso</label>
+                                        {!! Form::text('curso', $alumnos->cursos->curso_id, array('class'=>'form-control')) !!}
+                                    </div>
                                 </div>
                                 <div class="col-xs-12 col-sm-12 col-md-6">
                                     <div class="form-group">
@@ -115,13 +101,10 @@
                             </td>
                             <td>
                                 <div class="col-xs-12 col-sm-12 col-md-6">
-                                    <label for="name">Metodo de Pago</label>
-                                    <select name="metodo_pago" class="form-control">
-                                       
-                                        @foreach ($metodos as $metodo)
-                                            <option value="{{ $metodo->id }}">{{ $metodo->metodo_pago }}</option>      
-                                        @endforeach
-                                    </select>
+                                    <div class="form-group">
+                                        <label for="name">Metodo de Pago</label>
+                                        {!! Form::text('metodo_pago', null, array('class'=>'form-control')) !!}
+                                    </div>
                                 </div>
                                 <div class="col-xs-12 col-sm-12 col-md-6">
                                     <div class="form-group">
@@ -152,18 +135,14 @@
                                     </div>
                                 </div>
                                 <div class="col-xs-12 col-sm-12 col-md-6">
-                                    <label for="name">Estado</label>
-                                    <select name="estado_id" class="form-control">
-   
-                                        @foreach ($estados as $estado)
-                                            <option value="{{ $estado->id }}">{{ $estado->estado }}</option>      
-                                        @endforeach
-                                    </select>
+                                    <div class="form-group">
+                                        <label for="name">Estado</label>
+                                        {!! Form::text('estado', $alumnos->estados->estado, array('class'=>'form-control')) !!}
+                                    </div>
                                 </div>
                             </td>
                                 <div class="col-xs-12 col-sm-12 col-md-12">
-                                    <button type="submit" class="btn btn-success">Actualizar Alumno</button>
-                                    <a class="btn btn-primary" href="{{route('alumnos.index') }}">Volver</a>
+                                    <a class="btn btn-primary" href="{{route('alumnosinactivos.index') }}">Volver</a>
                                 </div>
                             </div>
                             {!! Form::close() !!}

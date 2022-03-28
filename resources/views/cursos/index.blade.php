@@ -1,11 +1,11 @@
 @extends('layouts.app')
 @section('title')
-    Usuarios
+    Cursos
 @endsection
 @section('content')
     <section class="section">
         <div class="section-header">
-            <h3 class="page__heading">Usuarios</h3>
+            <h3 class="page__heading">Cursos</h3>
         </div>
         <div class="section-body">
             <div class="row">
@@ -15,29 +15,43 @@
                             @can('crear-usuario')
                             <a class="btn btn-success" href="{{ route ('cursos.create')}}">Nuevo Curso</a>
                             @endcan
-
+                            <div class="table-responsive">
                             <table class="table table-striped mt-2">
                                 <thead style="background-color: #6777ef;">
-                                    <th style="color: #fff;">ID</th>
-                                    <th style="color: #fff;">Nombre</th>
-                                    <th style="color: #fff;">Estado</th>
+                                    
+                                    <th style="color: #fff;" class="text-center">Cursos</th>
+                                    <th style="color: #fff;" class="text-center">Alumnos</th>
+                                    <th style="color: #fff;" class="text-center">Clases</th>
+                                    <th style="color: #fff;" class="text-center">Descripción</th>
+                                    <th style="color: #fff;" class="text-center">Acciones</th>
                                 </thead>
                                 <tbody>
                                     @foreach ($cursos as $curso)
                                     @can('ver-usuario')
                                     <tr>
-                                        <td>{{$curso->id}}</td>
-                                        <td>{{$curso->cursos}}</td>
-                                        <td>
+                                        
+                                        <td class="text-center">{{$curso->cursos}}</td>
+                                        <td class="text-center"> 
+                                            @if ($curso->cantidad_alumnos>=1)
+                                            <span class="badge badge-success">{{$curso->cantidad_alumnos}}</span>
+                                            @else
+                                            <span class="badge badge-danger">Agotado</span>
+                                            @endif
+                                          </td>
+                                       
+                                        <td class="text-center">{{$curso->clases}}</td>
+                                        <td class="text-center">{{$curso->descripcion}}</td>
+                                        <td class="text-center">
+                                            <a class="btn btn-primary" href="{{ route('cursos.show', $curso->id)}}""><i class="fa fa-eye"></i></a>
                                             @endcan
                                             @can('editar-usuario')
-                                            <a class="btn btn-info" href="{{ route('cursos.edit', $curso->id)}}">Editar</a>
+                                            <a class="btn btn-info" href="{{ route('cursos.edit', $curso->id)}}"><i class="fa fa-pen"></i></a>
                                             @endcan
                                             
                                             
                                             @can('borrar-usuario')
                                             {!! Form::open(['method'=> 'DELETE', 'route'=> ['cursos.destroy', $curso->id],'style'=>'display:inline']) !!}
-                                                {!! Form::submit('Borrar',['class'=> 'btn btn-danger']) !!}
+                                                {!! Form::button('<i class="fa fa-trash"></i>',  ['type' => 'submit', 'class'=> 'btn btn-danger']) !!}
                                             {!! Form::close() !!}
                                             @endcan
                                         </td>
@@ -45,6 +59,7 @@
                                     @endforeach
                                 </tbody>
                             </table>
+                            </div>
                             <div class="pagination justify-content-end">
                                 {!! $cursos->links() !!}
                             </div>

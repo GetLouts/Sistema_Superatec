@@ -5,27 +5,19 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Curso extends Model
+class Asistencia extends Model
 {
     protected $fillable = [
-        'cursos',
-        'descripcion',
-        'cantidad_alumnos',
-        'clases',
-        'estado_id',
+        'alumnos_has_periodos_id',
         'creado_por',
         'actualizado_por',
     ];
-    public function estados ()
-    {
-        return $this->belongsTo(Estado::class, 'estado_id', 'id');
-    }
-    // Relacion uno a muchos
+    //Relacion inversa
     public function alumnoshasperiodos(){
-        return $this->hasMany('App\Models\AlumnosHasPeriodos');
+        return $this->belongsTo('App\Models\Asistencia');
     }
-    public function periodoshascursos(){
-        return $this->hasMany('App\Models\PeriodosHasCursos');
+    public function evento(){
+        return $this->belongsTo('App\Models\Evento');
     }
     /**
      * Lo mismo con el creado y editado. Pertenecen a un usuario, el que lo crea\edita

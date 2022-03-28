@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Periodo;
+use App\Models\Estado;
+use App\Models\PeriodosHasCursos;
 use Illuminate\Support\Facades\DB;
 
 class PeriodoController extends Controller
@@ -33,8 +35,10 @@ class PeriodoController extends Controller
      */
     public function create()
     {
-        $periodos = Periodo::pluck('nombre_perido','nombre_perido')->all();
-        return view('periodos.crear', compact('periodos'));
+        $periodos = Periodo::pluck('nombre_periodo','nombre_periodo')->all();
+        $estados = Estado::all();
+        $periodoshascursos = PeriodosHasCursos::all();
+        return view('periodos.crear', compact('periodos', 'estados', 'periodoshascursos'));
     }
 
     /**
@@ -47,11 +51,14 @@ class PeriodoController extends Controller
     {
         $periodos = new Periodo();
 
-            $periodos->nombre_perido = $request->nombre_perido;
-            $periodos->estado = $request->estado;
+            $periodos->nombre_periodo = $request->nombre_periodo;
+            $periodos->creado_por = auth()->user()->id;
+            $periodos->actualizado_por = auth()->user()->id;
+            $periodos->estado_id = $request->estado_id; 
+            
             
             $periodos->save();
-
+            
             return redirect()->route('periodos.index');
     }
 
@@ -75,8 +82,9 @@ class PeriodoController extends Controller
     public function edit($id)
     {
         $periodos = Periodo::find($id);
-
-        return view('periodos.editar', compact('periodos'));
+        $estados = Estado::all();
+        $periodoshascursos = PeriodosHasCursos::all();
+        return view('periodos.editar', compact('periodos', 'estados', 'periodoshascursos'));
     }
 
     /**
@@ -89,8 +97,8 @@ class PeriodoController extends Controller
     public function update(Request $request, $id)
     {
         $this->validate($request,[
-            'nombre_perido' => 'required',
-            'estado' => 'required',
+            'nombre_periodo' => 'required',
+            'estado_id' => 'required',
         ]);
         $input = $request->all();
         $periodos = Periodo::find($id);
