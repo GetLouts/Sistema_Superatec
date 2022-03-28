@@ -16,31 +16,29 @@
                             <div class="table-responsive">
                             <table class="table table-striped mt-2">
                                 <thead style="background-color: #6777ef;">
-                                    <th style="color: #fff;">ID</th>
-                                    <th style="color: #fff;">Nombres</th>
-                                    <th style="color: #fff;">Apellidos</th>
-                                    <th style="color: #fff;">Email</th>
-                                    <th style="color: #fff;">Cedula</th>
-                                    <th style="color: #fff;">Estado</th>
-                                    <th style="color: #fff;">Acciones</th>
+                                    <th style="color: #fff;" class="text-center">Nombres</th>
+                                    <th style="color: #fff;" class="text-center">Apellidos</th>
+                                    <th style="color: #fff;" class="text-center">Email</th>
+                                    <th style="color: #fff;" class="text-center">Cedula</th>
+                                    <th style="color: #fff;" class="text-center">Estado</th>
+                                    <th style="color: #fff;" class="text-center">Acciones</th>
                                 </thead>
                                 <tbody>
                                     @foreach ($alumnos as $alumno)
                                     <tr>
                                         @if($alumno->estado_id==2)
-                                        <td>{{$alumno->id}}</td>
-                                        <td>{{$alumno->nombres}}</td>
-                                        <td>{{$alumno->apellidos}}</td>
-                                        <td>{{$alumno->correo}}</td>
-                                        <td>{{$alumno->cedula}}</td>
+                                        <td class="text-center">{{$alumno->nombres}}</td>
+                                        <td class="text-center">{{$alumno->apellidos}}</td>
+                                        <td class="text-center">{{$alumno->correo}}</td>
+                                        <td class="text-center">{{$alumno->cedula}}</td>
                                         
-                                        <td> 
+                                        <td class="text-center"> 
                                             @if ($alumno->estado_id==2)
                                             <span class="badge badge-danger">Inactivo</span>
                                              @endif
                                           </td>
                                           
-                                        <td>
+                                        <td class="text-center">
                                             <a class="btn btn-primary" href="{{ route('alumnosinactivos.show', $alumno->id)}}""><i class="fa fa-eye"></i></a>
                                             @can('editar-alumnos')
                                             <a class="btn btn-info" href="{{ route('alumnosinactivos.edit', $alumno->id)}}"><i class="fa fa-pen"></i></a>

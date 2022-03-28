@@ -18,23 +18,23 @@
                             <div class="table-responsive">
                             <table class="table table-striped mt-2">
                                 <thead style="background-color: #6777ef;">
-                                    <th style="color: #fff;">ID</th>
-                                    <th style="color: #fff;">Nombre</th>
-                                    <th style="color: #fff;">Estado</th>
-                                    <th style="color: #fff;">Acciones</th>
+                                    <th style="color: #fff;" class="text-center">ID</th>
+                                    <th style="color: #fff;" class="text-center">Nombre</th>
+                                    <th style="color: #fff;" class="text-center">Estado</th>
+                                    <th style="color: #fff;" class="text-center">Acciones</th>
                                 </thead>
                                 <tbody>
                                     @foreach ($periodos as $periodo)
                                    @can('ver-periodo')
                                     <tr>
-                                        <td>{{$periodo->id}}</td>
-                                        <td>{{$periodo->nombre_periodo}}</td>
-                                        <td> @if ($periodo->estado_id==1)
+                                        <td class="text-center">{{$periodo->id}}</td>
+                                        <td class="text-center">{{$periodo->nombre_periodo}}</td>
+                                        <td class="text-center"> @if ($periodo->estado_id==1)
                                             <span class="badge badge-success">Activo</span>
                                             @else
                                             <span class="badge badge-danger">Inactivo</span>
                                             @endif</td>
-                                        <td>
+                                        <td class="text-center">
                                     @endcan
                                             @can('editar-periodo')
                                             <a class="btn btn-info" href="{{ route('periodos.edit', $periodo->id)}}"><i class="fa fa-pen"></i></a>

@@ -19,18 +19,16 @@
                             <div class="table-responsive">
                             <table class="table table-striped mt-2">
                                 <thead style="background-color: #6777ef;">
-                                    <th style="color: #fff;">ID</th>
-                                    <th style="color: #fff;">Rol</th>
-                                    <th style="color: #fff;">Acciones</th>
+                                    <th style="color: #fff;" class="text-center">Rol</th>
+                                    <th style="color: #fff;" class="text-center">Acciones</th>
                                 </thead>
                                 <tbody>
                                     
                                     @foreach ($roles as $role)
                                     @can('ver-rol')
                                     <tr>
-                                        <td>{{$role->id}}</td>
-                                        <td>{{$role->name}}</td>
-                                        <td>
+                                        <td class="text-center">{{$role->name}}</td>
+                                        <td class="text-center">
                                     @endcan
                                     
                                             @can('editar-rol')

@@ -18,20 +18,18 @@
                             <div class="table-responsive">
                             <table class="table table-striped mt-2">
                                 <thead style="background-color: #6777ef;">
-                                    <th style="color: #fff;">ID</th>
-                                    <th style="color: #fff;">Nombre</th>
-                                    <th style="color: #fff;">Email</th>
-                                    <th style="color: #fff;">Rol</th>
-                                    <th style="color: #fff;">Acciones</th>
+                                    <th style="color: #fff;" class="text-center">Nombre</th>
+                                    <th style="color: #fff;" class="text-center">Email</th>
+                                    <th style="color: #fff;" class="text-center">Rol</th>
+                                    <th style="color: #fff;" class="text-center">Acciones</th>
                                 </thead>
                                 <tbody>
                                     @foreach ($usuarios as $usuario)
                                     @can('ver-usuario')
                                     <tr>
-                                        <td>{{$usuario->id}}</td>
-                                        <td>{{$usuario->name}}</td>
-                                        <td>{{$usuario->email}}</td>
-                                        <td>
+                                        <td class="text-center">{{$usuario->name}}</td>
+                                        <td class="text-center">{{$usuario->email}}</td>
+                                        <td class="text-center">
                                             @if(!empty($usuario->getRoleNames()))
                                                 @foreach($usuario->getRoleNames() as $rolName)
                                                 <h5><span class="badge badge-dark">{{$rolName}}</span></h5>
@@ -39,7 +37,7 @@
                                             @endif
                                         </td>
                                         
-                                        <td>
+                                        <td class="text-center">
                                             @endcan
                                             @can('editar-usuario')
                                             <a class="btn btn-info" href="{{ route('usuarios.edit', $usuario->id)}}"><i class="fa fa-pen"></i></a>

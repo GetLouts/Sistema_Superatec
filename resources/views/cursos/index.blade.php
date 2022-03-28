@@ -19,19 +19,19 @@
                             <table class="table table-striped mt-2">
                                 <thead style="background-color: #6777ef;">
                                     
-                                    <th style="color: #fff;">Cursos</th>
-                                    <th style="color: #fff;">Alumnos</th>
-                                    <th style="color: #fff;">Clases</th>
-                                    <th style="color: #fff;">Descripción</th>
-                                    <th style="color: #fff;">Acciones</th>
+                                    <th style="color: #fff;" class="text-center">Cursos</th>
+                                    <th style="color: #fff;" class="text-center">Alumnos</th>
+                                    <th style="color: #fff;" class="text-center">Clases</th>
+                                    <th style="color: #fff;" class="text-center">Descripción</th>
+                                    <th style="color: #fff;" class="text-center">Acciones</th>
                                 </thead>
                                 <tbody>
                                     @foreach ($cursos as $curso)
                                     @can('ver-usuario')
                                     <tr>
                                         
-                                        <td>{{$curso->cursos}}</td>
-                                        <td> 
+                                        <td class="text-center">{{$curso->cursos}}</td>
+                                        <td class="text-center"> 
                                             @if ($curso->cantidad_alumnos>=1)
                                             <span class="badge badge-success">{{$curso->cantidad_alumnos}}</span>
                                             @else
@@ -39,9 +39,9 @@
                                             @endif
                                           </td>
                                        
-                                        <td>{{$curso->clases}}</td>
-                                        <td>{{$curso->descripcion}}</td>
-                                        <td>
+                                        <td class="text-center">{{$curso->clases}}</td>
+                                        <td class="text-center">{{$curso->descripcion}}</td>
+                                        <td class="text-center">
                                             <a class="btn btn-primary" href="{{ route('cursos.show', $curso->id)}}""><i class="fa fa-eye"></i></a>
                                             @endcan
                                             @can('editar-usuario')
