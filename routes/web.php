@@ -15,6 +15,7 @@ use App\Http\Controllers\GraficaedadesController;
 use App\Http\Controllers\GraficaingresoController;
 use App\Http\Controllers\CursoController;
 use Illuminate\Support\Facades\Auth;
+use app\Http\Controllers\FullCalenderController;
 
 /*
 |--------------------------------------------------------------------------
@@ -31,12 +32,15 @@ Route::get('/', function () {
     return view('auth.login');
 });
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-Route::post('/cronogramas/mostrar', [App\Http\Controllers\EventoController::class, 'show']);
-Route::post('/cronogramas/agregar', [App\Http\Controllers\EventoController::class, 'store']);
-Route::post('/cronogramas/editar/{id}', [App\Http\Controllers\EventoController::class, 'edit']);
-Route::post('/cronogramas/actualizar/{evento}', [App\Http\Controllers\EventoController::class, 'update']);
-Route::post('/cronogramas/borrar/{id}', [App\Http\Controllers\EventoController::class, 'destroy']);
+// Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('fullcalender', [App\Http\Controllers\FullCalenderController::class, 'index']);
+Route::post('fullcalenderAjax', [App\Http\Controllers\FullCalenderController::class, 'ajax']);
+
+// Route::post('/cronogramas/mostrar', [App\Http\Controllers\EventoController::class, 'show']);
+// Route::post('/cronogramas/agregar', [App\Http\Controllers\EventoController::class, 'store']);
+// Route::post('/cronogramas/editar/{id}', [App\Http\Controllers\EventoController::class, 'edit']);
+// Route::post('/cronogramas/actualizar/{evento}', [App\Http\Controllers\EventoController::class, 'update']);
+// Route::post('/cronogramas/borrar/{id}', [App\Http\Controllers\EventoController::class, 'destroy']);
 Route::get('/charts/orders', [App\Http\Controllers\GraficacomunidadController::class, 'ordersChart'])->name('charts.orders');
 Auth::routes();
 
