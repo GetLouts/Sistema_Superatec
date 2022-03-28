@@ -18,7 +18,7 @@
                             <div class="table-responsive">
                             <table class="table table-striped mt-2">
                                 <thead style="background-color: #6777ef;">
-                                    <th style="color: #fff;" class="text-center">ID</th>
+                                    
                                     <th style="color: #fff;" class="text-center">Nombre</th>
                                     <th style="color: #fff;" class="text-center">Estado</th>
                                     <th style="color: #fff;" class="text-center">Acciones</th>
@@ -27,7 +27,7 @@
                                     @foreach ($periodos as $periodo)
                                    @can('ver-periodo')
                                     <tr>
-                                        <td class="text-center">{{$periodo->id}}</td>
+                                        
                                         <td class="text-center">{{$periodo->nombre_periodo}}</td>
                                         <td class="text-center"> @if ($periodo->estado_id==1)
                                             <span class="badge badge-success">Activo</span>

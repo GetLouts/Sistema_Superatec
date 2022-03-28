@@ -8,6 +8,7 @@ use App\Models\Curso;
 use App\Models\Estado;
 use App\Models\Metodo;
 use App\Models\AlumnosHasPeriodos;
+use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Arr;
 
@@ -80,6 +81,35 @@ class AlumnoController extends Controller
            
             
             $alumnos->save();
+
+            Validator::make($request->all(), [
+                'categoria' => ['required', 'numeric'],
+            ])->validate();
+    
+            $marcacategoria = new MarcaByCategoria();
+            $marcacategoria->marca_id = $request->marca;
+            $marcacategoria->categoria_id = $request->categoria;
+    
+            try {
+                $marcacategoria->save();
+    
+                /* ========== Register action on bitacora ========== */
+                $bitacora = new \App\Models\AlumnosHasPeriodos();
+                $alumnos = \App\Modulo::where('modulo', 'marcas_has_categorias')->first();
+                $accion = \App\Accion::where('accion', 'Create')->first();
+                $descripcion = "Created Mark by Category";
+                $bitacora->registro($alumnos->id, $marcacategoria->id, $accion->id, \Request::ip(), $descripcion);
+                /* ================================================= */
+    
+                $httpStatus = HttpStatus::CREATED;
+                $this->respuesta["mensaje"] = HttpStatus::CREATED();
+            } catch (\Exception $e) {
+                $this->respuesta["mensaje"] = HttpStatus::ERROR();
+                $httpStatus = HttpStatus::ERROR;
+            }
+    
+            return response()->json($this->respuesta, $httpStatus);
+    
 
             return redirect()->route('alumnos.index');
     }

@@ -18,8 +18,8 @@ return new class extends Migration
             $table->string('nombres');
             $table->string('apellidos');
             $table->string('cedula');
-            $table->integer('telefono');
-            $table->integer('telefono_local');
+            $table->string('telefono');
+            $table->string('telefono_local');
             $table->string('direccion');
             $table->string('correo');
             $table->string('nivel_de_estudio');
