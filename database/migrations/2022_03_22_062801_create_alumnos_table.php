@@ -25,9 +25,9 @@ return new class extends Migration
             $table->string('nivel_de_estudio');
             $table->date('fecha_nac');
             $table->string('comunidad');
-            $table->string('pago');
             $table->string('numero_referencia');
             $table->string('patrocinador');
+            $table->date('fecha_registro');
             $table->unsignedBigInteger('estado_id');
             $table->unsignedBigInteger('creado_por')->nullable();
             $table->unsignedBigInteger('actualizado_por')->nullable();

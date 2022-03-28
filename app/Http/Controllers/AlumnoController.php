@@ -42,7 +42,8 @@ class AlumnoController extends Controller
         // $cursos = Periodo::where('id', $periodo activo)->get();
         $estados = Estado::all();
         $metodos = Metodo::all();
-       return view('alumnos.crear', compact('cursos', 'estados', 'metodos'));
+        $alumnoshasperiodos = AlumnosHasPeriodos::all();
+       return view('alumnos.crear', compact('cursos', 'estados', 'metodos', 'alumnoshasperiodos'));
     }
 
     /**
@@ -66,12 +67,13 @@ class AlumnoController extends Controller
             $alumnos->fecha_nac = $request->fecha_nac;
             $alumnos->comunidad = $request->comunidad;
             //$alumnos->curso = $request->curso;
-            $alumnos->pago = $request->pago;
-           // $alumnos->metodo_pago = $request->metodo_pago;
+            //$alumnos->pago = $request->pago;
+            //$alumnos->metodo_pago = $request->metodo_pago;
             //$alumnos->fecha_pago = $request->fecha_pago;
             $alumnos->numero_referencia = $request->numero_referencia;
             $alumnos->patrocinador = $request->patrocinador;
             //$alumnos->fecha_registro = $request->fecha_registro;
+            $alumnos->fecha_registro = $request->fecha_registro;
             $alumnos->estado_id = $request->estado_id;
             $alumnos->creado_por = auth()->user()->id;
             $alumnos->actualizado_por = auth()->user()->id;

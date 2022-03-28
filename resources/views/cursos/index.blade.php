@@ -18,8 +18,8 @@
                             <div class="table-responsive">
                             <table class="table table-striped mt-2">
                                 <thead style="background-color: #6777ef;">
-                                    <th style="color: #fff;">ID</th>
-                                    <th style="color: #fff;">Nombre</th>
+                                    
+                                    <th style="color: #fff;">Cursos</th>
                                     <th style="color: #fff;">Alumnos</th>
                                     <th style="color: #fff;">Clases</th>
                                     <th style="color: #fff;">Descripción</th>
@@ -29,9 +29,16 @@
                                     @foreach ($cursos as $curso)
                                     @can('ver-usuario')
                                     <tr>
-                                        <td>{{$curso->id}}</td>
+                                        
                                         <td>{{$curso->cursos}}</td>
-                                        <td>{{$curso->cantidad_alumnos}}</td>
+                                        <td> 
+                                            @if ($curso->cantidad_alumnos>=1)
+                                            <span class="badge badge-success">{{$curso->cantidad_alumnos}}</span>
+                                            @else
+                                            <span class="badge badge-danger">Sin Espacio</span>
+                                            @endif
+                                          </td>
+                                       
                                         <td>{{$curso->clases}}</td>
                                         <td>{{$curso->descripcion}}</td>
                                         <td>

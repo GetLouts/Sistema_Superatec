@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 USE App\Models\Curso;
 use App\Models\Estado;
+use App\Models\PeriodosHasCursos;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 
@@ -65,7 +66,8 @@ class CursoController extends Controller
     {
         $cursos = Curso::find($id);
         $estados = Estado::all();
-        return view('cursos.show', compact('cursos', 'id', 'estados'));
+        $periodoshascursos = PeriodosHasCursos::all();
+        return view('cursos.show', compact('cursos', 'id', 'estados', 'periodoshascursos'));
     }
 
     /**
@@ -78,7 +80,8 @@ class CursoController extends Controller
     {
         $cursos = Curso::find($id);
         $estados = Estado::all();
-        return view('cursos.editar', compact('cursos', 'estados'));
+        $periodoshascursos = PeriodosHasCursos::all();
+        return view('cursos.editar', compact('cursos', 'estados', 'periodoshascursos'));
     }
 
     /**

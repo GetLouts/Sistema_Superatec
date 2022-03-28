@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Periodo;
 use App\Models\Estado;
+use App\Models\PeriodosHasCursos;
 use Illuminate\Support\Facades\DB;
 
 class PeriodoController extends Controller
@@ -36,7 +37,8 @@ class PeriodoController extends Controller
     {
         $periodos = Periodo::pluck('nombre_periodo','nombre_periodo')->all();
         $estados = Estado::all();
-        return view('periodos.crear', compact('periodos', 'estados'));
+        $periodoshascursos = PeriodosHasCursos::all();
+        return view('periodos.crear', compact('periodos', 'estados', 'periodoshascursos'));
     }
 
     /**
@@ -81,7 +83,8 @@ class PeriodoController extends Controller
     {
         $periodos = Periodo::find($id);
         $estados = Estado::all();
-        return view('periodos.editar', compact('periodos', 'estados'));
+        $periodoshascursos = PeriodosHasCursos::all();
+        return view('periodos.editar', compact('periodos', 'estados', 'periodoshascursos'));
     }
 
     /**

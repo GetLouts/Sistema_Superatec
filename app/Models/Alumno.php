@@ -20,7 +20,6 @@ class Alumno extends Model
         'nivel_de_estudio',
         'fecha_nac',
         'comunidad',
-        'pago',
         'numero_referencia',
         'patrocinador',
         'fecha_registro',

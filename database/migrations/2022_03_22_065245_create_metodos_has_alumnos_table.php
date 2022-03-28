@@ -15,6 +15,8 @@ return new class extends Migration
     {
         Schema::create('metodos_has_alumnos', function (Blueprint $table) {
             $table->id();
+            $table->string('pago');
+            $table->date('fecha_pago');
             $table->unsignedBigInteger('metodo_id');
             $table->unsignedBigInteger('alumno_id');
             $table->unsignedBigInteger('periodos_has_cursos_id');
