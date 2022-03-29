@@ -55,8 +55,9 @@ class CursoController extends Controller
 
         $periodoshascursos = new PeriodosHasCursos();
             
+            $periodoshascursos->periodo_id = 1;    
             $periodoshascursos->curso_id = $cursos->id;
-            $periodoshascursos->periodo_id = 1;
+            
             $periodoshascursos->creado_por = auth()->user()->id;
            
             $periodoshascursos->save();

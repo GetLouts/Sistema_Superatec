@@ -91,7 +91,7 @@
                                         <label for="name">Curso</label>
                                        
                                             @foreach ($cursos as $curso)
-                                                <br> {{ $alumnoshasperiodos->cursos }} </br> 
+                                                <br> {{ $curso->curso_id }} </br> 
                                             @endforeach
                                         
                                     </div>

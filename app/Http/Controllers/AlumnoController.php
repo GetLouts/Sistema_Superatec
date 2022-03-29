@@ -105,6 +105,7 @@ class AlumnoController extends Controller
             $alumnos->estado_id = $request->estado_id;
             $alumnos->creado_por = auth()->user()->id;
             $alumnos->actualizado_por = auth()->user()->id;
+            
             $alumnos->save();
     
             $alumnoshasperiodos = new AlumnosHasPeriodos();
@@ -112,8 +113,9 @@ class AlumnoController extends Controller
             $alumnoshasperiodos->curso_id = $request->curso;
             $alumnoshasperiodos->periodo_id = 1;
             $alumnoshasperiodos->creado_por = auth()->user()->id;
+            
             $alumnoshasperiodos->save();
-
+            
             $metodos = new MetodosHasAlumnos();
             $metodos->pago = $request->pago;
             $metodos->fecha_pago = $request->fecha_pago;
