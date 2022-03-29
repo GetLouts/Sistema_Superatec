@@ -9,11 +9,26 @@
         </div>
         <div class="section-body">
             <div class="row">
+                
                 <div class="col-lg-12">
                     <div class="card">
                         <div class="card-body">
-                            <a class="btn btn-success" href="{{ route('alumnos.create') }}">Nuevo Alumno</a>
-
+                            <div class="col-xl-12">
+                                <form action="{{route('alumnos.index')}}" method="get">
+                                        <div class="form-row">
+                                            <div>
+                                                <a class="btn btn-success"  href="{{ route('alumnos.create') }}">Nuevo Alumno</a>
+                                            </div>
+                                            <div class="col-xs-4">
+                                                <input type="text" class="form-control" name="texto" value="{{$texto}}">
+                                            </div>
+                                            <div class="col-auto">
+                                                <input type="submit" class="btn btn-primary" value="Buscar">
+                                            </div>
+                                        </div>
+                                </form>
+                            </div>
+                           
                             <div class="table-responsive">
                                 <table class="table table-striped mt-2">
                                     <thead style="background-color: #6777ef;">
@@ -29,6 +44,18 @@
 
                                     </thead>
                                     <tbody>
+                                        @if(count($alumnos)<=0)
+                                            <tr>
+                                                <td class="badge-danger"></td>
+                                                <td class="badge-danger"></td>
+                                                <td class="badge-danger"></td>
+                                                <td class="badge-danger" class="text-center">No hay registro</td>
+                                                <td class="badge-danger"></td>
+                                                <td class="badge-danger"></td>
+                                                <td class="badge-danger"></td>
+                                                <td class="badge-danger"></td>
+                                            </tr>
+                                        @endif
                                         @foreach ($alumnos as $alumno)
                                             <tr>
                                                 @if ($alumno->estado_id == 1)

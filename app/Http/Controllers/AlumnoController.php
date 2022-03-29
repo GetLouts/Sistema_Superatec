@@ -10,6 +10,7 @@ use App\Models\Metodo;
 use App\Models\AlumnosHasPeriodos;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\DB;
+use App\Models\HttpStatus;
 use Illuminate\Support\Arr;
 
 class AlumnoController extends Controller
@@ -26,10 +27,27 @@ class AlumnoController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
-    {
-        $alumnos = Alumno::paginate(10);
-        return view('alumnos.index', compact('alumnos'));
+    public function index(Request $request)
+    {   
+        $texto=trim($request->get('texto'));
+        $alumnos=DB::table('alumnos')
+        ->select('id', 'nombres', 'apellidos', 'cedula', 'telefono',
+        'telefono_local',
+        'direccion',
+        'correo',
+        'nivel_de_estudio',
+        'fecha_nac',
+        'comunidad',
+        'numero_referencia',
+        'patrocinador',
+        'fecha_registro',
+        'estado_id' )
+        ->where('cedula','LIKE','%'.$texto.'%')
+        ->orWhere('nombres','LIKE','%'.$texto.'%')
+        ->orderBy('cedula', 'asc')
+        ->paginate(10);
+        
+        return view('alumnos.index', compact('alumnos', 'texto'));
     }
 
     /**
@@ -80,25 +98,28 @@ class AlumnoController extends Controller
             $alumnos->actualizado_por = auth()->user()->id;
            
             
-            $alumnos->save();
+            
 
             Validator::make($request->all(), [
-                'categoria' => ['required', 'numeric'],
+                'alumno_id' => 'required',
+                'curso_id' => 'required',
+                'periodo_id' => 'required',
             ])->validate();
     
-            $marcacategoria = new MarcaByCategoria();
-            $marcacategoria->marca_id = $request->marca;
-            $marcacategoria->categoria_id = $request->categoria;
+            $alumnoshasperiodos = new AlumnosHasPeriodos();
+            $alumnoshasperiodos->marca_id = $request->marca;
+            $alumnoshasperiodos->categoria_id = $request->categoria;
     
             try {
-                $marcacategoria->save();
+                $alumnoshasperiodos->save();
     
                 /* ========== Register action on bitacora ========== */
-                $bitacora = new \App\Models\AlumnosHasPeriodos();
-                $alumnos = \App\Modulo::where('modulo', 'marcas_has_categorias')->first();
-                $accion = \App\Accion::where('accion', 'Create')->first();
-                $descripcion = "Created Mark by Category";
-                $bitacora->registro($alumnos->id, $marcacategoria->id, $accion->id, \Request::ip(), $descripcion);
+                $alumnoshasperiodos = new \App\Models\AlumnosHasPeriodos();
+                $alumnos = \App\Models\Alumno::where('id')->first();
+                $cursos = \App\Models\Curso::where('id')->first();
+                $periodos = \App\Models\Periodo::where('id')->first();
+                
+                $alumnoshasperiodos->registro($alumnos->id, $alumnoshasperiodos->id, $cursos->id, $periodos->id, \Request::ip());
                 /* ================================================= */
     
                 $httpStatus = HttpStatus::CREATED;
@@ -107,7 +128,7 @@ class AlumnoController extends Controller
                 $this->respuesta["mensaje"] = HttpStatus::ERROR();
                 $httpStatus = HttpStatus::ERROR;
             }
-    
+            $alumnos->save();
             return response()->json($this->respuesta, $httpStatus);
     
 
