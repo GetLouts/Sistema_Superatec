@@ -30,8 +30,9 @@ class CursoController extends Controller
     {
         $cursos = Curso::get();
         $estados = Estado::all();
-        
-        return view('cursos.crear', compact('cursos', 'estados'));
+        $periodoshascursos = PeriodosHasCursos::where('periodo_id', 1)->get();
+
+        return view('cursos.crear', compact('cursos', 'estados', 'periodoshascursos'));
     }
 
     /**
@@ -50,9 +51,17 @@ class CursoController extends Controller
         $cursos->estado_id = $request->estado_id;
         $cursos->creado_por = auth()->user()->id;
         //$cursos->estado_id = $request->estado_id;
-        
-
         $cursos->save();
+
+        $periodoshascursos = new PeriodosHasCursos();
+            
+            $periodoshascursos->curso_id = $cursos->id;
+            $periodoshascursos->periodo_id = 1;
+            $periodoshascursos->creado_por = auth()->user()->id;
+           
+            $periodoshascursos->save();
+
+        
         return redirect()->route('cursos.index');
     }
 

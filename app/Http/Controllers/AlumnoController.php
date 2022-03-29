@@ -11,7 +11,7 @@ use App\Models\AlumnosHasPeriodos;
 use App\Models\PeriodosHasCursos;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\DB;
-use App\Models\HttpStatus;
+use App\Models\MetodosHasAlumnos;
 use Illuminate\Support\Arr;
 
 class AlumnoController extends Controller
@@ -62,6 +62,7 @@ class AlumnoController extends Controller
         // $cursos = Periodo::where('id', $periodo activo)->get();
         $estados = Estado::all();
         $metodos = Metodo::all();
+        $metodos = MetodosHasAlumnos::all();
         $cursos = PeriodosHasCursos::where('periodo_id', 1)->get();
         // dd($cursos->first()->cursos);
        return view('alumnos.crear', compact('cursos', 'estados', 'metodos'));
@@ -112,6 +113,16 @@ class AlumnoController extends Controller
             $alumnoshasperiodos->periodo_id = 1;
             $alumnoshasperiodos->creado_por = auth()->user()->id;
             $alumnoshasperiodos->save();
+
+            $metodos = new MetodosHasAlumnos();
+            $metodos->pago = $request->pago;
+            $metodos->fecha_pago = $request->fecha_pago;
+            $metodos->metodo_id = $request->metodo_pago;
+            $metodos->alumno_id = $alumnos->id;
+            $metodos->periodos_has_cursos_id = $request->curso;
+            $metodos->creado_por = auth()->user()->id;
+         
+            $metodos->save();
 
             /*try {
                 
