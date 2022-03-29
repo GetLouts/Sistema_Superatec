@@ -102,7 +102,7 @@
                                     <select name="curso" class="form-control">
                                         <option hidden selected>--> Selecione un Curso <--</option>
                                         @foreach ($cursos as $curso)
-                                            <option value="{{ $curso->id }}">{{ $curso->cursos }}</option>                                                   
+                                            <option value="{{ $curso->cursos->id }}">{{ $curso->cursos->cursos }}</option>                                                   
                                         @endforeach
                                     </select>
                                 </div>

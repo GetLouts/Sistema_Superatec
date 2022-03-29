@@ -22,7 +22,7 @@ class PeriodosHasCursos extends Model
     }
     //Relacion inversa
     public function cursos(){
-        return $this->belongsTo('App\Models\Curso');
+        return $this->belongsTo('App\Models\Curso', 'curso_id');
     }
     public function periodo(){
         return $this->belongsTo('App\Models\Periodo');

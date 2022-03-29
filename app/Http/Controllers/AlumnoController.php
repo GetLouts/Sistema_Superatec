@@ -8,6 +8,7 @@ use App\Models\Curso;
 use App\Models\Estado;
 use App\Models\Metodo;
 use App\Models\AlumnosHasPeriodos;
+use App\Models\PeriodosHasCursos;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\DB;
 use App\Models\HttpStatus;
@@ -61,8 +62,9 @@ class AlumnoController extends Controller
         // $cursos = Periodo::where('id', $periodo activo)->get();
         $estados = Estado::all();
         $metodos = Metodo::all();
-        $alumnoshasperiodos = AlumnosHasPeriodos::all();
-       return view('alumnos.crear', compact('cursos', 'estados', 'metodos', 'alumnoshasperiodos'));
+        $cursos = PeriodosHasCursos::where('periodo_id', 1)->get();
+        // dd($cursos->first()->cursos);
+       return view('alumnos.crear', compact('cursos', 'estados', 'metodos'));
     }
 
     /**
@@ -73,6 +75,12 @@ class AlumnoController extends Controller
      */
     public function store(Request $request)
     {       
+        /*Validator::make($request->all(), [
+            'alumno_id' => 'required',
+            'curso_id' => 'required',
+            'periodo_id' => 'required',
+        ])->validate();*/
+
         $alumnos = new Alumno();
 
             $alumnos->nombres = $request->nombres;
@@ -96,43 +104,33 @@ class AlumnoController extends Controller
             $alumnos->estado_id = $request->estado_id;
             $alumnos->creado_por = auth()->user()->id;
             $alumnos->actualizado_por = auth()->user()->id;
-           
-            
-            
-
-            Validator::make($request->all(), [
-                'alumno_id' => 'required',
-                'curso_id' => 'required',
-                'periodo_id' => 'required',
-            ])->validate();
+            $alumnos->save();
     
             $alumnoshasperiodos = new AlumnosHasPeriodos();
-            $alumnoshasperiodos->marca_id = $request->marca;
-            $alumnoshasperiodos->categoria_id = $request->categoria;
-    
-            try {
-                $alumnoshasperiodos->save();
-    
-                /* ========== Register action on bitacora ========== */
+            $alumnoshasperiodos->alumno_id = $alumnos->id;
+            $alumnoshasperiodos->curso_id = $request->curso;
+            $alumnoshasperiodos->periodo_id = 1;
+            $alumnoshasperiodos->creado_por = auth()->user()->id;
+            $alumnoshasperiodos->save();
+
+            /*try {
+                
+
                 $alumnoshasperiodos = new \App\Models\AlumnosHasPeriodos();
                 $alumnos = \App\Models\Alumno::where('id')->first();
                 $cursos = \App\Models\Curso::where('id')->first();
                 $periodos = \App\Models\Periodo::where('id')->first();
                 
-                $alumnoshasperiodos->registro($alumnos->id, $alumnoshasperiodos->id, $cursos->id, $periodos->id, \Request::ip());
-                /* ================================================= */
+                $alumnoshasperiodos->registro($alumnos->id, $alumnoshasperiodos->id, $cursos->id, $periodos->id);
     
-                $httpStatus = HttpStatus::CREATED;
-                $this->respuesta["mensaje"] = HttpStatus::CREATED();
+                
             } catch (\Exception $e) {
-                $this->respuesta["mensaje"] = HttpStatus::ERROR();
-                $httpStatus = HttpStatus::ERROR;
-            }
-            $alumnos->save();
-            return response()->json($this->respuesta, $httpStatus);
+                $alumnos->save();
+            }*/
+            return redirect()->route('alumnos.index');
     
 
-            return redirect()->route('alumnos.index');
+            
     }
 
     /**
