@@ -19,6 +19,9 @@ return new class extends Migration
             $table->text('descripcion');
             $table->string('cantidad_alumnos');
             $table->integer('clases');
+            $table->string('modalidad');
+            $table->date('fecha_inicio');
+            $table->string('codigo');
             $table->unsignedBigInteger('estado_id');
             $table->unsignedBigInteger('creado_por');
             $table->unsignedBigInteger('actualizado_por')->nullable();

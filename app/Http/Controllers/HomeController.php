@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use App\Models\Periodo;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
@@ -23,6 +23,12 @@ class HomeController extends Controller
      */
     public function index()
     {
+        // Se busca el periodo activo - "DEBERIA HABER SOLO 1"
+       /* $periodo = Periodo::where('estado_id', 1)->first();
+        session(['periodo' => $periodo]); // se setea en la sesion del usuario
+        // Para recuperar en cualquier parte que se necesite el periodo
+        session()->get('periodo')->id; // suplantar id con las propiedades existentes en la tabla periodo de ser necesario
+        */
         return view('home');
     }
 }

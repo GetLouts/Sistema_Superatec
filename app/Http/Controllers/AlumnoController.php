@@ -62,7 +62,7 @@ class AlumnoController extends Controller
         // $cursos = Periodo::where('id', $periodo activo)->get();
         $estados = Estado::all();
         $metodos = Metodo::all();
-        $metodos = MetodosHasAlumnos::all();
+        //$metodos = MetodosHasAlumnos::all();
         $cursos = PeriodosHasCursos::where('periodo_id', 1)->get();
         // dd($cursos->first()->cursos);
        return view('alumnos.crear', compact('cursos', 'estados', 'metodos'));
@@ -116,7 +116,7 @@ class AlumnoController extends Controller
             
             $alumnoshasperiodos->save();
             
-            $metodos = new MetodosHasAlumnos();
+            /*$metodos = new MetodosHasAlumnos();
             $metodos->pago = $request->pago;
             $metodos->fecha_pago = $request->fecha_pago;
             $metodos->metodo_id = $request->metodo_pago;
@@ -125,7 +125,7 @@ class AlumnoController extends Controller
             $metodos->creado_por = auth()->user()->id;
          
             $metodos->save();
-
+*/
             /*try {
                 
 

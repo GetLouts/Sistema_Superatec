@@ -48,20 +48,23 @@ class CursoController extends Controller
         $cursos->descripcion = $request->descripcion;
         $cursos->cantidad_alumnos = $request->cantidad_alumnos;
         $cursos->clases = $request->clases;
+        $cursos->modalidad = $request->modalidad;
+        $cursos->fecha_inicio = $request->fecha_inicio;
+        $cursos->codigo = $request->codigo;
         $cursos->estado_id = $request->estado_id;
         $cursos->creado_por = auth()->user()->id;
         //$cursos->estado_id = $request->estado_id;
         $cursos->save();
 
-        $periodoshascursos = new PeriodosHasCursos();
+       /* $periodoshascursos = new PeriodosHasCursos();
             
-            $periodoshascursos->periodo_id = 1;    
-            $periodoshascursos->curso_id = $cursos->id;
-            
+             
+            $periodoshascursos->curso_id = $cursos->id;;
+            $periodoshascursos->periodo_id = 1;
             $periodoshascursos->creado_por = auth()->user()->id;
-           
+           //dd($periodoshascursos);
             $periodoshascursos->save();
-
+*/
         
         return redirect()->route('cursos.index');
     }

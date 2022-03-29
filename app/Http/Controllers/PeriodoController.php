@@ -59,11 +59,12 @@ class PeriodoController extends Controller
             
             $periodos->save();
 
-            $periodoshascursos = new PeriodosHasCursos();
-            $periodoshascursos->periodo_id = $periodos->id;
-            $periodoshascursos->creado_por = auth()->user()->id;
+            //$periodoshascursos = new PeriodosHasCursos();
+            
+            //$periodoshascursos->periodo_id = 1;
+            //$periodoshascursos->creado_por = auth()->user()->id;
             //dd($periodoshascursos);
-            $periodoshascursos->save();
+            //$periodoshascursos->save();
             
             return redirect()->route('periodos.index');
     }
