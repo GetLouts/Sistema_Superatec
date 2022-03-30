@@ -15,6 +15,7 @@ use App\Http\Controllers\GraficapatrocinadorController;
 use App\Http\Controllers\GraficaedadesController;
 use App\Http\Controllers\GraficaingresoController;
 use App\Http\Controllers\CursoController;
+use App\Http\Controllers\PeriodosHasCursosController;
 use Illuminate\Support\Facades\Auth;
 
 /*
@@ -56,4 +57,5 @@ Route::group(['middleware' => ['auth']], function(){
 	Route::resource('gpatrocinadores', GraficapatrocinadorController::class);
 	Route::resource('gedades', GraficaedadesController::class);
 	Route::resource('gingresos', GraficaingresoController::class);
+	Route::resource('periodo_curso', PeriodosHasCursosController::class);
 });

@@ -24,10 +24,27 @@ class AlumnoInactivoController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $alumnos = Alumno::paginate(10);
-        return view('alumnosinactivos.index', compact('alumnos'));
+        $texto=trim($request->get('texto'));
+        $alumnos=DB::table('alumnos')
+        ->select('id', 'nombres', 'apellidos', 'cedula', 'telefono',
+        'telefono_local',
+        'direccion',
+        'correo',
+        'nivel_de_estudio',
+        'fecha_nac',
+        'comunidad',
+        'numero_referencia',
+        'patrocinador',
+        'fecha_registro',
+        'estado_id' )
+        ->where('cedula','LIKE','%'.$texto.'%')
+        ->orWhere('nombres','LIKE','%'.$texto.'%')
+        ->orderBy('cedula', 'asc')
+        ->paginate(10);
+        
+        return view('alumnos.index', compact('alumnos', 'texto'));
     }
 
     /**

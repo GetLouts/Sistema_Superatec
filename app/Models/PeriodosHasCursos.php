@@ -25,7 +25,7 @@ class PeriodosHasCursos extends Model
         return $this->belongsTo('App\Models\Curso', 'curso_id');
     }
     public function periodo(){
-        return $this->belongsTo('App\Models\Periodo');
+        return $this->belongsTo('App\Models\Periodo','periodo_id');
     }
     /**
      * Lo mismo con el creado y editado. Pertenecen a un usuario, el que lo crea\edita

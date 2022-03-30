@@ -3,6 +3,11 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+USE App\Models\Curso;
+use App\Models\Estado;
+use App\Models\PeriodosHasCursos;
+use App\Models\Periodo;
+use Illuminate\Support\Facades\DB;
 
 class PeriodosHasCursosController extends Controller
 {
@@ -23,7 +28,11 @@ class PeriodosHasCursosController extends Controller
      */
     public function create()
     {
-        //
+        $cursos = Curso::get();
+        $periodos = Periodo::all();
+        $periodoshascursos = PeriodosHasCursos::all();
+
+        return view('cursos.periodohascurso', compact('cursos', 'periodoshascursos', 'periodos'));
     }
 
     /**
@@ -34,7 +43,15 @@ class PeriodosHasCursosController extends Controller
      */
     public function store(Request $request)
     {
-        //
+    
+        $periodoshascursos = new PeriodosHasCursos();
+        $periodoshascursos->periodo_id = $request->periodo;
+        $periodoshascursos->curso_id = $request->curso;
+        $periodoshascursos->creado_por = auth()->user()->id;
+        dd($periodoshascursos);
+        $periodoshascursos->save();
+        
+        return redirect()->route('cursos.index');
     }
 
     /**

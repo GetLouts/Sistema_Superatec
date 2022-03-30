@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 USE App\Models\Curso;
 use App\Models\Estado;
 use App\Models\PeriodosHasCursos;
+use App\Models\Periodo;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 

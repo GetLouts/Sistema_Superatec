@@ -12,7 +12,18 @@
                 <div class="col-lg-12">
                     <div class="card">
                         <div class="card-body">
-                                                        
+                            <div class="col-xl-12">
+                                <form action="{{route('alumnosinactivos.index')}}" method="get">
+                                        <div class="form-row">
+                                            <div class="col-xs-4">
+                                                <input type="text" class="form-control" name="texto" value="{{$texto}}">
+                                            </div>
+                                            <div class="col-auto">
+                                                <input type="submit" class="btn btn-primary" value="Buscar">
+                                            </div>
+                                        </div>
+                                </form>
+                            </div>
                             <div class="table-responsive">
                             <table class="table table-striped mt-2">
                                 <thead style="background-color: #6777ef;">

@@ -29,7 +29,7 @@
                                     <td>
                                     <div class="col-xs-12 col-sm-12 col-md-6">
                                         <div class="form-group">
-                                            <label for="name">Nombre del Perido</label>
+                                            <label for="name">Nombre del Periodo</label>
                                             {!! Form::text('nombre_periodo', null, array('class'=>'form-control')) !!}
                                         </div>
                                     </div>

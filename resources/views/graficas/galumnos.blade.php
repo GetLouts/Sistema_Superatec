@@ -24,7 +24,7 @@
                                         text:"Graficas de Alumnos"
                                     },
                                     xAxis:{
-                                        categories:['0','Enero','Febrero','Marzo','Abril','Mayo','Junio',
+                                        categories:['Enero','Febrero','Marzo','Abril','Mayo','Junio',
                                         'Julio','Agosto','Septiembre','Octubre','Noviembre','Diciembre']
                                     },
                             

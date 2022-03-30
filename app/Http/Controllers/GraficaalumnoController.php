@@ -15,7 +15,7 @@ class GraficaalumnoController extends Controller
      */
     public function index()
     {
-       /* $alumnosData =Alumno::Select (DB::raw("COUNT(*) as count"))
+        $alumnosData =Alumno::Select (DB::raw("COUNT(*) as count"))
         ->whereYear('created_at', date('Y'))
         ->groupBy(DB::raw("Month(created_at)"))
         ->pluck('count');
@@ -26,13 +26,13 @@ class GraficaalumnoController extends Controller
         ->groupBy(DB::raw("Month(created_at)"))
         ->pluck('month');
 
-        $datas = array(0,0,0,0,0,0,0,0,0,0,0,0,0);
+        $datas = array(0,0,0,0,0,0,0,0,0,0,0,0);
         foreach ($months as $index => $month) {
             $datas[$month] = $alumnosData[$index];
         }
         return view('graficas.galumnos', compact('datas'));
-*/
-        $graf = [];
+
+        /*$graf = [];
         // $aux = Alumno::whereYear('created_at', date('Y'))->get();
         $aux = Alumno::all();
 
@@ -51,7 +51,7 @@ class GraficaalumnoController extends Controller
 
        // dd($graf);
 
-        return view('graficas.galumnos', compact('aux'));
+        return view('graficas.galumnos', compact('aux'));*/
     }
 
     /**

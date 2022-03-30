@@ -54,6 +54,7 @@
                         <div class="card-body">
                             @can('crear-usuario')
                             <a class="btn btn-success" href="{{ route ('cursos.create')}}">Nuevo Curso</a>
+                            <a class="btn btn-success" href="{{ route ('periodo_curso.create')}}">Añadir Cursos a Periodo</a>
                             @endcan
                             <div class="table-responsive">
                             <table class="table table-striped mt-2">
@@ -82,13 +83,14 @@
                                         <td class="text-center">{{$curso->clases}}</td>
                                         <td class="text-center">{{$curso->descripcion}}</td>
                                         <td class="text-center">
-                                            <a class="btn btn-primary" href="{{ route('cursos.show', $curso->id)}}""><i class="fa fa-eye"></i></a>
+                                            <a class="btn btn-primary" href="{{ route('alumnos.show', $curso->id)}}""><i class="fa fa-eye"></i></a>
                                             @endcan
                                             @can('editar-usuario')
                                             <a class="btn btn-info" href="{{ route('cursos.edit', $curso->id)}}"><i class="fa fa-pen"></i></a>
                                             @endcan
                                             
-                                            <a class="btn btn-warning" href="{{ route('cursos.edit', $curso->id)}}"><i class="fa fa-plus"></i></a>
+                                                <!-- <a class="btn btn-warning" href="{{ route('periodo_curso.create', $curso->id)}}"><i class="fa fa-plus"></i></a> -->
+
                                             @can('borrar-usuario')
                                             {!! Form::open(['method'=> 'DELETE', 'route'=> ['cursos.destroy', $curso->id],'style'=>'display:inline']) !!}
                                                 {!! Form::button('<i class="fa fa-trash"></i>',  ['type' => 'submit', 'class'=> 'btn btn-danger']) !!}

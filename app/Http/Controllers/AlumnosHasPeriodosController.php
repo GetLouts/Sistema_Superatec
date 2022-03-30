@@ -38,37 +38,7 @@ class AlumnosHasPeriodosController extends Controller
      */
     public function store(Request $request)
     {
-        Validator::make($request->all(), [
-            'alumno_id' => 'required',
-            'curso_id' => 'required',
-            'periodo_id' => 'required',
-		])->validate();
-
-		$alumnohasperiodo = new AlumnosHasPeriodos();
-		$alumnohasperiodo->alumno_id = $request->alumno_id;
-		$alumnohasperiodo->curso_id = $request->curso_id;
-        $alumnohasperiodo->periodo_id = $request->periodo_id;
-
-        try {
-            $alumnohasperiodo->save();
-
-            /* ========== Register action on bitacora ========== */
-            $alumno = new \App\Models\Alumno();
-            $curso = \App\Modulo::where('modulo', 'marcas_has_categorias')->first();
-            $accion = \App\Accion::where('accion', 'Create')->first();
-            $descripcion = "Created Mark by Category";
-            $alumno->registro($modulo->id, $marcacategoria->id, $accion->id, \Request::ip(), $descripcion);
-            /* ================================================= */
-
-            $httpStatus = HttpStatus::CREATED;
-            $this->respuesta["mensaje"] = HttpStatus::CREATED();
-        } catch (\Exception $e) {
-            $this->respuesta["mensaje"] = HttpStatus::ERROR();
-            $httpStatus = HttpStatus::ERROR;
-        }
-
-        return response()->json($this->respuesta, $httpStatus);
-
+        //
     }
 
     /**

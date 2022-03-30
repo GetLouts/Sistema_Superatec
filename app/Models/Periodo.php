@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Periodo extends Model
 {
     protected $fillable = [
-        'nombre_perido',
+        'nombre_periodo',
         'creado_por',
         'actualizado_por',
         'estado_id',

@@ -59,8 +59,8 @@
                                     </select>
                                 </div>                          
                                     <div class="col-xs-12 col-sm-12 col-md-6">
+                                        <label for="name">Descripción del Curso</label>
                                         <div class="form-group">
-                                            <label for="name">Descripción del Curso</label>
                                             {!! Form::textarea('descripcion', null, array('class'=>'form-group')) !!}
                                         </div>
                                     </div>
