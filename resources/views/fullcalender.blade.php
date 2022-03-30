@@ -70,7 +70,7 @@
                     // });
 
                     var title= prompt("Enter Event Title");
-                    if (title) {
+                    if (title !== null) {
                         var start = $.fullCalendar.formatDate(start, "Y-MM-DD");
                         var end = $.fullCalendar.formatDate(end, "Y-MM-DD");
                         $.ajax({
@@ -122,22 +122,22 @@
                         size: "small",
                         message: "Desea Eliminar el Evento?",
                         callback: function(result) {
+                            if (result) {
                             /* result is a boolean; true = OK, false = Cancel*/ }
-                    })
-                    if (deleteMsg) {
-                        $.ajax({
-                            type: "POST",
-                            url: SITEURL + '/fullcalenderAjax',
-                            data: {
-                                id: event.id,
-                                type: 'delete'
-                            },
-                            success: function(response) {
-                                calendar.fullCalendar('removeEvents', event.id);
-                                displayMessage("Evento Borrado Satisfactoriamente");
+                                $.ajax({
+                                    type: "POST",
+                                    url: SITEURL + '/fullcalenderAjax',
+                                    data: {
+                                        id: event.id,
+                                        type: 'delete'
+                                    },
+                                    success: function(response) {
+                                        calendar.fullCalendar('removeEvents', event.id);
+                                        displayMessage("Evento Borrado Satisfactoriamente");
+                                    }
+                                });
                             }
-                        });
-                    }
+                    })
                 }
 
             });
