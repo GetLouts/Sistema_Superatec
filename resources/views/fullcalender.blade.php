@@ -43,61 +43,62 @@
             });
 
             var calendar = $('#calendar').fullCalendar({
-                editable: true,
-                locale: 'es',
-                eventColor: '#0077B6',
-                eventTextColor: 'white',
-                events: SITEURL + "/fullcalender",
-                displayEventTime: false,
-                editable: true,
-                eventRender: function(event, element, view) {
-                    if (event.allDay === 'true') {
-                        event.allDay = true;
-                    } else {
-                        event.allDay = false;
-                    }
-                },
-                selectable: true,
-                selectHelper: true,
-                select: function(start, end, allDay) {
-                    // var title = bootbox.prompt({
-                    //     title: "This is a prompt, vertically centered!",
-                    //     centerVertical: true,
-                    //     callback: function(result) {
-                    //         console.log(result);
-                    //         return result
-                    //     }
-                    // });
+                    editable: true,
+                    locale: 'es',
+                    eventColor: '#0077B6',
+                    eventTextColor: 'white',
+                    events: SITEURL + "/fullcalender",
+                    displayEventTime: false,
+                    editable: true,
+                    eventRender: function(event, element, view) {
+                        if (event.allDay === 'true') {
+                            event.allDay = true;
+                        } else {
+                            event.allDay = false;
+                        }
+                    },
+                    selectable: true,
+                    selectHelper: true,
+                    select: function(start, end, allDay) {
+                        bootbox.prompt({
+                            title: "Desea agregar una nueva actividad",
+                            centerVertical: true,
+                            callback: function(result) {
+                                console.log(result)
+                                if (result !== null) {
 
-                    var title= prompt("Enter Event Title");
-                    if (title) {
-                        var start = $.fullCalendar.formatDate(start, "Y-MM-DD");
-                        var end = $.fullCalendar.formatDate(end, "Y-MM-DD");
-                        $.ajax({
-                            url: SITEURL + "/fullcalenderAjax",
-                            data: {
-                                title: title,
-                                start: start,
-                                end: end,
-                                type: 'add'
-                            },
-                            type: "POST",
-                            success: function(data) {
-                                displayMessage("Evento Creado Satisfactoriamente");
-
-                                calendar.fullCalendar('renderEvent', {
-                                    id: data.id,
-                                    title: title,
-                                    start: start,
-                                    end: end,
-                                    allDay: allDay
-                                }, true);
-
-                                calendar.fullCalendar('unselect');
+                                    var start = $.fullCalendar.formatDate(start, "Y-MM-DD");
+                                    var end = $.fullCalendar.formatDate(end, "Y-MM-DD");
+                                    $.ajax({
+                                        url: SITEURL + "/fullcalenderAjax",
+                                        data: {
+                                            title: result,
+                                            start: start,
+                                            end: end,
+                                            type: 'add'
+                                        },
+                                        type: "POST",
+                                        success: function(data) {
+                                            displayMessage(
+                                                "Evento Creado Satisfactoriamente"
+                                            );
+                                            calendar.fullCalendar('renderEvent', {
+                                                id: data.id,
+                                                title: result,
+                                                start: start,
+                                                end: end,
+                                                allDay: allDay
+                                            }, true);
+                                            calendar.fullCalendar('unselect');
+                                        }
+                                    });
+                                } else {
+                                    
+                                    calendar.fullCalendar('unselect');
+                                }
                             }
-                        });
-                    }
-                },
+                        })
+                    },
                 eventDrop: function(event, delta) {
                     var start = $.fullCalendar.formatDate(event.start, "Y-MM-DD");
                     var end = $.fullCalendar.formatDate(event.end, "Y-MM-DD");
@@ -105,7 +106,7 @@
                     $.ajax({
                         url: SITEURL + '/fullcalenderAjax',
                         data: {
-                            title: event.title,
+                            title: event.result,
                             start: start,
                             end: end,
                             id: event.id,
@@ -122,7 +123,8 @@
                         size: "small",
                         message: "Desea Eliminar el Evento?",
                         callback: function(result) {
-                            /* result is a boolean; true = OK, false = Cancel*/ }
+                            /* result is a boolean; true = OK, false = Cancel*/
+                        }
                     })
                     if (deleteMsg) {
                         $.ajax({
@@ -139,10 +141,8 @@
                         });
                     }
                 }
-
             });
-
-        });
+        })
 
         function displayMessage(message) {
             toastr.success(message, 'Event');
