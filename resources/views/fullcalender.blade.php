@@ -2,7 +2,7 @@
 <html>
 
 <head>
-    <title>Laravel 8 FullCalendar Tutorial</title>
+    <title>Cronograma</title>
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" />
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
@@ -11,92 +11,29 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.9.0/fullcalendar.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootbox.js/4.4.0/bootbox.min.js"></script>r
 </head>
+
+
 
 <body>
     <div class="container">
         <div class="jumbotron">
             <div class="container text-center">
-                <h1>Laravel 8 FullCalendar Tutorial</h1>
+                <img src="" alt="">
             </div>
         </div>
         <div id='calendar'></div>
     </div>
-    <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#evento">
-        Launch
-    </button>
 
-    <!-- Modal -->
-    <div class="modal fade" id="evento" tabindex="-1" role="dialog" aria-labelledby="modelTitleId"
-        aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title">Modal title</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-
-
-                    <form action="">
-
-                        {!! csrf_field() !!}
-
-                        <div class="form-group">
-                            <label for="id">ID</label>
-                            <input type="text" class="form-control" name="id" id="id" aria-describedby="helpId"
-                                placeholder="">
-                            <small id="helpId" class="form-text text-muted">Help text</small>
-                        </div>
-
-                        <div class="form-group">
-                            <label for="title">Curso</label>
-                            <input type="text" class="form-control" name="title" id="title" aria-describedby="helpId"
-                                placeholder="Nombre del Curso">
-                            <small id="helpId" class="form-text text-muted">Help text</small>
-                        </div>
-
-                        <div class="form-group">
-                            <label for="descripcion">Descripcion</label>
-                            <textarea class="form-control" name="descripcion" id="descripcion" rows="3"></textarea>
-                        </div>
-
-                        <div class="form-group">
-                            <label for="start">Empieza</label>
-                            <input type="date" class="form-control" name="start" id="start" aria-describedby="helpId"
-                                placeholder="">
-                            <small id="helpId" class="form-text text-muted">Help text</small>
-                        </div>
-
-                        <div class="form-group">
-                            <label for="end">Termina</label>
-                            <input type="date" name="end" id="end" class="form-control" placeholder=""
-                                aria-describedby="helpId">
-                            <small id="helpId" class="text-muted">Help text</small>
-                        </div>
-
-                    </form>
-
-
-
-                </div>
-                <div class="modal-footer">
-
-                    <button type="button" class="btn btn-success" id="btnGuardar">Guardar</button>
-                    <button type="button" class="btn btn-primary" id="btnModificar">Modificar</button>
-                    <button type="button" class="btn btn-warning" id="btnEliminar">Eliminar</button>
-                    <button type="button" class="btn btn-dark" data-dismiss="modal">Cerrar</button>
-
-                </div>
-            </div>
-        </div>
-    </div>
-
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+        integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous">
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/js/bootstrap.min.js"
+        integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous">
+    </script>
     <script>
         $(document).ready(function() {
-
             var SITEURL = "{{ url('/') }}";
 
             $.ajaxSetup({
@@ -107,6 +44,9 @@
 
             var calendar = $('#calendar').fullCalendar({
                 editable: true,
+                locale: 'es',
+                eventColor: '#0077B6',
+                eventTextColor: 'white',
                 events: SITEURL + "/fullcalender",
                 displayEventTime: false,
                 editable: true,
@@ -120,7 +60,16 @@
                 selectable: true,
                 selectHelper: true,
                 select: function(start, end, allDay) {
-                    var title = prompt('Titulo del Evento:');
+                    // var title = bootbox.prompt({
+                    //     title: "This is a prompt, vertically centered!",
+                    //     centerVertical: true,
+                    //     callback: function(result) {
+                    //         console.log(result);
+                    //         return result
+                    //     }
+                    // });
+
+                    var title= prompt("Enter Event Title");
                     if (title) {
                         var start = $.fullCalendar.formatDate(start, "Y-MM-DD");
                         var end = $.fullCalendar.formatDate(end, "Y-MM-DD");
@@ -169,7 +118,12 @@
                     });
                 },
                 eventClick: function(event) {
-                    var deleteMsg = confirm("Estas Seguro de Borrar el Evento?");
+                    var deleteMsg = bootbox.confirm({
+                        size: "small",
+                        message: "Desea Eliminar el Evento?",
+                        callback: function(result) {
+                            /* result is a boolean; true = OK, false = Cancel*/ }
+                    })
                     if (deleteMsg) {
                         $.ajax({
                             type: "POST",
