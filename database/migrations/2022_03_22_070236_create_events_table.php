@@ -11,21 +11,15 @@ class CreateEventsTable extends Migration
      *
      * @return void
      */
+
     public function up()
     {
         Schema::create('events', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('periodos_has_cursos_id');
             $table->string('title');
-            $table->dateTime('start');
-            $table->dateTime('end');
-            $table->unsignedBigInteger('creado_por');
-            $table->unsignedBigInteger('actualizado_por')->nullable();
+            $table->date('start');
+            $table->date('end');
             $table->timestamps();
-
-            $table->foreign('periodos_has_cursos_id')->references('id')->on('periodos_has_cursos');
-            $table->foreign('creado_por')->references('id')->on('users');
-            $table->foreign('actualizado_por')->references('id')->on('users');
         });
     }
 
@@ -38,4 +32,4 @@ class CreateEventsTable extends Migration
     {
         Schema::dropIfExists('events');
     }
-};
+}
