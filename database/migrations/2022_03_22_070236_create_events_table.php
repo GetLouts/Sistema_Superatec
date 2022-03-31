@@ -16,6 +16,7 @@ return new class extends Migration
         Schema::create('eventos', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('periodos_has_cursos_id');
+            $table->string('title');
             $table->dateTime('start');
             $table->dateTime('end');
             $table->unsignedBigInteger('creado_por');
