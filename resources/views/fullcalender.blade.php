@@ -9,20 +9,20 @@
         <div class="section-header">
             <h3 class="page__heading">Cronograma</h3>
         </div>
-            <div class="section-body">
-                <div class="row">
-                    <div class="col-lg-12">
-                        <div class="card">
-                            <div class="card-body">
-                                <div class="container mt-5">
-                                    <div class="mt-4" id='calendar'></div>
-                                </div>
-                            </div>        
+        <div class="section-body">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="card">
+                        <div class="card-body">
+                            <div class="container mt-5">
+                                <div class="mt-4" id='calendar'></div>
+                            </div>
                         </div>
                     </div>
                 </div>
+            </div>
         </div>
-        
+
 
         <script>
             $(document).ready(function() {
