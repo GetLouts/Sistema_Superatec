@@ -164,7 +164,7 @@
                                 <td>
                                     <div class="col-xs-12 col-sm-12 col-md-12">
                                         <div class="form-group">
-                                            <input type="file" name="imagen">
+                                            <input type="file" name="imagen" accept="image/*">
                                         </div>
                                     </div>
                                 

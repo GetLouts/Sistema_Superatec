@@ -9,7 +9,6 @@ use App\Models\Estado;
 use App\Models\Metodo;
 use App\Models\AlumnosHasPeriodos;
 use App\Models\PeriodosHasCursos;
-use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\DB;
 use App\Models\MetodosHasAlumnos;
@@ -101,7 +100,7 @@ class AlumnoController extends Controller
             //script para subir imagen al servidor
             if($request->hasFile("imagen")){
                 $imagen = $request->file("imagen");
-                $nombreimagen = Str::slug($request->nombre).".".$imagen->guessExtension();
+                $nombreimagen = $alumnos->id.".".$imagen->guessExtension();
                 $ruta = public_path("img/alumnos/");
                 $imagen->move($ruta,$nombreimagen);
                 $alumnos->imagen = $nombreimagen;
@@ -170,12 +169,13 @@ class AlumnoController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Request $request , $id)
     {
         $alumnos = Alumno::find($id);
         $cursos = Curso::all();
         $estados = Estado::all();
         $metodos = Metodo::all();
+
         return view('alumnos.editar', compact('alumnos', 'alumnos', 'cursos', 'estados', 'metodos'));
     }
 
@@ -204,11 +204,19 @@ class AlumnoController extends Controller
             'patrocinador' => 'required',
             'fecha_registro' => 'required',
             'estado_id' => 'required',
-           
-            
-            
+            'imagen' => 'null',  
         ]);
 
+        $alumnos = $request->all();
+        if($imagen = $request->file("imagen")){
+            $nombreimagen = $alumnos->id.".".$imagen->guessExtension();
+            $ruta = public_path("img/alumnos/");
+            $imagen->move($ruta,$nombreimagen);
+            $alumnos->imagen = $nombreimagen;
+        }else {
+            unset($alumnos['imagen']);
+        }
+        
         $input = $request->all();
         $alumno = Alumno::find($id);
         $alumno->update($input);

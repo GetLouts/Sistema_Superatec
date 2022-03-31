@@ -38,9 +38,7 @@
                                         <th style="color: #fff;" class="text-center" class="col-lg-2">Email</th>
                                         <th style="color: #fff;" class="text-center" class="col-lg-2">Cedula</th>
                                         <th style="color: #fff;" class="text-center" class="col-lg-2">Estado</th>
-                                        <th style="color: #fff;" class="col-xs-1"></th>
-                                        <th style="color: #fff;" class="text-center">Acciones</th>
-                                        <th style="color: #fff;" class="col-xs-1"></th>
+                                        <th style="color: #fff;" class="text-center" class="col-lg-2">Acciones</th>
 
                                     </thead>
                                     <tbody>
@@ -76,15 +74,15 @@
                                                         <a class="btn btn-primary"
                                                             href="{{ route('alumnos.show', $alumno->id) }}""><i class="
                                                             fa fa-eye"></i></a>
-                                                    </td>
-                                                    <td class="text-center">
+                                                    
+                                                    
                                                         @can('editar-alumnos')
                                                             <a class="btn btn-info"
                                                                 href="{{ route('alumnos.edit', $alumno->id) }}"><i
                                                                     class="fa fa-pen"></i></a>
                                                         @endcan
-                                                    </td>
-                                                    <td class="text-center">
+                                                    
+                                                   
                                                         @can('borrar-alumnos')
                                                             {!! Form::open(['method' => 'DELETE', 'route' => ['alumnos.destroy', $alumno->id], 'style' => 'display:inline']) !!}
                                                             {!! Form::button('<i class="fa fa-trash"></i>', ['type' => 'submit', 'class' => 'btn btn-danger']) !!}
@@ -107,3 +105,32 @@
         </div>
     </section>
 @endsection
+<!--
+<script>
+    (function (){ 
+        'use strict'
+
+        var forms = document.querySelectorAll('.formEliminar')
+        array.prototype.slice.call(forms)
+            .forEach(function(form){
+                form.addEventListener('submit', function (event){
+                    event.proventDefault()
+                    event.stopPropagation()
+                    Swal.fire({
+                        title: 'Confirma la eliminacion del registro?',
+                        icon: 'info',
+                        showCancelButton: true,
+                        confirmButtonColor: '#20c997',
+                        cancelButtonColor: '#6c757d',
+                        confirmButtonText: 'Confirmar',
+                    }).then((result)=>{
+                        if(result.isConfirmed) {
+                            this.submit();
+                            Swal.fire('!Eliminado!', 'El registro ha sido eliminado exitosamente', 'success');
+                        }
+                    })
+                }, false)
+            })
+    })()
+</script>
+-->
