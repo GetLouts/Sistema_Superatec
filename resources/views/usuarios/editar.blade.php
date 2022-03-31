@@ -24,36 +24,36 @@
                                 </div>
                             @endif
 
-                            {!! Form::model($user, ['method' => 'PATCH','route' => ['usuarios.update', $user->id]]) !!}
+                            {!! Form::model($user, ['method' => 'PATCH', 'route' => ['usuarios.update', $user->id]]) !!}
                             <div class="row">
                                 <div class="col-xs-12 col-sm-12 col-md-6">
                                     <div class="form-group">
                                         <label form="name">Nombre</label>
-                                        {!! Form::text('name', null, array('class' => 'form-control')) !!}
+                                        {!! Form::text('name', null, ['class' => 'form-control']) !!}
                                     </div>
                                 </div>
                                 <div class="col-xs-12 col-sm-12 col-md-6">
                                     <div class="form-group">
                                         <label form="name">Email</label>
-                                        {!! Form::text('email', null, array('class' => 'form-control')) !!}
+                                        {!! Form::text('email', null, ['class' => 'form-control']) !!}
                                     </div>
                                 </div>
                                 <div class="col-xs-12 col-sm-12 col-md-6">
                                     <div class="form-group">
                                         <label form="name">Contraseña</label>
-                                        {!! Form::password('password', array('class' => 'form-control')) !!}
+                                        {!! Form::password('password', ['class' => 'form-control']) !!}
                                     </div>
                                 </div>
                                 <div class="col-xs-12 col-sm-12 col-md-6">
                                     <div class="form-group">
                                         <label form="name">Confirmar Contraseña</label>
-                                        {!! Form::password('confirm-password', array('class' => 'form-control')) !!}
+                                        {!! Form::password('confirm-password', ['class' => 'form-control']) !!}
                                     </div>
                                 </div>
                                 <div class="col-xs-12 col-sm-12 col-md-6">
                                     <div class="form-group">
                                         <label form="name">Roles</label>
-                                        {!! Form::select('roles[]', $roles,$userRole, array('class' => 'form-control')) !!}
+                                        {!! Form::select('roles[]', $roles, $userRole, ['class' => 'form-control']) !!}
                                     </div>
                                 </div>
                                 <div class="col-xs-12 col-sm-12 col-md-12">
@@ -62,10 +62,9 @@
                                 </div>
                             </div>
                             {!! Form::close() !!}
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
     </section>
 @endsection
-
