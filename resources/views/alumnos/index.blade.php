@@ -50,8 +50,8 @@
                                                 <td class="badge-danger" class="text-center">No hay registro</td>
                                                 <td class="badge-danger"></td>
                                                 <td class="badge-danger"></td>
-                                                <td class="badge-danger"></td>
-                                                <td class="badge-danger"></td>
+                                                
+                                               
                                             </tr>
                                         @endif
                                         @foreach ($alumnos as $alumno)

@@ -207,15 +207,7 @@ class AlumnoController extends Controller
             'imagen' => 'null',  
         ]);
 
-        $alumnos = $request->all();
-        if($imagen = $request->file("imagen")){
-            $nombreimagen = $alumnos->id.".".$imagen->guessExtension();
-            $ruta = public_path("img/alumnos/");
-            $imagen->move($ruta,$nombreimagen);
-            $alumnos->imagen = $nombreimagen;
-        }else {
-            unset($alumnos['imagen']);
-        }
+
         
         $input = $request->all();
         $alumno = Alumno::find($id);
