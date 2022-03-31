@@ -11,6 +11,12 @@
     <style>
         textarea{
             resize: none;
+            border: rgba(128, 128, 128, 0.239) 1px solid;
+        }
+
+        textarea:focus{
+            border: #7c69ef 1px solid !important;
+            outline: none;}
         }
     </style>
     <!-- Ionicons -->
