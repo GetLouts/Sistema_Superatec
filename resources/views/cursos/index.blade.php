@@ -54,7 +54,7 @@
                         <div class="card-body">
                             @can('crear-usuario')
                             <a class="btn btn-success" href="{{ route ('cursos.create')}}">Nuevo Curso</a>
-                            <a class="btn btn-success" href="{{ route ('periodo_curso.create')}}">Añadir Cursos a Periodo</a>
+                           <!-- <a class="btn btn-success" href="{{ route ('periodo_curso.create')}}">Añadir Cursos a Periodo</a> -->
                             @endcan
                             <div class="table-responsive">
                             <table class="table table-striped mt-2">
@@ -90,6 +90,7 @@
                                             @endcan
                                             
                                                 <!-- <a class="btn btn-warning" href="{{ route('periodo_curso.create', $curso->id)}}"><i class="fa fa-plus"></i></a> -->
+                                                <button class="btn btn-warning agregarAPeriodo" type="button" data-id="{{ $curso->id }}"><i class="fa fa-plus"></i></button>
 
                                             @can('borrar-usuario')
                                             {!! Form::open(['method'=> 'DELETE', 'route'=> ['cursos.destroy', $curso->id],'style'=>'display:inline']) !!}
@@ -112,5 +113,14 @@
             </div>
         </div>
     </section>
+@endsection
+@section('scripts')
+<script>
+    $('.agregarAPeriodo').on('click', function () {
+        let curso_id = $(this).data('id');
+        // Ya teniendo el id del curso que se selecciono es cuestion de activar el metodo metiante ajax
+        console.log(curso_id);
+    });
+</script>
 @endsection
 
