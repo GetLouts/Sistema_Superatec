@@ -24,7 +24,7 @@
                             </div>
                             @endif
 
-                            {!! Form::open(array('route'=>'alumnos.store', 'method'=>'POST', 'id'=>'formalumno')) !!}
+                            {!! Form::open(array('route'=>'alumnos.store', 'method'=>'POST', 'enctype'=>'multipart/form-data', 'id'=>'formalumno')) !!}
                                 <div class="row">
                                     <td>
                                     <div class="col-xs-12 col-sm-12 col-md-6">
@@ -161,11 +161,18 @@
                                         </select>
                                     </div>
                                 </td>
+                                <td>
+                                    <div class="col-xs-12 col-sm-12 col-md-12">
+                                        <div class="form-group">
+                                            <input type="file" name="imagen">
+                                        </div>
+                                    </div>
+                                
                                     <div class="col-xs-12 col-sm-12 col-md-12">
                                         <button type="submit" class="btn btn-success">Guardar</button>
                                         <a class="btn btn-primary" href="{{route('alumnos.index') }}">Volver</a>
                                     </div>
-
+                                </td>
                                 </div>
                             {!! Form::close() !!}
                         </div>

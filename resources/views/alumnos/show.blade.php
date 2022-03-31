@@ -9,7 +9,16 @@
         </div>
         <div class="section-body">
             <div class="row">
-                <div class="col-lg-12">
+                <div class="col-lg-3">
+                    <hr>
+                    @if($alumnos->imagen !==null)
+                    <img src="/img/alumnos/{{$alumnos->imagen}}" alt="" width="235">
+                    @else
+                    <img src="{{asset('img/sinfoto.jpg')}}" alt="" width="235">
+                    @endif
+                    
+                </div>
+                <div class="col-lg-9">
                     <div class="card">
                         <div class="card-body">
 

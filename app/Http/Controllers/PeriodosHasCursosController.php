@@ -48,7 +48,7 @@ class PeriodosHasCursosController extends Controller
         $periodoshascursos->periodo_id = $request->periodo;
         $periodoshascursos->curso_id = $request->curso;
         $periodoshascursos->creado_por = auth()->user()->id;
-        dd($periodoshascursos);
+        //dd($periodoshascursos);
         $periodoshascursos->save();
         
         return redirect()->route('cursos.index');

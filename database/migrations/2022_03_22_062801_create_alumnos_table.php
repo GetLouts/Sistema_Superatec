@@ -28,6 +28,7 @@ return new class extends Migration
             $table->string('numero_referencia');
             $table->string('patrocinador');
             $table->date('fecha_registro');
+            $table->string('imagen')->nullable();
             $table->unsignedBigInteger('estado_id');
             $table->unsignedBigInteger('creado_por')->nullable();
             $table->unsignedBigInteger('actualizado_por')->nullable();

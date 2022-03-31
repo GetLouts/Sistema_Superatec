@@ -23,6 +23,7 @@ class Alumno extends Model
         'numero_referencia',
         'patrocinador',
         'fecha_registro',
+        'imagen',
         'estado_id',
         'creado_por',
         'actualizado_por',

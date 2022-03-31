@@ -9,6 +9,7 @@ use App\Models\Estado;
 use App\Models\Metodo;
 use App\Models\AlumnosHasPeriodos;
 use App\Models\PeriodosHasCursos;
+use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\DB;
 use App\Models\MetodosHasAlumnos;
@@ -94,14 +95,18 @@ class AlumnoController extends Controller
             $alumnos->nivel_de_estudio = $request->nivel_de_estudio;
             $alumnos->fecha_nac = $request->fecha_nac;
             $alumnos->comunidad = $request->comunidad;
-            //$alumnos->curso = $request->curso;
-            //$alumnos->pago = $request->pago;
-            //$alumnos->metodo_pago = $request->metodo_pago;
-            //$alumnos->fecha_pago = $request->fecha_pago;
             $alumnos->numero_referencia = $request->numero_referencia;
             $alumnos->patrocinador = $request->patrocinador;
-            //$alumnos->fecha_registro = $request->fecha_registro;
             $alumnos->fecha_registro = $request->fecha_registro;
+            //script para subir imagen al servidor
+            if($request->hasFile("imagen")){
+                $imagen = $request->file("imagen");
+                $nombreimagen = Str::slug($request->nombre).".".$imagen->guessExtension();
+                $ruta = public_path("img/alumnos/");
+                $imagen->move($ruta,$nombreimagen);
+                $alumnos->imagen = $nombreimagen;
+            }
+            
             $alumnos->estado_id = $request->estado_id;
             $alumnos->creado_por = auth()->user()->id;
             $alumnos->actualizado_por = auth()->user()->id;
