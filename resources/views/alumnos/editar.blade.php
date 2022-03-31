@@ -12,17 +12,34 @@
                 <div class="col-lg-4">
                     <div class="card">
                         <div class="card-body">
+                            {!! Form::model($alumnos, ['method' => 'PATCH', 'enctype'=>'multipart/form-data', 'route' => ['alumnos.update', $alumnos->id]]) !!}
                             <div class="text-center">
                                 <hr>
                                 @if($alumnos->imagen !==null)
-                                <img src="{{ asset("/img/alumnos/$alumnos->imagen") }}" alt="" width="100%">
+                                <img src="{{ asset("/img/alumnos/$alumnos->imagen") }}" alt="" width="100%"  id="imagenSeleccionada">
                                 @else
-                                <img src="{{asset('img/sinfoto.jpg')}}" alt="" width="100%">
+                                <img src="{{asset('img/sinfoto.jpg')}}" alt="" width="100%"  id="imagenSeleccionada">
                                 @endif
                                 
                                 <div class="col-xs-12 col-sm-12 col-md-12">
                                     <div class="form-group">
-                                        <input type="file" name="imagen" accept="image/*">
+                                        <input type="file" name="imagen" accept="image/*" hidden>
+                                        <div class="grid grid-cols-1 mt-5 mx-7">
+                                            <label class="uppercase md:text-sm text-xs text-gray-500 text-light font-semibold mb-1">Subir Imagen</label>
+                                                <div class="flex items-center justify-center w-full">
+                                                    <label class="flex flex-col border-4 border-dashed w-full h-32 hover:bg-gray-100 hover:border-purple-300 group">
+                                                        <div class="flex flex-col items-center justify-center pt-7">
+                                                        
+                                                        <p class="btn btn-primary">Seleccionar Imagen</p>
+                                                        </div>
+                                                        <div class="col-xs-12 col-sm-12 col-md-12">
+                                                            <div class="form-group">
+                                                                <input id="imagen" type="file" name="imagen" accept="image/*" hidden>
+                                                            </div>
+                                                        </div>
+                                                    </label>
+                                                </div>
+                                            </div>
                                     </div>
                                 </div>
                             </div>
@@ -44,7 +61,7 @@
                                 </div>
                             @endif
 
-                            {!! Form::model($alumnos, ['method' => 'PATCH','route' => ['alumnos.update', $alumnos->id]]) !!}
+                            {!! Form::model($alumnos, ['method' => 'PATCH', 'enctype'=>'multipart/form-data', 'route' => ['alumnos.update', $alumnos->id]]) !!}
                             <div class="row">
                                 <td>
                                     <div class="col-xs-12 col-sm-12 col-md-6">
@@ -194,3 +211,15 @@
     </section>
 @endsection
 
+<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script> 
+<script>   
+    $(document).ready(function (e) {   
+        $('#imagen').change(function(){            
+            let reader = new FileReader();
+            reader.onload = (e) => { 
+                $('#imagenSeleccionada').attr('src', e.target.result); 
+            }
+            reader.readAsDataURL(this.files[0]); 
+        });
+    });
+</script>

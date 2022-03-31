@@ -22,7 +22,7 @@ return new class extends Migration
             $table->unsignedBigInteger('actualizado_por')->nullable();
             $table->timestamps();
 
-            $table->foreign('alumno_id')->references('id')->on('alumnos');
+            $table->foreign('alumno_id')->references('id')->on('alumnos')->onDelete('cascade');
             $table->foreign('periodo_id')->references('id')->on('periodos');
             $table->foreign('curso_id')->references('id')->on('cursos');
             $table->foreign('creado_por')->references('id')->on('users');
