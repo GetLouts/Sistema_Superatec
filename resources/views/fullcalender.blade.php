@@ -43,62 +43,67 @@
             });
 
             var calendar = $('#calendar').fullCalendar({
-                    editable: true,
-                    locale: 'es',
-                    eventColor: '#0077B6',
-                    eventTextColor: 'white',
-                    events: SITEURL + "/fullcalender",
-                    displayEventTime: false,
-                    editable: true,
-                    eventRender: function(event, element, view) {
-                        if (event.allDay === 'true') {
-                            event.allDay = true;
-                        } else {
-                            event.allDay = false;
-                        }
-                    },
-                    selectable: true,
-                    selectHelper: true,
-                    select: function(start, end, allDay) {
-                        bootbox.prompt({
-                            title: "Desea agregar una nueva actividad",
-                            centerVertical: true,
-                            callback: function(result) {
-                                console.log(result)
-                                if (result !== null) {
+                editable: true,
+                locale: 'es',
+                eventColor: '#0077B6',
+                eventTextColor: 'white',
+                events: SITEURL + "/fullcalender",
+                displayEventTime: false,
+                editable: true,
+                eventRender: function(event, element, view) {
+                    if (event.allDay === 'true') {
+                        event.allDay = true;
+                    } else {
+                        event.allDay = false;
+                    }
+                },
+                selectable: true,
+                selectHelper: true,
+                select: function(start, end, allDay) {
+                    var start = $.fullCalendar.formatDate(start, "Y-MM-DD");
+                    var end = $.fullCalendar.formatDate(end, "Y-MM-DD");
+                    var title = bootbox.prompt(
+                        "Desea agregar una nueva actividad?",
+                        function(result) {
+                            console.log(result);
+                            if (result !== null) {
 
-                                    var start = $.fullCalendar.formatDate(start, "Y-MM-DD");
-                                    var end = $.fullCalendar.formatDate(end, "Y-MM-DD");
-                                    $.ajax({
-                                        url: SITEURL + "/fullcalenderAjax",
-                                        data: {
+                                console.log("Pase por aca")
+
+                                $.ajax({
+                                    url: SITEURL + "/fullcalenderAjax",
+                                    data: {
+                                        title: result,
+                                        start: start,
+                                        end: end,
+                                        type: 'add'
+                                    },
+                                    type: "POST",
+                                    success: function(data) {
+                                        displayMessage(
+                                            "Evento Creado Satisfactoriamente"
+                                        );
+
+                                        calendar.fullCalendar('renderEvent', {
+                                            id: data.id,
                                             title: result,
                                             start: start,
                                             end: end,
-                                            type: 'add'
-                                        },
-                                        type: "POST",
-                                        success: function(data) {
-                                            displayMessage(
-                                                "Evento Creado Satisfactoriamente"
-                                            );
-                                            calendar.fullCalendar('renderEvent', {
-                                                id: data.id,
-                                                title: result,
-                                                start: start,
-                                                end: end,
-                                                allDay: allDay
-                                            }, true);
-                                            calendar.fullCalendar('unselect');
-                                        }
-                                    });
-                                } else {
-                                    
-                                    calendar.fullCalendar('unselect');
-                                }
+                                            allDay: allDay
+                                        }, true);
+
+                                        calendar.fullCalendar('unselect');
+                                    }
+                                });
+                                title.modal('hide');
+                            } else {
+                                title.modal('hide');
+                                calendar.fullCalendar('unselect');
                             }
-                        })
-                    },
+                            return false;
+                        }
+                    );
+                },
                 eventDrop: function(event, delta) {
                     var start = $.fullCalendar.formatDate(event.start, "Y-MM-DD");
                     var end = $.fullCalendar.formatDate(event.end, "Y-MM-DD");
@@ -106,7 +111,7 @@
                     $.ajax({
                         url: SITEURL + '/fullcalenderAjax',
                         data: {
-                            title: event.result,
+                            title: event.title,
                             start: start,
                             end: end,
                             id: event.id,
@@ -123,26 +128,30 @@
                         size: "small",
                         message: "Desea Eliminar el Evento?",
                         callback: function(result) {
-                            /* result is a boolean; true = OK, false = Cancel*/
+                            if (result) {
+                                $.ajax({
+                                    type: "POST",
+                                    url: SITEURL + '/fullcalenderAjax',
+                                    data: {
+                                        id: event.id,
+                                        type: 'delete'
+                                    },
+                                    success: function(response) {
+                                        calendar.fullCalendar('removeEvents',
+                                            event.id);
+                                        displayMessage(
+                                            "Evento Borrado Satisfactoriamente"
+                                        );
+                                    }
+                                });
+                            }
                         }
                     })
-                    if (deleteMsg) {
-                        $.ajax({
-                            type: "POST",
-                            url: SITEURL + '/fullcalenderAjax',
-                            data: {
-                                id: event.id,
-                                type: 'delete'
-                            },
-                            success: function(response) {
-                                calendar.fullCalendar('removeEvents', event.id);
-                                displayMessage("Evento Borrado Satisfactoriamente");
-                            }
-                        });
-                    }
                 }
+
             });
-        })
+
+        });
 
         function displayMessage(message) {
             toastr.success(message, 'Event');
