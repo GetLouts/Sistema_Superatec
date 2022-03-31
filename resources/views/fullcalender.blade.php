@@ -123,7 +123,6 @@
                         message: "Desea Eliminar el Evento?",
                         callback: function(result) {
                             if (result) {
-                            /* result is a boolean; true = OK, false = Cancel*/ }
                                 $.ajax({
                                     type: "POST",
                                     url: SITEURL + '/fullcalenderAjax',
@@ -136,6 +135,7 @@
                                         displayMessage("Evento Borrado Satisfactoriamente");
                                     }
                                 });
+                                /* result is a boolean; true = OK, false = Cancel*/ }
                             }
                     })
                 }
