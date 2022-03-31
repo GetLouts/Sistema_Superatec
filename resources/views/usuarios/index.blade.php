@@ -13,7 +13,7 @@
                     <div class="card">
                         <div class="card-body">
                             @can('crear-usuario')
-                            <a class="btn btn-success" href="{{ route ('usuarios.create')}}">Nuevo Usuario</a>
+                                <a class="btn btn-success" href="{{ route('usuarios.create') }}">Nuevo Usuario</a>
                             @endcan
                             <div class="table-responsive">
                             <table class="table table-striped mt-2">
@@ -65,4 +65,3 @@
         </div>
     </section>
 @endsection
-

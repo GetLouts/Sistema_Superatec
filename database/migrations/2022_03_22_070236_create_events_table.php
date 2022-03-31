@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-return new class extends Migration
+class CreateEventsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,9 +13,10 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('eventos', function (Blueprint $table) {
+        Schema::create('events', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('periodos_has_cursos_id');
+            $table->string('title');
             $table->dateTime('start');
             $table->dateTime('end');
             $table->unsignedBigInteger('creado_por');
@@ -28,13 +29,13 @@ return new class extends Migration
         });
     }
 
-    /**
+    /** 
      * Reverse the migrations.
      *
      * @return void
      */
     public function down()
     {
-        Schema::dropIfExists('eventos');
+        Schema::dropIfExists('events');
     }
 };
