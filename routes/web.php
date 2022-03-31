@@ -50,7 +50,7 @@ Route::group(['middleware' => ['auth']], function(){
 	Route::resource('usuarios', UsuarioController::class);
 	Route::resource('alumnos', AlumnoController::class);
 	Route::resource('periodos', PeriodoController::class);
-	//Route::resource('cronogramas', EventoController::class);
+	Route::resource('cronogramas', FullCalenderController::class);
 	Route::resource('gcomunidad', GraficacomunidadController::class);
 	Route::resource('cursos', CursoController::class);
 	Route::resource('galumnos', GraficaalumnoController::class);

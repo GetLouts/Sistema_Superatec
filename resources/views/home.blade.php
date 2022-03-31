@@ -16,33 +16,36 @@
                                 <div class="col-md-4 col-xl-4">
                                     <div class="card bg-c-blue order-card">
                                         <div class="card-block">
-                                        <h5>Usuarios</h5>                                               
+                                            <h5>Usuarios</h5>
                                             @php
-                                             use App\Models\User;
-                                            $cant_usuarios = User::count();                                                
+                                                use App\Models\User;
+                                                $cant_usuarios = User::count();
                                             @endphp
-                                            <h2 class="text-right"><i class="fa fa-users f-left"></i><span>{{$cant_usuarios}}</span></h2>
-                                            <p class="m-b-0 text-right"><a href="/usuarios" class="text-white">Ver más</a></p>
-                                        </div>                                            
-                                    </div> 
-                                </div>      
+                                            <h2 class="text-right"><i
+                                                    class="fa fa-users f-left"></i><span>{{ $cant_usuarios }}</span></h2>
+                                            <p class="m-b-0 text-right"><a href="/usuarios" class="text-white">Ver
+                                                    más</a></p>
+                                        </div>
+                                    </div>
+                                </div>
                                 <div class="col-md-4 col-xl-4">
                                     <div class="card bg-c-green order-card">
                                         <div class="card-block">
-                                        <h5>Alumnos</h5>                                               
+                                            <h5>Alumnos</h5>
                                             @php
-                                             use App\Models\Alumno;
-                                            $cant_alumnos = Alumno::count();                                                
+                                                use App\Models\Alumno;
+                                                $cant_alumnos = Alumno::count();
                                             @endphp
-                                            <h2 class="text-right"><i class="fa fa-users f-left"></i><span>{{$cant_alumnos}}</span></h2>
-                                            <p class="m-b-0 text-right"><a href="/alumnos" class="text-white">Ver más</a></p>
-                                        </div>                                            
-                                    </div>  
+                                            <h2 class="text-right"><i
+                                                    class="fa fa-users f-left"></i><span>{{ $cant_alumnos }}</span></h2>
+                                            <p class="m-b-0 text-right"><a href="/alumnos" class="text-white">Ver
+                                                    más</a></p>
+                                        </div>
+                                    </div>
                                 </div>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
     </section>
 @endsection
-
