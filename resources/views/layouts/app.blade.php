@@ -7,7 +7,7 @@
     <title>@yield('title') | Superatec</title>
     <meta content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no' name='viewport'>
 
-    <link rel="icon" href="/img/images.png">
+    <link rel="icon" href="/img/imagensinfondo.png">
     <!-- Bootstrap 4.1.1 -->
     <link href="{{ asset('assets/css/bootstrap.min.css') }}" rel="stylesheet" type="text/css" />
     <!-- Ionicons -->
