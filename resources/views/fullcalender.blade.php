@@ -53,52 +53,41 @@
                     selectHelper: true,
                     select: function(start, end, allDay) {
                         var start = $.fullCalendar.formatDate(start, "Y-MM-DD");
-                        console.log(typeof start)
-                        // var end = $.fullCalendar.formatDate(end, "Y-MM-DD");
+                        var end = $.fullCalendar.formatDate(end, "Y-MM-DD");
                         var title = bootbox.prompt(
                             "Desea agregar una nueva actividad?",
                             function(result) {
                                 console.log(result);
                                 if (result !== null) {
-                                    end = bootbox.prompt({
-                                        title: "Cuando termina la actividad?",
-                                        inputType: 'date',
-                                        callback: function(fin) {
-                                            console.log(typeof fin);
-                                            var end = $.fullCalendar.formatDate(fin, "Y-MM-DD");
-                                            $.ajax({
-                                                url: SITEURL + "/fullcalenderAjax",
-                                                data: {
-                                                    title: result,
-                                                    start: start,
-                                                    end: end,
-                                                    type: 'add'
-                                                },
-                                                type: "POST",
-                                                success: function(data) {
-                                                    displayMessage(
-                                                        "Evento Creado Satisfactoriamente"
-                                                    );
-
-                                                    calendar.fullCalendar(
-                                                        'renderEvent', {
-                                                            id: data.id,
-                                                            title: result,
-                                                            start: start,
-                                                            end: fin,
-                                                            allDay: allDay
-                                                        }, true);
-
-                                                    calendar.fullCalendar(
-                                                        'unselect');
-                                                }
-                                            });
-                                            title.modal('hide');
-                                        }
-                                    });
 
                                     console.log("Pase por aca")
 
+                                    $.ajax({
+                                        url: SITEURL + "/fullcalenderAjax",
+                                        data: {
+                                            title: result,
+                                            start: start,
+                                            end: end,
+                                            type: 'add'
+                                        },
+                                        type: "POST",
+                                        success: function(data) {
+                                            displayMessage(
+                                                "Evento Creado Satisfactoriamente"
+                                            );
+
+                                            calendar.fullCalendar('renderEvent', {
+                                                id: data.id,
+                                                title: result,
+                                                start: start,
+                                                end: end,
+                                                allDay: allDay
+                                            }, true);
+
+                                            calendar.fullCalendar('unselect');
+                                        }
+                                    });
+                                    title.modal('hide');
                                 } else {
                                     title.modal('hide');
                                     calendar.fullCalendar('unselect');
