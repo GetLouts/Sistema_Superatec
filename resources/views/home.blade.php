@@ -46,15 +46,17 @@
                                 <div class="col-md-4 col-xl-4">
                                     <div class="card bg-c-pink order-card">
                                         <div class="card-block">
-                                        <h5>Cursos</h5>                                               
+                                            <h5>Cursos</h5>
                                             @php
-                                             use App\Models\Curso;
-                                            $cant_curso = Curso::count();                                                
+                                                use App\Models\Curso;
+                                                $cant_curso = Curso::count();
                                             @endphp
-                                            <h2 class="text-right"><i class="fa fa-book f-left"></i><span>{{$cant_curso}}</span></h2>
-                                            <p class="m-b-0 text-right"><a href="/cursos" class="text-white">Ver más</a></p>
-                                        </div>                                            
-                                    </div>  
+                                            <h2 class="text-right"><i
+                                                    class="fa fa-book f-left"></i><span>{{ $cant_curso }}</span></h2>
+                                            <p class="m-b-0 text-right"><a href="/cursos" class="text-white">Ver más</a>
+                                            </p>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
