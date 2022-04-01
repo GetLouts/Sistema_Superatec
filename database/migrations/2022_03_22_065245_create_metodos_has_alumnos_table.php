@@ -17,6 +17,7 @@ return new class extends Migration
             $table->id();
             $table->string('pago');
             $table->date('fecha_pago');
+            $table->string('numero_referencia');
             $table->unsignedBigInteger('metodo_id');
             $table->unsignedBigInteger('alumno_id');
             $table->unsignedBigInteger('periodos_has_cursos_id');

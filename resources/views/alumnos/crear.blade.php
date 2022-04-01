@@ -59,7 +59,7 @@
 
                             {!! Form::open(array('route'=>'alumnos.store', 'method'=>'POST', 'enctype'=>'multipart/form-data', 'id'=>'formalumno')) !!}
                                 <div class="row">
-                                    <td>
+                                <td>
                                     <div class="col-xs-12 col-sm-12 col-md-6">
                                         <div class="form-group">
                                             <label for="name">Nombres</label>
@@ -130,60 +130,20 @@
                                     </div>
                                 </td>
                                 <td>
-                                <div class="col-xs-12 col-sm-12 col-md-6">
-                                    <label for="name">Curso</label>
-                                    <select name="curso" class="form-control">
-                                        <option hidden selected>--> Selecione un Curso <--</option>
-                                        @foreach ($cursos as $curso)
-                                            <option value="{{ $curso->cursos->id }}">{{ $curso->cursos->cursos }}</option>                                                   
-                                        @endforeach
-                                    </select>
-                                </div>
-                                    <div class="col-xs-12 col-sm-12 col-md-6">
-                                        <div class="form-group">
-                                            <label for="name">Pago</label>
-                                            {!! Form::text('pago', null, array('class'=>'form-control')) !!}
-                                        </div>
-                                    </div>
-                                </td>
-                                <td>
-                                    <div class="col-xs-12 col-sm-12 col-md-6">
-                                        <label for="name">Metodo de Pago</label>
-                                        <select name="metodo_pago" class="form-control">
-                                            <option hidden selected>--> Selecione un Metodo de Pago <--</option>
-                                            @foreach ($metodos as $metodo)
-                                                <option value="{{ $metodo->id }}">{{ $metodo->metodo_pago }}</option>      
-                                            @endforeach
-                                        </select>
-                                    </div>
-                                    <div class="col-xs-12 col-sm-12 col-md-6">
-                                        <div class="form-group">
-                                            <label for="name">Fecha del Pago</label>
-                                            {!! Form::date('fecha_pago', null, array('class'=>'form-control')) !!}
-                                        </div>
-                                    </div>
-                                </td>
-                                <td>
-                                    <div class="col-xs-12 col-sm-12 col-md-6">
-                                        <div class="form-group">
-                                            <label for="name">Referencia</label>
-                                            {!! Form::text('numero_referencia', null, array('class'=>'form-control')) !!}
-                                        </div>
-                                    </div>
                                     <div class="col-xs-12 col-sm-12 col-md-6">
                                         <div class="form-group">
                                             <label for="name">Patrocinador</label>
                                             {!! Form::text('patrocinador', null, array('class'=>'form-control')) !!}
                                         </div>
                                     </div>
-                                </td>
-                                <td>
                                     <div class="col-xs-12 col-sm-12 col-md-6">
                                         <div class="form-group">
                                             <label for="name">Fecha de Registro</label>
                                             {!! Form::date('fecha_registro', null, array('class'=>'form-control')) !!}
                                         </div>
                                     </div>
+                                </td>
+                                <td>
                                     <div class="col-xs-12 col-sm-12 col-md-6">
                                         <label for="name">Estado</label>
                                         <select name="estado_id" class="form-control">
@@ -195,9 +155,8 @@
                                     </div>
                                 </td>
                                 <td>
-
-                                
-                                    <div class="col-xs-12 col-sm-12 col-md-12">
+                                                                
+                                    <div class="col-xs-12 col-sm-12 col-md-6">
                                         <button type="submit" class="btn btn-success">Guardar</button>
                                         <a class="btn btn-primary" href="{{route('alumnos.index') }}">Volver</a>
                                     </div>
