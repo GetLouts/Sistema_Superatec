@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 use Validator;
 use App\Models\Alumno;
 use App\Models\Metodo;
+use App\Models\Curso;
 use App\Models\PeriodosHasCursos;
 use App\Models\MetodosHasAlumnos;
 use App\Models\AlumnosHasPeriodos;
@@ -76,7 +77,11 @@ class AlumnosHasPeriodosController extends Controller
      */
     public function show($id)
     {
-        //
+        $alumnos = Alumno::find($id);
+        $cursos = Curso::all();
+        $alumnoshasperiodos = AlumnosHasPeriodos::all();
+        $metodohasalumnos = MetodosHasAlumnos::all();
+        return view('alumnos.show', compact('alumnos', 'id', 'cursos', 'alumnoshasperiodos', 'metodohasalumnos'));
     }
 
     /**
@@ -99,7 +104,12 @@ class AlumnosHasPeriodosController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $this->validate($request,[
+            'pago' => 'required',
+            'fecha_pago' => 'required',
+            'numero_referencia' => 'required',
+            'imagen' => 'null',  
+        ]);
     }
 
     /**

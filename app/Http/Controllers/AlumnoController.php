@@ -98,7 +98,7 @@ class AlumnoController extends Controller
             //script para subir imagen al servidor
             if($request->hasFile("imagen")){
                 $imagen = $request->file("imagen");
-                $nombreimagen = $alumnos->id.".".$imagen->guessExtension();
+                $nombreimagen = $alumnos->id.".".$imagen->getClientOriginalName();
                 $ruta = public_path("img/alumnos/");
                 $imagen->move($ruta,$nombreimagen);
                 $alumnos->imagen = $nombreimagen;
@@ -179,7 +179,7 @@ class AlumnoController extends Controller
         $alumno->update($input);
         if ($request->hasFile("imagen")) {
             $imagen = $request->file("imagen");
-            $nombreimagen =  $imagen->guessExtension();
+            $nombreimagen =  $imagen->getClientOriginalName();
             $ruta = public_path("img/alumnos/");
             $imagen->move($ruta, $nombreimagen);
             $alumno->imagen = $nombreimagen;

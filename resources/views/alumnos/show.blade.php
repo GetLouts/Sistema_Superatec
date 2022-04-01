@@ -110,12 +110,16 @@
                                         
                                     </div>
                                 </div>
+                      
                                 <div class="col-xs-12 col-sm-12 col-md-6">
+                                    <label for="metodohasalumno">Pago</label>
                                     <div class="form-group">
-                                        <label for="name">Pago</label>
-                                        <br> {{ $alumnos->pago }} </br> 
+                                        
+                                       
+                
                                     </div>
                                 </div>
+  
                             </td>
                             <td>
                                 <div class="col-xs-12 col-sm-12 col-md-6">
