@@ -62,10 +62,10 @@ class AlumnoController extends Controller
         // $cursos = Periodo::where('id', $periodo activo)->get();
         $estados = Estado::all();
         $metodos = Metodo::all();
-        //$metodos = MetodosHasAlumnos::all();
+        $metodohasalumnos = MetodosHasAlumnos::all();
         $cursos = PeriodosHasCursos::where('periodo_id', 1)->get();
         // dd($cursos->first()->cursos);
-       return view('alumnos.crear', compact('cursos', 'estados', 'metodos'));
+       return view('alumnos.crear', compact('cursos', 'estados', 'metodos', 'metodohasalumnos'));
     }
 
     /**
@@ -120,16 +120,16 @@ class AlumnoController extends Controller
             
             $alumnoshasperiodos->save();
             
-            /*$metodos = new MetodosHasAlumnos();
-            $metodos->pago = $request->pago;
-            $metodos->fecha_pago = $request->fecha_pago;
-            $metodos->metodo_id = $request->metodo_pago;
-            $metodos->alumno_id = $alumnos->id;
-            $metodos->periodos_has_cursos_id = $request->curso;
-            $metodos->creado_por = auth()->user()->id;
+            $metodohasalumnos = new MetodosHasAlumnos();
+            $metodohasalumnos->pago = $request->pago;
+            $metodohasalumnos->fecha_pago = $request->fecha_pago;
+            $metodohasalumnos->metodo_id = $request->metodo_pago;
+            $metodohasalumnos->alumno_id = $alumnos->id;
+            $metodohasalumnos->periodos_has_cursos_id = $request->curso;
+            $metodohasalumnos->creado_por = auth()->user()->id;
          
-            $metodos->save();
-*/
+            $metodohasalumnos->save();
+
             /*try {
                 
 
@@ -175,8 +175,9 @@ class AlumnoController extends Controller
         $cursos = Curso::all();
         $estados = Estado::all();
         $metodos = Metodo::all();
+        $metodohasalumnos = MetodosHasAlumnos::all();
 
-        return view('alumnos.editar', compact('alumnos', 'alumnos', 'cursos', 'estados', 'metodos'));
+        return view('alumnos.editar', compact('alumnos', 'alumnos', 'cursos', 'estados', 'metodos', 'metodohasalumnos'));
     }
 
     /**
@@ -204,19 +205,21 @@ class AlumnoController extends Controller
             'patrocinador' => 'required',
             'fecha_registro' => 'required',
             'estado_id' => 'required',
-            'imagen' => 'required',  
+            'imagen' => 'null',  
         ]);
         
         $input = $request->all();
         $alumno = Alumno::find($id);
-        if ($imagen = $request->file("imagen")) {
-            $ruta = public_path("img/alumnos/");
-            $nombreimagen =  $imagen->getClientOriginalName();
-            $alumno->imagen = $nombreimagen;
-            $imagen->move($ruta, $nombreimagen);
-        }
         $alumno->update($input);
-
+        if ($request->hasFile("imagen")) {
+            $imagen = $request->file("imagen");
+            $nombreimagen =  $imagen->guessExtension();
+            $ruta = public_path("img/alumnos/");
+            $imagen->move($ruta, $nombreimagen);
+            $alumno->imagen = $nombreimagen;
+            $alumno->save();            
+        }
+        
         return redirect()->route('alumnos.index');
     }
 
