@@ -206,18 +206,15 @@ class AlumnoController extends Controller
             'estado_id' => 'required',
             'imagen' => 'required',  
         ]);
-
-        $alumno = ["imagen" => $request->imagen];
-        if ($imagen = $request->file("imagen")) {
-            $ruta = public_path("img/alumnos/");
-            $nombreimagen =  $imagen->getClientOriginalName();
-            $alumno["imagen"] = $nombreimagen;
-            $imagen->move($ruta, $nombreimagen);
-        }
-
         
         $input = $request->all();
         $alumno = Alumno::find($id);
+        if ($imagen = $request->file("imagen")) {
+            $ruta = public_path("img/alumnos/");
+            $nombreimagen =  $imagen->getClientOriginalName();
+            $alumno->imagen = $nombreimagen;
+            $imagen->move($ruta, $nombreimagen);
+        }
         $alumno->update($input);
 
         return redirect()->route('alumnos.index');
