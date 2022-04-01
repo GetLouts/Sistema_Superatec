@@ -204,9 +204,16 @@ class AlumnoController extends Controller
             'patrocinador' => 'required',
             'fecha_registro' => 'required',
             'estado_id' => 'required',
-            'imagen' => 'null',  
+            'imagen' => 'required',  
         ]);
 
+        $alumno = ["imagen" => $request->imagen];
+        if ($imagen = $request->file("imagen")) {
+            $ruta = public_path("img/alumnos/");
+            $nombreimagen =  $imagen->getClientOriginalName();
+            $alumno["imagen"] = $nombreimagen;
+            $imagen->move($ruta, $nombreimagen);
+        }
 
         
         $input = $request->all();
