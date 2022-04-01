@@ -1,9 +1,9 @@
 #app {
-    background: #000000b5;
+    background: #00000088;
     /* fallback for old browsers */
-    background: -webkit-linear-gradient(to right, #43434349, #00000047);
+    background: -webkit-linear-gradient(to right, #43434360, #00000063);
     /* Chrome 10-25, Safari 5.1-6 */
-    background: linear-gradient(to right, #43434349, #00000047), url(/img/Background/superatec2.jpg);
+    background: linear-gradient(to right, #43434360, #00000063), url(/img/Background/superatec2.jpg);
     /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
     background-size: cover;
     background-position: center;
