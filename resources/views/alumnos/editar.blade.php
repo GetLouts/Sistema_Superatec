@@ -1,11 +1,11 @@
 @extends('layouts.app')
 @section('title')
-    Editar Usuarios
+    Editar Alumno
 @endsection
 @section('content')
     <section class="section">
         <div class="section-header">
-            <h3 class="page__heading">Editar Usuarios</h3>
+            <h3 class="page__heading">Editar Alumno</h3>
         </div>
         <div class="section-body">
             <div class="row">
