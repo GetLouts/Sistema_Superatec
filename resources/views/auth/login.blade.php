@@ -7,7 +7,6 @@
         <div class="card-header justify-content-center logo">
             <img src="{{ asset('img/logo.png') }}" alt="logo" class="logo">
         </div>
-
         <div class="card-body">
             <form method="POST" action="{{ route('login') }}">
                 @csrf

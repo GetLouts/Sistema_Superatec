@@ -39,7 +39,6 @@ class AlumnoController extends Controller
         'nivel_de_estudio',
         'fecha_nac',
         'comunidad',
-        'numero_referencia',
         'patrocinador',
         'fecha_registro',
         'estado_id' )
@@ -58,14 +57,14 @@ class AlumnoController extends Controller
      */
     public function create()
     {
-        $cursos = Curso::all();
+       // $cursos = Curso::all();
         // $cursos = Periodo::where('id', $periodo activo)->get();
         $estados = Estado::all();
-        $metodos = Metodo::all();
-        //$metodos = MetodosHasAlumnos::all();
+        //$metodos = Metodo::all();
+        //$metodohasalumnos = MetodosHasAlumnos::all();
         $cursos = PeriodosHasCursos::where('periodo_id', 1)->get();
         // dd($cursos->first()->cursos);
-       return view('alumnos.crear', compact('cursos', 'estados', 'metodos'));
+       return view('alumnos.crear', compact('cursos', 'estados'));
     }
 
     /**
@@ -94,13 +93,12 @@ class AlumnoController extends Controller
             $alumnos->nivel_de_estudio = $request->nivel_de_estudio;
             $alumnos->fecha_nac = $request->fecha_nac;
             $alumnos->comunidad = $request->comunidad;
-            $alumnos->numero_referencia = $request->numero_referencia;
             $alumnos->patrocinador = $request->patrocinador;
             $alumnos->fecha_registro = $request->fecha_registro;
             //script para subir imagen al servidor
             if($request->hasFile("imagen")){
                 $imagen = $request->file("imagen");
-                $nombreimagen = $alumnos->id.".".$imagen->guessExtension();
+                $nombreimagen = $alumnos->id.".".$imagen->getClientOriginalName();
                 $ruta = public_path("img/alumnos/");
                 $imagen->move($ruta,$nombreimagen);
                 $alumnos->imagen = $nombreimagen;
@@ -112,39 +110,7 @@ class AlumnoController extends Controller
             
             $alumnos->save();
     
-            $alumnoshasperiodos = new AlumnosHasPeriodos();
-            $alumnoshasperiodos->alumno_id = $alumnos->id;
-            $alumnoshasperiodos->curso_id = $request->curso;
-            $alumnoshasperiodos->periodo_id = 1;
-            $alumnoshasperiodos->creado_por = auth()->user()->id;
-            
-            $alumnoshasperiodos->save();
-            
-            /*$metodos = new MetodosHasAlumnos();
-            $metodos->pago = $request->pago;
-            $metodos->fecha_pago = $request->fecha_pago;
-            $metodos->metodo_id = $request->metodo_pago;
-            $metodos->alumno_id = $alumnos->id;
-            $metodos->periodos_has_cursos_id = $request->curso;
-            $metodos->creado_por = auth()->user()->id;
-         
-            $metodos->save();
-*/
-            /*try {
-                
-
-                $alumnoshasperiodos = new \App\Models\AlumnosHasPeriodos();
-                $alumnos = \App\Models\Alumno::where('id')->first();
-                $cursos = \App\Models\Curso::where('id')->first();
-                $periodos = \App\Models\Periodo::where('id')->first();
-                
-                $alumnoshasperiodos->registro($alumnos->id, $alumnoshasperiodos->id, $cursos->id, $periodos->id);
-    
-                
-            } catch (\Exception $e) {
-                $alumnos->save();
-            }*/
-            return redirect()->route('alumnos.index');
+            return redirect()->route('metodos.create', ['id' => $alumnos->id]);
     
 
             
@@ -175,8 +141,9 @@ class AlumnoController extends Controller
         $cursos = Curso::all();
         $estados = Estado::all();
         $metodos = Metodo::all();
+        $metodohasalumnos = MetodosHasAlumnos::all();
 
-        return view('alumnos.editar', compact('alumnos', 'alumnos', 'cursos', 'estados', 'metodos'));
+        return view('alumnos.editar', compact('alumnos', 'alumnos', 'cursos', 'estados', 'metodos', 'metodohasalumnos'));
     }
 
     /**
@@ -206,13 +173,19 @@ class AlumnoController extends Controller
             'estado_id' => 'required',
             'imagen' => 'null',  
         ]);
-
-
         
         $input = $request->all();
         $alumno = Alumno::find($id);
         $alumno->update($input);
-
+        if ($request->hasFile("imagen")) {
+            $imagen = $request->file("imagen");
+            $nombreimagen =  $imagen->getClientOriginalName();
+            $ruta = public_path("img/alumnos/");
+            $imagen->move($ruta, $nombreimagen);
+            $alumno->imagen = $nombreimagen;
+            $alumno->save();            
+        }
+        
         return redirect()->route('alumnos.index');
     }
 

@@ -10,6 +10,7 @@ class MetodosHasAlumnos extends Model
     protected $fillable = [
         'pago',
         'fecha_pago',
+        'numero_referencia',
         'metodo_id',
         'alumno_id',
         'periodos_has_cursos_id',

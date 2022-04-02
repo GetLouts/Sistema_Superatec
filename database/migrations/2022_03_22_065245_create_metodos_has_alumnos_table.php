@@ -17,6 +17,7 @@ return new class extends Migration
             $table->id();
             $table->string('pago');
             $table->date('fecha_pago');
+            $table->string('numero_referencia');
             $table->unsignedBigInteger('metodo_id');
             $table->unsignedBigInteger('alumno_id');
             $table->unsignedBigInteger('periodos_has_cursos_id');
@@ -25,7 +26,7 @@ return new class extends Migration
             $table->timestamps();
 
             $table->foreign('metodo_id')->references('id')->on('metodos');
-            $table->foreign('alumno_id')->references('id')->on('alumnos');
+            $table->foreign('alumno_id')->references('id')->on('alumnos')->onDelete('cascade');
             $table->foreign('periodos_has_cursos_id')->references('id')->on('periodos_has_cursos');
             $table->foreign('creado_por')->references('id')->on('users');
             $table->foreign('actualizado_por')->references('id')->on('users');

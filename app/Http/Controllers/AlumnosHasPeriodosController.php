@@ -3,8 +3,10 @@
 namespace App\Http\Controllers;
 use Validator;
 use App\Models\Alumno;
+use App\Models\Metodo;
 use App\Models\Curso;
-use App\Models\Periodo;
+use App\Models\PeriodosHasCursos;
+use App\Models\MetodosHasAlumnos;
 use App\Models\AlumnosHasPeriodos;
 use Illuminate\Http\Request;
 use App\Enums\HttpStatus;
@@ -18,16 +20,21 @@ class AlumnosHasPeriodosController extends Controller
      */
     public function index()
     {
-        return view('alumnos.index');
+        return view('metodos.create');
 	}
     /**
      * Show the form for creating a new resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create($id)
     {
-        //
+        $alumno = Alumno::find($id);
+        $metodos = Metodo::all();
+        $cursos = PeriodosHasCursos::where('periodo_id', 1)->get();
+        $alumnoshasperiodos = AlumnosHasPeriodos::all();
+        $metodohasalumnos = MetodosHasAlumnos::all();
+       return view('metodos.create', compact('alumnoshasperiodos', 'metodohasalumnos','cursos', 'alumno','metodos'));
     }
 
     /**
@@ -36,9 +43,30 @@ class AlumnosHasPeriodosController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Request $request, $id)
     {
-        //
+        $alumnoshasperiodos = new AlumnosHasPeriodos();
+
+        $alumnoshasperiodos->alumno_id = $id;
+        $alumnoshasperiodos->curso_id = $request->curso;
+        $alumnoshasperiodos->periodo_id = 1;
+        $alumnoshasperiodos->creado_por = auth()->user()->id;
+        
+        $alumnoshasperiodos->save();
+        
+        $metodohasalumnos = new MetodosHasAlumnos();
+
+        $metodohasalumnos->pago = $request->pago;
+        $metodohasalumnos->fecha_pago = $request->fecha_pago;
+        $metodohasalumnos->numero_referencia = $request->numero_referencia;
+        $metodohasalumnos->metodo_id = $request->metodo_pago;
+        $metodohasalumnos->alumno_id = $id;
+        $metodohasalumnos->periodos_has_cursos_id = $request->curso;
+        $metodohasalumnos->creado_por = auth()->user()->id;
+     
+        $metodohasalumnos->save();
+
+        return redirect()->route('alumnos.index');
     }
 
     /**
@@ -49,7 +77,11 @@ class AlumnosHasPeriodosController extends Controller
      */
     public function show($id)
     {
-        //
+        $alumnos = Alumno::find($id);
+        $cursos = Curso::all();
+        $alumnoshasperiodos = AlumnosHasPeriodos::all();
+        $metodohasalumnos = MetodosHasAlumnos::all();
+        return view('alumnos.show', compact('alumnos', 'id', 'cursos', 'alumnoshasperiodos', 'metodohasalumnos'));
     }
 
     /**
@@ -72,7 +104,12 @@ class AlumnosHasPeriodosController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $this->validate($request,[
+            'pago' => 'required',
+            'fecha_pago' => 'required',
+            'numero_referencia' => 'required',
+            'imagen' => 'null',  
+        ]);
     }
 
     /**

@@ -25,7 +25,6 @@ return new class extends Migration
             $table->string('nivel_de_estudio');
             $table->date('fecha_nac');
             $table->string('comunidad');
-            $table->string('numero_referencia');
             $table->string('patrocinador');
             $table->date('fecha_registro');
             $table->string('imagen')->nullable();
