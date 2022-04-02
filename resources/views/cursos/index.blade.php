@@ -9,46 +9,6 @@
         </div>
         <div class="section-body">
             <div class="row">
-                <!--
-                <div class="col-lg-4">
-                    <div class="card">
-                        <div class="card-body">
-                            @can('crear-usuario')
-                            <a class="btn btn-success" href="{{ route ('cursos.create')}}">Agregar Alumno a un Nuevo Curso</a>
-                            @endcan
-                            <div class="table-responsive">
-                            <table class="table table-striped mt-2">
-                                <thead style="background-color: #6777ef;">
-                                    
-                                    <th style="color: #fff;" class="text-center">Cursos</th>
-                             
-                                    <th style="color: #fff;" class="text-center">Alumnos</th>
-
-                                </thead>
-                                <tbody>
-                                    @foreach ($cursos as $curso)
-                                    @can('ver-usuario')
-                                    <tr>
-                                        
-                                        <td class="text-center">{{$curso->cursos}}</td>
-
-                                            @endcan
-                                            <td>
-                                            @can('editar-usuario')
-                                            <a class="btn btn-info" href="{{ route('cursos.edit', $curso->id)}}"><i class="fa fa-pen"></i></a>
-                                            @endcan
-                                    </tr>
-                                    @endforeach
-                                </tbody>
-                            </table>
-                            </div>
-                            <div class="pagination justify-content-end">
-                                {!! $cursos->links() !!}
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            -->
                 <div class="col-lg-12">
                     <div class="card">
                         <div class="card-body">

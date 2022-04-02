@@ -123,10 +123,13 @@ class AlumnoController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function show($id)
-    {   $alumnos = Alumno::find($id);
-        $cursos = Curso::all();
+    {   
+        $alumnos = Alumno::find($id);
+        $cursos = PeriodosHasCursos::where('periodo_id', 1)->get();
         $alumnoshasperiodos = AlumnosHasPeriodos::all();
-        return view('alumnos.show', compact('alumnos', 'id', 'cursos', 'alumnoshasperiodos'));
+        $metodohasalumnos = MetodosHasAlumnos::all();
+        $metodos = Metodo::all();
+        return view('alumnos.show', compact('alumnos', 'id', 'cursos', 'alumnoshasperiodos' ,'metodohasalumnos', 'metodos'));
     }
 
     /**

@@ -105,29 +105,32 @@
                                         <label for="name">Curso</label>
                                        
                                             @foreach ($cursos as $curso)
-                                                <br> {{ $curso->curso_id }} </br> 
+                                                <span value="{{ $curso->curso_id }}" >{{ $curso->curso_id->curso }} </span>
                                             @endforeach
-                                        
+                                           
                                     </div>
                                 </div>
                       
                                 <div class="col-xs-12 col-sm-12 col-md-6">
-                                    <label for="metodohasalumno">Pago</label>
                                     <div class="form-group">
-                                        
-                                       
-                
-                                    </div>
+                                        <label for="metodohasalumno">Pago</label>
+                                        @foreach ($metodohasalumnos as $metodohasalumno)
+                                        <br> {{ $metodohasalumno->pago }} </br> 
+                                    @endforeach
+                                  </div>
                                 </div>
-  
                             </td>
                             <td>
                                 <div class="col-xs-12 col-sm-12 col-md-6">
                                     <div class="form-group">
-                                        <label for="name">Metodo de Pago</label>
-                                        <br> {{ $alumnos->metodo_id }} </br> 
+                                        <label for="metodos">Metodo de Pago</label>
+                                        
+                                        @foreach ($metodos as $metodo)
+                                        <br {{ $metodo->id }} > {{ $metodo->metodo_pago }}  </br> 
+                                        @endforeach
                                     </div>
                                 </div>
+
                                 <div class="col-xs-12 col-sm-12 col-md-6">
                                     <div class="form-group">
                                         <label for="name">Fecha del Pago</label>
