@@ -6,7 +6,6 @@
 @section('content')
     <div class="card bg-white">
         <div class="card-header"><h4 id="titulo-superatec">Superatec Catia</h4></div>
-
         <div class="card-body">
             <form method="POST" action="{{ route('login') }}">
                 @csrf

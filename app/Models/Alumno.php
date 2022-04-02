@@ -22,7 +22,6 @@ class Alumno extends Model
         'comunidad',
         'numero_referencia',
         'patrocinador',
-        'fecha_registro',
         'imagen',
         'estado_id',
         'creado_por',

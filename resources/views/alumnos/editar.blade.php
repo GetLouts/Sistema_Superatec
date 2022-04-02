@@ -144,9 +144,13 @@
                                     </select>
                                 </div>
                                 <div class="col-xs-12 col-sm-12 col-md-6">
+                                    <label for="metodohasalumno">Pago</label>
                                     <div class="form-group">
-                                        <label for="name">Pago</label>
-                                        {!! Form::text('pago', null, array('class'=>'form-control')) !!}
+                                        
+                                        @foreach ($metodohasalumnos as $metodohasalumno)
+                                            <input value="{{ $metodohasalumno->id }}">{{ $metodohasalumno->pago }}                                                   
+                                        @endforeach
+                
                                     </div>
                                 </div>
                             </td>

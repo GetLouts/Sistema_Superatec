@@ -15,3 +15,4 @@ yarn-error.log
 /.vscode
 public/plugins
 public/img/alumnos
+public/img/cursos
