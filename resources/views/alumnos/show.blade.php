@@ -29,144 +29,98 @@
 
                             {!! Form::model($alumnos, ['method' => 'PATCH','route' => ['alumnos.show', $alumnos->id]]) !!}
                             <div class="row">
-                                <td>
-                                    <div class="col-xs-12 col-sm-12 col-md-6">
-                                    <div class="form-group">
-                                        <label for="name">Nombres</label>
-                                        <br> {{ $alumnos->nombres }} </br> 
-                                    </div>
-                                </div>
-                                <div class="col-xs-12 col-sm-12 col-md-6">
-                                    <div class="form-group">
-                                        <label for="name">Apellidos</label>
-                                        <br> {{ $alumnos->apellidos }} </br> 
-                                    </div>
-                                </div>
-                            </td>
-                            <td>
-                                <div class="col-xs-12 col-sm-12 col-md-6">
-                                    <div class="form-group">
-                                        <label for="name">Cedula</label>
-                                        <br> {{ $alumnos->cedula }} </br> 
-                                    </div>
-                                </div>
-                                <div class="col-xs-12 col-sm-12 col-md-6">
-                                    <div class="form-group">
-                                        <label for="name">Telefono</label>
-                                        <br> {{ $alumnos->telefono }} </br> 
-                                    </div>
-                                </div>
-                            </td>
-                            <td>
-                                <div class="col-xs-12 col-sm-12 col-md-6">
-                                    <div class="form-group">
-                                        <label for="name">Telefono Local</label>
-                                        <br> {{ $alumnos->telefono_local }} </br> 
-                                    </div>
-                                </div>
-                                <div class="col-xs-12 col-sm-12 col-md-6">
-                                    <div class="form-group">
-                                        <label for="name">Dirección</label>
-                                        <br> {{ $alumnos->direccion }} </br> 
-                                    </div>
-                                </div>
-                            </td>
-                            <td>    
-                                <div class="col-xs-12 col-sm-12 col-md-6">
-                                    <div class="form-group">
-                                        <label for="name">Correo</label>
-                                        <br> {{ $alumnos->correo }} </br> 
-                                    </div>
-                                </div>
-                                <div class="col-xs-12 col-sm-12 col-md-6">
-                                    <div class="form-group">
-                                        <label for="name">Nivel de Estudio</label>
-                                        <br> {{ $alumnos->nivel_de_estudio }} </br> 
-                                    </div>
-                                </div>
-                            </td>
-                            <td>
-                                <div class="col-xs-12 col-sm-12 col-md-6">
-                                    <div class="form-group">
-                                        <label for="name">Fecha de Nacimiento</label>
-                                        <br> {{ $alumnos->fecha_nac }} </br> 
-                                    </div>
-                                </div>
-                                <div class="col-xs-12 col-sm-12 col-md-6">
-                                    <div class="form-group">
-                                        <label for="name">Comunidad</label>
-                                        <br> {{ $alumnos->comunidad }} </br> 
-                                    </div>
-                                </div>
-                            </td>
-                            <td>
-                                <div class="col-xs-12 col-sm-12 col-md-6">
-                                    <div class="form-group">
-                                        <label for="name">Curso</label>
-                                       
-                                            @foreach ($cursos as $curso)
-                                                <span value="{{ $curso->curso_id }}" >{{ $curso->curso_id->curso }} </span>
-                                            @endforeach
-                                           
-                                    </div>
-                                </div>
-                      
-                                <div class="col-xs-12 col-sm-12 col-md-6">
-                                    <div class="form-group">
-                                        <label for="metodohasalumno">Pago</label>
-                                        @foreach ($metodohasalumnos as $metodohasalumno)
-                                        <br> {{ $metodohasalumno->pago }} </br> 
-                                    @endforeach
-                                  </div>
-                                </div>
-                            </td>
-                            <td>
-                                <div class="col-xs-12 col-sm-12 col-md-6">
-                                    <div class="form-group">
-                                        <label for="metodos">Metodo de Pago</label>
-                                        
-                                        @foreach ($metodos as $metodo)
-                                        <br {{ $metodo->id }} > {{ $metodo->metodo_pago }}  </br> 
-                                        @endforeach
-                                    </div>
-                                </div>
 
-                                <div class="col-xs-12 col-sm-12 col-md-6">
-                                    <div class="form-group">
-                                        <label for="name">Fecha del Pago</label>
-                                        <br> {{ $alumnos->fecha_pago }} </br> 
-                                    </div>
-                                </div>
-                            </td>
-                            <td>
-                                <div class="col-xs-12 col-sm-12 col-md-6">
-                                    <div class="form-group">
-                                        <label for="name">Referencia</label>
-                                        <br> {{ $alumnos->numero_referencia }} </br> 
-                                    </div>
-                                </div>
-                                <div class="col-xs-12 col-sm-12 col-md-6">
-                                    <div class="form-group">
-                                        <label for="name">Patrocinador</label>
-                                        <br> {{ $alumnos->patrocinador }} </br> 
-                                    </div>
-                                </div>
-                            </td>
-                            <td>
-                                <div class="col-xs-12 col-sm-12 col-md-6">
-                                    <div class="form-group">
-                                        <label for="name">Fecha de Registro</label>
-                                        <br> {{ $alumnos->fecha_registro}} </br> 
-                                    </div>
-                                </div>
-                                <div class="col-xs-12 col-sm-12 col-md-6">
-                                    <div class="form-group">
-                                        <label for="name">Estado</label>
-                                        <br> {{ $alumnos->estado_id}} </br> 
-                                    </div>
-                                </div>
-                            </td>
+                                <table>
+
+                                    <tbody>
+                            
+                                        <tr>
+                                            <th> Nombres : </th>
+                                            <td>{{ $alumnos->nombres  }}</td>
+                                        </tr>
+
+                                        <tr>
+                                            <th> Apellidos : </th>
+                                            <td>{{ $alumnos->apellidos }}</td>
+                                        </tr>
+
+                                        <tr>
+                                            <th> Cedula : </th>
+                                            <td>{{ $alumnos->cedula  }}</td>
+                                        </tr>
+                                        <tr>
+                                            <th> Telefono : </th>
+                                            <td>{{ $alumnos->telefono  }}</td>
+                                        </tr>
+                                        <tr>
+                                            <th> Telefono Local : </th>
+                                            <td>{{ $alumnos->telefono_local  }}</td>
+                                        </tr>
+                                        <tr>
+                                            <th> Dirección : </th>
+                                            <td>{{ $alumnos->direccion }}</td>
+                                        </tr>
+                                        <tr>
+                                            <th> Correo : </th>
+                                            <td>{{ $alumnos->correo  }}</td>
+                                        </tr>
+                                        <tr>
+                                            <th> Nivel de Estudio : </th>
+                                            <td>{{  $alumnos->nivel_de_estudio  }}</td>
+                                        </tr>
+                                        <tr>
+                                            <th> Fecha de Nacimiento : </th>
+                                            <td>{{ $alumnos->fecha_nac  }}</td>
+                                        </tr>
+                                        <tr>
+                                            <th> Comunidad : </th>
+                                            <td>{{ $alumnos->comunidad  }}</td>
+                                        </tr>
+                                        <tr>
+                                            <th> Curso : </th>
+                                            @foreach ($cursos as $curso)
+                                            <td> {{ $curso->id }} </td>
+                                            @endforeach
+                                        </tr>
+                                        <tr>
+                                            <th> Pago : </th>
+                                            @foreach ($metodohasalumnos as $metodohasalumno)
+                                            <td {{ $metodohasalumno->alumno_id }} >{{ $metodohasalumno->pago }}</td>
+                                            @endforeach
+                                        </tr>
+                                        <tr>
+                                            <th> Metodo de Pago : </th>
+                                            @foreach ($metodos as $metodo)
+                                            <td  {{ $metodo->id }} >{{ $metodo->metodo_pago  }}</td>
+                                            @endforeach
+                                        </tr>
+                                        <tr>
+                                            <th> Fecha del Pago : </th>
+                                            <td>{{ $alumnos->fecha_pago }}</td>
+                                        </tr>
+                                        <tr>
+                                            <th> Referencia : </th>
+                                            <td>{{ $alumnos->numero_referencia  }}</td>
+                                        </tr>
+                                        <tr>
+                                            <th> Patrocinador : </th>
+                                            <td>{{ $alumnos->patrocinador  }}</td>
+                                        </tr>
+                                        <tr>
+                                            <th> Fecha de Registro : </th>
+                                            <td>{{ $alumnos->fecha_registro  }}</td>
+                                        </tr>
+                                        <tr>
+                                            <th> Estado : </th>
+                                            <td>{{ $alumnos->estado_id}}</td>
+                                        </tr>
+                            
+                                    </tbody>
+                            
+                                </table>
+                                
                                 <div class="col-xs-12 col-sm-12 col-md-12">
+                                    <br>
                                     <a class="btn btn-primary" href="{{route('alumnos.index') }}">Volver</a>
                                 </div>
                             </div>
