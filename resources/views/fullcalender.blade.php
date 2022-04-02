@@ -72,6 +72,7 @@
                                         },
                                         type: "POST",
                                         success: function(data) {
+                                            console.log(data)
                                             displayMessage(
                                                 "Evento Creado Satisfactoriamente"
                                             );
