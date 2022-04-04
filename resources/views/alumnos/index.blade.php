@@ -19,6 +19,9 @@
                                             <div>
                                                 <a class="btn btn-success"  href="{{ route('alumnos.create') }}">Nuevo Alumno</a>
                                             </div>
+                                            <div>
+                                                <a  class="btn btn-danger ml-3"  href="{{ route('alumnos.create') }}"><i class="fa fa-file-pdf" style="font-size: 20px"></i></a>
+                                            </div>
                                             <div class="col-xs-4">
                                                 <input type="text" class="form-control" name="texto" value="{{$texto}}">
                                             </div>

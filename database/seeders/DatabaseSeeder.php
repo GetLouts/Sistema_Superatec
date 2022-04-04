@@ -19,6 +19,7 @@ class DatabaseSeeder extends Seeder
             SuperAdminSeeder::class,
             MetodosDePagoSeeder::class,
             EstadoSeeder::class,
+            ModalidadSeeder::class,
         ]);
     }
 }

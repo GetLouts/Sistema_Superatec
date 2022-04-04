@@ -46,7 +46,7 @@
                                                     <td class="text-center">{{ $curso->descripcion }}</td>
                                                     <td class="text-center">
                                                         <a class="btn btn-primary"
-                                                            href="{{ route('alumnos.show', $curso->id) }}""><i class="
+                                                            href="{{ route('cursos.show', $curso->id) }}""><i class="
                                                             fa fa-eye"></i></a>
                                                     @endcan
                                                     @can('editar-usuario')

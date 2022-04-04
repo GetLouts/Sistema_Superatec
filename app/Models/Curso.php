@@ -15,6 +15,7 @@ class Curso extends Model
         'modalidad',
         'codigo',
         'imagen',
+        'modalidad_id',
         'estado_id',
         'creado_por',
         'actualizado_por',
@@ -22,6 +23,10 @@ class Curso extends Model
     public function estados ()
     {
         return $this->belongsTo(Estado::class, 'estado_id', 'id');
+    }
+    public function modalidad ()
+    {
+        return $this->belongsTo(Modalidad::class, 'modalidad_id', 'id');
     }
     // Relacion uno a muchos
     public function alumnoshasperiodos(){

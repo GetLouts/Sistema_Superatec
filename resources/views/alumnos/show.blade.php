@@ -98,7 +98,6 @@
                                                     <div>{{ $metodohasalumno->alumno_id }}</div>
                                                 </td>
                                             @endforeach
-                                            @dump($alumnoshasperiodos->toArray())
                                         </tr>
                                         <tr>
                                             <th> Fecha del Pago : </th>
