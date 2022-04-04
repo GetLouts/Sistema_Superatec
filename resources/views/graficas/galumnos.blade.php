@@ -13,7 +13,8 @@
                     <div class="card">
                         <div class="card-body">
 
-                                
+                                <i class="fa fa-file-pdf" style="font-size: 18px"></i>
+
                             <div id="container"></div>
 
                             <script src="https://code.highcharts.com/highcharts.js"></script>
