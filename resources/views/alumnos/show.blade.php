@@ -14,10 +14,10 @@
                         <div class="card-body">
                             <div class="text-center">
                                 <hr>
-                                @if($alumnos->imagen !==null)
-                                <img src="{{ asset("/img/alumnos/$alumnos->imagen") }}" alt="" width="100%">
+                                @if ($alumnos->imagen !== null)
+                                    <img src="{{ asset("/img/alumnos/$alumnos->imagen") }}" alt="" width="100%">
                                 @else
-                                <img src="{{asset('img/sinfoto.jpg')}}" alt="" width="100%">
+                                    <img src="{{ asset('img/sinfoto.jpg') }}" alt="" width="100%">
                                 @endif
                             </div>
                         </div>
@@ -27,16 +27,16 @@
                     <div class="card">
                         <div class="card-body">
 
-                            {!! Form::model($alumnos, ['method' => 'PATCH','route' => ['alumnos.show', $alumnos->id]]) !!}
+                            {!! Form::model($alumnos, ['method' => 'PATCH', 'route' => ['alumnos.show', $alumnos->id]]) !!}
                             <div class="row">
 
                                 <table>
 
                                     <tbody>
-                            
+
                                         <tr>
                                             <th> Nombres : </th>
-                                            <td>{{ $alumnos->nombres  }}</td>
+                                            <td>{{ $alumnos->nombres }}</td>
                                         </tr>
 
                                         <tr>
@@ -46,15 +46,15 @@
 
                                         <tr>
                                             <th> Cedula : </th>
-                                            <td>{{ $alumnos->cedula  }}</td>
+                                            <td>{{ $alumnos->cedula }}</td>
                                         </tr>
                                         <tr>
                                             <th> Telefono : </th>
-                                            <td>{{ $alumnos->telefono  }}</td>
+                                            <td>{{ $alumnos->telefono }}</td>
                                         </tr>
                                         <tr>
                                             <th> Telefono Local : </th>
-                                            <td>{{ $alumnos->telefono_local  }}</td>
+                                            <td>{{ $alumnos->telefono_local }}</td>
                                         </tr>
                                         <tr>
                                             <th> Dirección : </th>
@@ -62,80 +62,84 @@
                                         </tr>
                                         <tr>
                                             <th> Correo : </th>
-                                            <td>{{ $alumnos->correo  }}</td>
+                                            <td>{{ $alumnos->correo }}</td>
                                         </tr>
                                         <tr>
                                             <th> Nivel de Estudio : </th>
-                                            <td>{{  $alumnos->nivel_de_estudio  }}</td>
+                                            <td>{{ $alumnos->nivel_de_estudio }}</td>
                                         </tr>
                                         <tr>
                                             <th> Fecha de Nacimiento : </th>
-                                            <td>{{ $alumnos->fecha_nac  }}</td>
+                                            <td>{{ $alumnos->fecha_nac }}</td>
                                         </tr>
                                         <tr>
                                             <th> Comunidad : </th>
-                                            <td>{{ $alumnos->comunidad  }}</td>
+                                            <td>{{ $alumnos->comunidad }}</td>
                                         </tr>
                                         <tr>
                                             <th> Curso : </th>
-                                            @foreach ($alumnoshasperiodos as $alumnoshasperiodo) 
-                                            <td> <div class="test"> {{ $alumnoshasperiodo->alumno_id}}</div></td>
+                                            @foreach ($alumnoshasperiodos as $alumnoshasperiodo)
+                                                <td>
+                                                    <div class="test"> {{ $alumnoshasperiodo->alumno_id }}</div>
+                                                </td>
                                             @endforeach
-                                           
-                                       </tr>
+
+                                        </tr>
                                         <tr>
                                             <th> Pago : </th>
                                             @foreach ($metodohasalumnos as $metodohasalumno)
-                                            <td>{{ $metodohasalumno->pago }}</td>
+                                                <td>{{ $metodohasalumno->pago }}</td>
                                             @endforeach
                                         </tr>
                                         <tr>
                                             <th> Metodo de Pago : </th>
                                             @foreach ($metodohasalumnos as $metodohasalumno)
-                                            <td> <div>{{ $metodohasalumno->alumno_id}}</div></td>
+                                                <td>
+                                                    <div>{{ $metodohasalumno->alumno_id }}</div>
+                                                </td>
                                             @endforeach
                                             @dump($alumnoshasperiodos->toArray())
                                         </tr>
                                         <tr>
                                             <th> Fecha del Pago : </th>
-                                            @foreach($metodohasalumnos as $metodohasalumno)
-                                            <td>{{ $metodohasalumno->fecha_pago }}</td>
+                                            @foreach ($metodohasalumnos as $metodohasalumno)
+                                                <td>{{ $metodohasalumno->fecha_pago }}</td>
                                             @endforeach
                                         </tr>
                                         <tr>
                                             <th> Referencia : </th>
-                                            <td>{{ $alumnos->numero_referencia  }}</td>
+                                            <td>{{ $alumnos->numero_referencia }}</td>
                                         </tr>
                                         <tr>
                                             <th> Patrocinador : </th>
-                                            <td>{{ $alumnos->patrocinador  }}</td>
+                                            <td>{{ $alumnos->patrocinador }}</td>
                                         </tr>
                                         <tr>
                                             <th> Fecha de Registro : </th>
-                                            <td>{{ $alumnos->fecha_registro  }}</td>
+                                            <td>{{ $alumnos->fecha_registro }}</td>
                                         </tr>
                                         <tr>
                                             <th> Estado : </th>
-                                            <td>{{ $alumnos->estados->estado}}</td>
+                                            <td>{{ $alumnos->estados->estado }}</td>
                                         </tr>
-                            
+
                                     </tbody>
-                            
+
                                 </table>
-                                
+
                                 <div class="col-xs-12 col-sm-12 col-md-12">
                                     <br>
-                                    <a class="btn btn-primary" href="{{route('alumnos.index') }}">Volver</a>
+                                    <a class="btn btn-primary" href="{{ route('alumnos.index') }}">Volver</a>
                                 </div>
                             </div>
                             {!! Form::close() !!}
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
     </section>
 @endsection
 <script>
-    test= document.querySelector('.test')
+    test = document.querySelector('.test')
     console.log(test)
 </script>

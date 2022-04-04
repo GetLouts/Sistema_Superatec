@@ -7,6 +7,7 @@ use App\Models\Periodo;
 use App\Models\Estado;
 use App\Models\PeriodosHasCursos;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Session;
 
 class PeriodoController extends Controller
 {
@@ -58,6 +59,7 @@ class PeriodoController extends Controller
             
             
             $periodos->save();
+            Session::put('periodo', $periodos->id);
 
             //$periodoshascursos = new PeriodosHasCursos();
             

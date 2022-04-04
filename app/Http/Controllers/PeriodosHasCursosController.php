@@ -3,11 +3,13 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-USE App\Models\Curso;
+use App\Models\Curso;
 use App\Models\Estado;
 use App\Models\PeriodosHasCursos;
 use App\Models\Periodo;
+use Illuminate\Auth\Events\Validated;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Session;
 
 class PeriodosHasCursosController extends Controller
 {
@@ -43,15 +45,25 @@ class PeriodosHasCursosController extends Controller
      */
     public function store(Request $request)
     {
-    
-        $periodoshascursos = new PeriodosHasCursos();
-        $periodoshascursos->periodo_id = $request->periodo;
-        $periodoshascursos->curso_id = $request->curso;
-        $periodoshascursos->creado_por = auth()->user()->id;
-        //dd($periodoshascursos);
-        $periodoshascursos->save();
-        
-        return redirect()->route('cursos.index');
+        $perico = PeriodosHasCursos::where('curso_id', $request->curso_id)->where('periodo_id', Session::get('periodo'))->get();
+        if (count($perico) > 0) {
+            return response()->json([
+                'success' => false,
+                'mensaje' => 'El curso ya esta asignado en el periodo actual'
+            ],401);
+        } else {
+            $periodoshascursos = new PeriodosHasCursos();
+            $periodoshascursos->curso_id = $request->curso_id;
+            $periodoshascursos->periodo_id = Session::get('periodo');
+            $periodoshascursos->creado_por = auth()->user()->id;
+            $periodoshascursos->save();
+
+            return response()->json([
+                'success' => true,
+                'mensaje' => 'Curso agregado correctamente',
+                'data' => $periodoshascursos,
+            ]);
+        }
     }
 
     /**
