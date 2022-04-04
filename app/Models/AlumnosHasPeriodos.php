@@ -16,7 +16,7 @@ class AlumnosHasPeriodos extends Model
     ];
     //Relacion inversa 
     public function alumno(){
-        return $this->belongsTo('App\Models\Alumno');
+        return $this->belongsTo('App\Models\Alumno', 'id');
     }
     public function periodo(){
         return $this->belongsTo('App\Models\Periodo');

@@ -63,11 +63,12 @@ class Alumno extends Model
     public function metodohasalumnos(){
         return $this->hasMany('App\Models\MetodosHasAlumnos');
     }
-    public function periodoshascursos(){
-        return $this->hasMany('App\Models\PeriodosHasCursos');
+   /* public function periodoshascursos(){
+        return $this->hasMany('App\Models\PeriodosHasCursos','alumno_id');
     }
+    */
     public function alumnoshasperiodos(){
-        return $this->hasMany('App\Models\AlumnosHasPeriodos');
+        return $this->hasMany('App\Models\AlumnosHasPeriodos' , 'alumno_id');
     }
 
 }

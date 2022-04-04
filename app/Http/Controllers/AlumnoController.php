@@ -141,7 +141,7 @@ class AlumnoController extends Controller
     public function edit(Request $request , $id)
     {
         $alumnos = Alumno::find($id);
-        $cursos = Curso::all();
+        $cursos = PeriodosHasCursos::where('periodo_id', 1)->get();
         $estados = Estado::all();
         $metodos = Metodo::all();
         $metodohasalumnos = MetodosHasAlumnos::all();
@@ -170,7 +170,6 @@ class AlumnoController extends Controller
             'fecha_nac' => 'required',
             'comunidad' => 'required',
             'pago' => 'required',
-            'numero_referencia' => 'required',
             'patrocinador' => 'required',
             'fecha_registro' => 'required',
             'estado_id' => 'required',

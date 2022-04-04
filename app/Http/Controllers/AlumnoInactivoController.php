@@ -7,6 +7,9 @@ use App\Models\Alumno;
 use App\Models\Curso;
 use App\Models\Estado;
 use App\Models\Metodo;
+use App\Models\AlumnosHasPeriodos;
+use App\Models\MetodosHasAlumnos;
+use App\Models\PeriodosHasCursos;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Arr;
 
@@ -15,9 +18,9 @@ class AlumnoInactivoController extends Controller
     function __construct()
     {
         $this->middleware('permission:ver-alumnos|crear-alumnos|editar-alumnos|borrar-alumnos')->only('index');
-        $this->middleware('permission:crear-alumnos', ['only'=>['create','store']]);
-        $this->middleware('permission:editar-alumnos', ['only'=>['edit','update']]);
-        $this->middleware('permission:borrar-alumnos', ['only'=>['destroy']]);
+        $this->middleware('permission:crear-alumnos', ['only' => ['create', 'store']]);
+        $this->middleware('permission:editar-alumnos', ['only' => ['edit', 'update']]);
+        $this->middleware('permission:borrar-alumnos', ['only' => ['destroy']]);
     }
     /**
      * Display a listing of the resource.
@@ -26,24 +29,29 @@ class AlumnoInactivoController extends Controller
      */
     public function index(Request $request)
     {
-        $texto=trim($request->get('texto'));
-        $alumnos=DB::table('alumnos')
-        ->select('id', 'nombres', 'apellidos', 'cedula', 'telefono',
-        'telefono_local',
-        'direccion',
-        'correo',
-        'nivel_de_estudio',
-        'fecha_nac',
-        'comunidad',
-        'numero_referencia',
-        'patrocinador',
-        'fecha_registro',
-        'estado_id' )
-        ->where('cedula','LIKE','%'.$texto.'%')
-        ->orWhere('nombres','LIKE','%'.$texto.'%')
-        ->orderBy('cedula', 'asc')
-        ->paginate(10);
-        
+        $texto = trim($request->get('texto'));
+        $alumnos = DB::table('alumnos')
+            ->select(
+                'id',
+                'nombres',
+                'apellidos',
+                'cedula',
+                'telefono',
+                'telefono_local',
+                'direccion',
+                'correo',
+                'nivel_de_estudio',
+                'fecha_nac',
+                'comunidad',
+                'patrocinador',
+                'fecha_registro',
+                'estado_id'
+            )
+            ->where('cedula', 'LIKE', '%' . $texto . '%')
+            ->orWhere('nombres', 'LIKE', '%' . $texto . '%')
+            ->orderBy('cedula', 'asc')
+            ->paginate(10);
+
         return view('alumnos.index', compact('alumnos', 'texto'));
     }
 
@@ -64,7 +72,7 @@ class AlumnoInactivoController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
-    {       
+    {
         $alumnos = new Alumno();
 
         $alumnos->nombres = $request->nombres;
@@ -78,21 +86,19 @@ class AlumnoInactivoController extends Controller
         $alumnos->fecha_nac = $request->fecha_nac;
         $alumnos->comunidad = $request->comunidad;
         //$alumnos->curso = $request->curso;
-        $alumnos->pago = $request->pago;
-       // $alumnos->metodo_pago = $request->metodo_pago;
+        // $alumnos->metodo_pago = $request->metodo_pago;
         //$alumnos->fecha_pago = $request->fecha_pago;
-        $alumnos->numero_referencia = $request->numero_referencia;
         $alumnos->patrocinador = $request->patrocinador;
         //$alumnos->fecha_registro = $request->fecha_registro;
         $alumnos->estado_id = $request->estado_id;
         $alumnos->creado_por = auth()->user()->id;
         $alumnos->actualizado_por = auth()->user()->id;
-           
-            
-            
-            $alumnos->save();
 
-            return redirect()->route('alumnosinactivos.index');
+
+
+        $alumnos->save();
+
+        return redirect()->route('alumnosinactivos.index');
     }
 
     /**
@@ -102,10 +108,13 @@ class AlumnoInactivoController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function show($id)
-    {   
+    {
         $alumnos = Alumno::find($id);
-        $cursos = Curso::all();
-        return view('alumnos.show', compact('alumnos', 'id', 'cursos'));
+        $cursos = PeriodosHasCursos::where('periodo_id', 1)->get();
+        $alumnoshasperiodos = AlumnosHasPeriodos::all();
+        $metodohasalumnos = MetodosHasAlumnos::all();
+        $metodos = Metodo::all();
+        return view('alumnos.show', compact('alumnos', 'id', 'cursos', 'alumnoshasperiodos', 'metodohasalumnos', 'metodos'));
     }
 
     /**
@@ -132,7 +141,7 @@ class AlumnoInactivoController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $this->validate($request,[
+        $this->validate($request, [
             'nombres' => 'required',
             'apellidos' => 'required',
             'cedula' => 'required',
@@ -143,13 +152,11 @@ class AlumnoInactivoController extends Controller
             'nivel_de_estudio' => 'required',
             'fecha_nac' => 'required',
             'comunidad' => 'required',
-            'fecha_pago' => 'required',
-            'numero_referencia' => 'required',
             'patrocinador' => 'required',
             'fecha_registro' => 'required',
             'estado_id' => 'required',
-            
-            
+
+
         ]);
 
         $input = $request->all();

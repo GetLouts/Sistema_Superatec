@@ -78,25 +78,29 @@
                                         </tr>
                                         <tr>
                                             <th> Curso : </th>
-                                            @foreach ($cursos as $curso)
-                                            <td> {{ $curso->id }} </td>
+                                            @foreach ($alumnoshasperiodos as $alumnoshasperiodo) 
+                                            <td> <div class="test"> {{ $alumnoshasperiodo->alumno_id}}</div></td>
                                             @endforeach
-                                        </tr>
+                                           
+                                       </tr>
                                         <tr>
                                             <th> Pago : </th>
                                             @foreach ($metodohasalumnos as $metodohasalumno)
-                                            <td {{ $metodohasalumno->alumno_id }} >{{ $metodohasalumno->pago }}</td>
+                                            <td>{{ $metodohasalumno->pago }}</td>
                                             @endforeach
                                         </tr>
                                         <tr>
                                             <th> Metodo de Pago : </th>
-                                            @foreach ($metodos as $metodo)
-                                            <td  {{ $metodo->id }} >{{ $metodo->metodo_pago  }}</td>
+                                            @foreach ($metodohasalumnos as $metodohasalumno)
+                                            <td> <div>{{ $metodohasalumno->alumno_id}}</div></td>
                                             @endforeach
+                                            @dump($alumnoshasperiodos->toArray())
                                         </tr>
                                         <tr>
                                             <th> Fecha del Pago : </th>
-                                            <td>{{ $alumnos->fecha_pago }}</td>
+                                            @foreach($metodohasalumnos as $metodohasalumno)
+                                            <td>{{ $metodohasalumno->fecha_pago }}</td>
+                                            @endforeach
                                         </tr>
                                         <tr>
                                             <th> Referencia : </th>
@@ -112,7 +116,7 @@
                                         </tr>
                                         <tr>
                                             <th> Estado : </th>
-                                            <td>{{ $alumnos->estado_id}}</td>
+                                            <td>{{ $alumnos->estados->estado}}</td>
                                         </tr>
                             
                                     </tbody>
@@ -131,4 +135,7 @@
         </div>
     </section>
 @endsection
-
+<script>
+    test= document.querySelector('.test')
+    console.log(test)
+</script>
