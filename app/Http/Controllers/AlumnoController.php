@@ -13,6 +13,7 @@ use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\DB;
 use App\Models\MetodosHasAlumnos;
 use Illuminate\Support\Arr;
+use Barryvdh\DomPDF\Facade\PDF;
 
 class AlumnoController extends Controller
 {
@@ -54,6 +55,15 @@ class AlumnoController extends Controller
             ->paginate(10);
 
         return view('alumnos.index', compact('alumnos', 'texto'));
+    }
+    public function pdf()
+    {
+
+        $pdf = PDF::loadView('alumnos.pdf');
+        $pdf->loadHTML('<h1>Test</h1>');
+        return $pdf->stream();
+
+       // return view('alumnos.pdf', compact('alumnos'));
     }
 
     /**

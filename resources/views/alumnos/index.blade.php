@@ -20,7 +20,7 @@
                                         <div class="anadir text-center">
                                             <a class="btn btn-success mr-2" href="{{ route('alumnos.create') }}">Nuevo
                                                 Alumno</a>
-                                            <a class="btn btn-danger" href="{{ route('alumnos.create') }}"><i
+                                            <a class="btn btn-danger" href="{{ route('alumnos.pdf') }}"><i
                                                     class="fa fa-file-pdf pt-1" style="font-size: 15px;"></i></a>
                                         </div>
                                         <div class="search d-flex">
