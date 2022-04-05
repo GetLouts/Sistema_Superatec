@@ -90,17 +90,20 @@
                                         </div>
                                         <div class="col-xs-12 col-sm-12 col-md-6">
                                             <div class="form-group">
-                                                <label for="name">Fecha de inicio</label>
+                                                <label for="name">Fecha de Inicio</label>
                                                 {!! Form::date('fecha_inicio', null, array('class'=>'form-control')) !!}
                                             </div>
                                         </div>
                                     </td>
-                                    <td>   
+                                    <td>
                                         <div class="col-xs-12 col-sm-12 col-md-6">
-                                            <div class="form-group">
-                                                <label for="name">Modalidad</label>
-                                                {!! Form::text('modalidad', null, array('class'=>'form-control')) !!}
-                                            </div>
+                                            <label for="name">Modalidad</label>
+                                            <select name="modalidad_id" class="form-control">
+                                                <option hidden selected>--> Selecione la Modalidad <--</option>
+                                                @foreach ($modalidades as $modalida)
+                                                    <option value="{{ $modalida->id }}">{{ $modalida->modalidad }}</option>      
+                                                @endforeach
+                                            </select>
                                         </div>
                                         <div class="col-xs-12 col-sm-12 col-md-6">
                                             <label for="name">Estado</label>
@@ -110,9 +113,9 @@
                                                     <option value="{{ $estado->id }}">{{ $estado->estado }}</option>      
                                                 @endforeach
                                             </select>
-                                        </div>   
+                                        </div>  
                                     </td>
-                                    <td>                  
+                                    <td> 
                                         <div class="col-xs-12 col-sm-12 col-md-6">
                                             <label for="name">Descripción del Curso</label>
                                             <div class="form-group">                                                

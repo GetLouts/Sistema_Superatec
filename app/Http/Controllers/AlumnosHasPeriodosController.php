@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
+
 use Validator;
 use App\Models\Alumno;
 use App\Models\Metodo;
@@ -21,7 +22,7 @@ class AlumnosHasPeriodosController extends Controller
     public function index()
     {
         return view('metodos.create');
-	}
+    }
     /**
      * Show the form for creating a new resource.
      *
@@ -34,7 +35,7 @@ class AlumnosHasPeriodosController extends Controller
         $cursos = PeriodosHasCursos::where('periodo_id', 1)->get();
         $alumnoshasperiodos = AlumnosHasPeriodos::all();
         $metodohasalumnos = MetodosHasAlumnos::all();
-       return view('metodos.create', compact('alumnoshasperiodos', 'metodohasalumnos','cursos', 'alumno','metodos'));
+        return view('metodos.create', compact('alumnoshasperiodos', 'metodohasalumnos', 'cursos', 'alumno', 'metodos'));
     }
 
     /**
@@ -51,9 +52,9 @@ class AlumnosHasPeriodosController extends Controller
         $alumnoshasperiodos->curso_id = $request->curso;
         $alumnoshasperiodos->periodo_id = 1;
         $alumnoshasperiodos->creado_por = auth()->user()->id;
-        
+
         $alumnoshasperiodos->save();
-        
+
         $metodohasalumnos = new MetodosHasAlumnos();
 
         $metodohasalumnos->pago = $request->pago;
@@ -63,7 +64,7 @@ class AlumnosHasPeriodosController extends Controller
         $metodohasalumnos->alumno_id = $id;
         $metodohasalumnos->periodos_has_cursos_id = $request->curso;
         $metodohasalumnos->creado_por = auth()->user()->id;
-     
+
         $metodohasalumnos->save();
 
         return redirect()->route('alumnos.index');
@@ -104,11 +105,11 @@ class AlumnosHasPeriodosController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $this->validate($request,[
+        $this->validate($request, [
             'pago' => 'required',
             'fecha_pago' => 'required',
             'numero_referencia' => 'required',
-            'imagen' => 'null',  
+            'imagen' => 'null',
         ]);
     }
 

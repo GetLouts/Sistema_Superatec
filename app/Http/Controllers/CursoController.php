@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 USE App\Models\Curso;
 use App\Models\Estado;
+use App\Models\Modalidad;
 use App\Models\PeriodosHasCursos;
 use App\Models\Periodo;
 use Illuminate\Support\Facades\DB;
@@ -31,9 +32,10 @@ class CursoController extends Controller
     {
         $cursos = Curso::get();
         $estados = Estado::all();
+        $modalidades = Modalidad::all();
         $periodoshascursos = PeriodosHasCursos::where('periodo_id', 1)->get();
 
-        return view('cursos.crear', compact('cursos', 'estados', 'periodoshascursos'));
+        return view('cursos.crear', compact('cursos', 'estados', 'periodoshascursos', 'modalidades'));
     }
 
     /**
@@ -49,12 +51,11 @@ class CursoController extends Controller
         $cursos->descripcion = $request->descripcion;
         $cursos->cantidad_alumnos = $request->cantidad_alumnos;
         $cursos->clases = $request->clases;
-        $cursos->modalidad = $request->modalidad;
         $cursos->fecha_inicio = $request->fecha_inicio;
         $cursos->codigo = $request->codigo;
+        $cursos->modalidad_id = $request->modalidad_id;
         $cursos->estado_id = $request->estado_id;
         $cursos->creado_por = auth()->user()->id;
-        //$cursos->estado_id = $request->estado_id;
         $cursos->save();
 
        /* $periodoshascursos = new PeriodosHasCursos();
@@ -80,8 +81,9 @@ class CursoController extends Controller
     {
         $cursos = Curso::find($id);
         $estados = Estado::all();
+        $modalidades = Modalidad::get();
         $periodoshascursos = PeriodosHasCursos::all();
-        return view('cursos.show', compact('cursos', 'id', 'estados', 'periodoshascursos'));
+        return view('cursos.show', compact('cursos', 'id', 'estados', 'periodoshascursos', 'modalidades'));
     }
 
     /**
@@ -94,8 +96,9 @@ class CursoController extends Controller
     {
         $cursos = Curso::find($id);
         $estados = Estado::all();
+        $modalidades = Modalidad::all();
         $periodoshascursos = PeriodosHasCursos::all();
-        return view('cursos.editar', compact('cursos', 'estados', 'periodoshascursos'));
+        return view('cursos.editar', compact('cursos', 'estados', 'periodoshascursos', 'modalidades'));
     }
 
     /**
@@ -112,6 +115,9 @@ class CursoController extends Controller
             'descripcion' => 'required', 
             'cantidad_alumnos' => 'required', 
             'clases' => 'required',
+            'fecha_inicio' => 'required',
+            'codigo' => 'required',
+            'modalidad_id' => 'required',
             'estado_id' => 'required',  
         ]);
         $input = $request->all();

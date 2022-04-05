@@ -13,15 +13,16 @@ use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\DB;
 use App\Models\MetodosHasAlumnos;
 use Illuminate\Support\Arr;
+use Barryvdh\DomPDF\Facade\PDF;
 
 class AlumnoController extends Controller
 {
     function __construct()
     {
         $this->middleware('permission:ver-alumnos|crear-alumnos|editar-alumnos|borrar-alumnos')->only('index');
-        $this->middleware('permission:crear-alumnos', ['only'=>['create','store']]);
-        $this->middleware('permission:editar-alumnos', ['only'=>['edit','update']]);
-        $this->middleware('permission:borrar-alumnos', ['only'=>['destroy']]);
+        $this->middleware('permission:crear-alumnos', ['only' => ['create', 'store']]);
+        $this->middleware('permission:editar-alumnos', ['only' => ['edit', 'update']]);
+        $this->middleware('permission:borrar-alumnos', ['only' => ['destroy']]);
     }
     /**
      * Display a listing of the resource.
@@ -29,25 +30,40 @@ class AlumnoController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index(Request $request)
-    {   
-        $texto=trim($request->get('texto'));
-        $alumnos=DB::table('alumnos')
-        ->select('id', 'nombres', 'apellidos', 'cedula', 'telefono',
-        'telefono_local',
-        'direccion',
-        'correo',
-        'nivel_de_estudio',
-        'fecha_nac',
-        'comunidad',
-        'patrocinador',
-        'fecha_registro',
-        'estado_id' )
-        ->where('cedula','LIKE','%'.$texto.'%')
-        ->orWhere('nombres','LIKE','%'.$texto.'%')
-        ->orderBy('cedula', 'asc')
-        ->paginate(10);
-        
+    {
+        $texto = trim($request->get('texto'));
+        $alumnos = DB::table('alumnos')
+            ->select(
+                'id',
+                'nombres',
+                'apellidos',
+                'cedula',
+                'telefono',
+                'telefono_local',
+                'direccion',
+                'correo',
+                'nivel_de_estudio',
+                'fecha_nac',
+                'comunidad',
+                'patrocinador',
+                'fecha_registro',
+                'estado_id'
+            )
+            ->where('cedula', 'LIKE', '%' . $texto . '%')
+            ->orWhere('nombres', 'LIKE', '%' . $texto . '%')
+            ->orderBy('cedula', 'asc')
+            ->paginate(10);
+
         return view('alumnos.index', compact('alumnos', 'texto'));
+    }
+    public function pdf()
+    {
+
+        $pdf = PDF::loadView('alumnos.pdf');
+        $pdf->loadHTML('<h1>Test</h1>');
+        return $pdf->stream();
+
+       // return view('alumnos.pdf', compact('alumnos'));
     }
 
     /**
@@ -57,14 +73,14 @@ class AlumnoController extends Controller
      */
     public function create()
     {
-       // $cursos = Curso::all();
+        // $cursos = Curso::all();
         // $cursos = Periodo::where('id', $periodo activo)->get();
         $estados = Estado::all();
         //$metodos = Metodo::all();
         //$metodohasalumnos = MetodosHasAlumnos::all();
         $cursos = PeriodosHasCursos::where('periodo_id', 1)->get();
         // dd($cursos->first()->cursos);
-       return view('alumnos.crear', compact('cursos', 'estados'));
+        return view('alumnos.crear', compact('cursos', 'estados'));
     }
 
     /**
@@ -74,7 +90,7 @@ class AlumnoController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
-    {       
+    {
         /*Validator::make($request->all(), [
             'alumno_id' => 'required',
             'curso_id' => 'required',
@@ -83,37 +99,34 @@ class AlumnoController extends Controller
 
         $alumnos = new Alumno();
 
-            $alumnos->nombres = $request->nombres;
-            $alumnos->apellidos = $request->apellidos;
-            $alumnos->cedula = $request->cedula;
-            $alumnos->telefono = $request->telefono;
-            $alumnos->telefono_local = $request->telefono_local;
-            $alumnos->direccion = $request->direccion;
-            $alumnos->correo = $request->correo;
-            $alumnos->nivel_de_estudio = $request->nivel_de_estudio;
-            $alumnos->fecha_nac = $request->fecha_nac;
-            $alumnos->comunidad = $request->comunidad;
-            $alumnos->patrocinador = $request->patrocinador;
-            $alumnos->fecha_registro = $request->fecha_registro;
-            //script para subir imagen al servidor
-            if($request->hasFile("imagen")){
-                $imagen = $request->file("imagen");
-                $nombreimagen = $alumnos->id.".".$imagen->getClientOriginalName();
-                $ruta = public_path("img/alumnos/");
-                $imagen->move($ruta,$nombreimagen);
-                $alumnos->imagen = $nombreimagen;
-            }
-            
-            $alumnos->estado_id = $request->estado_id;
-            $alumnos->creado_por = auth()->user()->id;
-            $alumnos->actualizado_por = auth()->user()->id;
-            
-            $alumnos->save();
-    
-            return redirect()->route('metodos.create', ['id' => $alumnos->id]);
-    
+        $alumnos->nombres = $request->nombres;
+        $alumnos->apellidos = $request->apellidos;
+        $alumnos->cedula = $request->cedula;
+        $alumnos->telefono = $request->telefono;
+        $alumnos->telefono_local = $request->telefono_local;
+        $alumnos->direccion = $request->direccion;
+        $alumnos->correo = $request->correo;
+        $alumnos->nivel_de_estudio = $request->nivel_de_estudio;
+        $alumnos->fecha_nac = $request->fecha_nac;
+        $alumnos->comunidad = $request->comunidad;
+        $alumnos->patrocinador = $request->patrocinador;
+        $alumnos->fecha_registro = $request->fecha_registro;
+        //script para subir imagen al servidor
+        if ($request->hasFile("imagen")) {
+            $imagen = $request->file("imagen");
+            $nombreimagen = $alumnos->id . "." . $imagen->getClientOriginalName();
+            $ruta = public_path("img/alumnos/");
+            $imagen->move($ruta, $nombreimagen);
+            $alumnos->imagen = $nombreimagen;
+        }
 
-            
+        $alumnos->estado_id = $request->estado_id;
+        $alumnos->creado_por = auth()->user()->id;
+        $alumnos->actualizado_por = auth()->user()->id;
+
+        $alumnos->save();
+
+        return redirect()->route('metodos.create', ['id' => $alumnos->id]);
     }
 
     /**
@@ -123,13 +136,13 @@ class AlumnoController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function show($id)
-    {   
+    {
         $alumnos = Alumno::find($id);
         $cursos = PeriodosHasCursos::where('periodo_id', 1)->get();
         $alumnoshasperiodos = AlumnosHasPeriodos::all();
         $metodohasalumnos = MetodosHasAlumnos::all();
         $metodos = Metodo::all();
-        return view('alumnos.show', compact('alumnos', 'id', 'cursos', 'alumnoshasperiodos' ,'metodohasalumnos', 'metodos'));
+        return view('alumnos.show', compact('alumnos', 'id', 'cursos', 'alumnoshasperiodos', 'metodohasalumnos', 'metodos'));
     }
 
     /**
@@ -138,10 +151,10 @@ class AlumnoController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(Request $request , $id)
+    public function edit(Request $request, $id)
     {
         $alumnos = Alumno::find($id);
-        $cursos = Curso::all();
+        $cursos = PeriodosHasCursos::where('periodo_id', 1)->get();
         $estados = Estado::all();
         $metodos = Metodo::all();
         $metodohasalumnos = MetodosHasAlumnos::all();
@@ -158,7 +171,7 @@ class AlumnoController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $this->validate($request,[
+        $this->validate($request, [
             'nombres' => 'required',
             'apellidos' => 'required',
             'cedula' => 'required',
@@ -170,13 +183,12 @@ class AlumnoController extends Controller
             'fecha_nac' => 'required',
             'comunidad' => 'required',
             'pago' => 'required',
-            'numero_referencia' => 'required',
             'patrocinador' => 'required',
             'fecha_registro' => 'required',
             'estado_id' => 'required',
-            'imagen' => 'null',  
+            'imagen' => 'null',
         ]);
-        
+
         $input = $request->all();
         $alumno = Alumno::find($id);
         $alumno->update($input);
@@ -186,9 +198,9 @@ class AlumnoController extends Controller
             $ruta = public_path("img/alumnos/");
             $imagen->move($ruta, $nombreimagen);
             $alumno->imagen = $nombreimagen;
-            $alumno->save();            
+            $alumno->save();
         }
-        
+
         return redirect()->route('alumnos.index');
     }
 

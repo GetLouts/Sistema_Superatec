@@ -9,20 +9,6 @@
         </div>
         <div class="section-body">
             <div class="row">
-                <div class="col-lg-4">
-                    <div class="card">
-                        <div class="card-body">
-                            <div class="text-center">
-                                <hr>
-                                @if ($alumnos->imagen !== null)
-                                    <img src="{{ asset("/img/alumnos/$alumnos->imagen") }}" alt="" width="100%">
-                                @else
-                                    <img src="{{ asset('img/sinfoto.jpg') }}" alt="" width="100%">
-                                @endif
-                            </div>
-                        </div>
-                    </div>
-                </div>
                 <div class="col-lg-8">
                     <div class="card">
                         <div class="card-body">
@@ -125,11 +111,6 @@
                                     </tbody>
 
                                 </table>
-
-                                <div class="col-xs-12 col-sm-12 col-md-12">
-                                    <br>
-                                    <a class="btn btn-primary" href="{{ route('alumnos.index') }}">Volver</a>
-                                </div>
                             </div>
                             {!! Form::close() !!}
                         </div>
@@ -138,7 +119,3 @@
             </div>
     </section>
 @endsection
-<script>
-    test = document.querySelector('.test')
-    console.log(test)
-</script>

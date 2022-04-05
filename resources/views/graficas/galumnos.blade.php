@@ -13,7 +13,8 @@
                     <div class="card">
                         <div class="card-body">
 
-                                
+                                <i class="fa fa-file-pdf" style="font-size: 18px"></i>
+
                             <div id="container"></div>
 
                             <script src="https://code.highcharts.com/highcharts.js"></script>
@@ -24,7 +25,7 @@
                                         text:"Graficas de Alumnos"
                                     },
                                     xAxis:{
-                                        categories:['Enero','Febrero','Marzo','Abril','Mayo','Junio',
+                                        categories:[0,'Enero','Febrero','Marzo','Abril','Mayo','Junio',
                                         'Julio','Agosto','Septiembre','Octubre','Noviembre','Diciembre']
                                     },
                             

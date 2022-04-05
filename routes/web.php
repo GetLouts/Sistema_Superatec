@@ -63,3 +63,6 @@ Route::controller(FullCalenderController::class)->group(function(){
     Route::get('/fullcalender', 'index');
     Route::post('/fullcalenderAjax', 'ajax');
 });
+
+Route::get('alumnos/pdf', [App\Http\Controllers\AlumnoController::class, 'pdf'])->name('alumnos.pdf');
+Route::get('alumnos/excel', [App\Http\Controllers\AlumnoController::class, 'excel'])->name('alumnos.excel');
