@@ -14,7 +14,7 @@
         </ul>
       </li>
       <li class="nav-item dropdown">
-        @can('ver-menu-graficas')<a href="#" class="nav-link has-dropdown"><i class="fas fa-chart-bar"></i><span>Graficos</span></a>@endcan
+        @can('ver-menu')<a href="#" class="nav-link has-dropdown"><i class="fas fa-chart-bar"></i><span>Graficos</span></a>@endcan
         <ul class="dropdown-menu">
         @can('ver-menu-graficas')<li><a class="nav-link" href="/gcomunidad"><i class="fas fa-poll"></i>Comunidad</a></li>@endcan
         @can('ver-menu-graficas')<li><a class="nav-link" href="/galumnos"><i class="fas fa-poll"></i>Alumnos</a></li>@endcan
@@ -24,6 +24,6 @@
         @can('ver-menu-graficas')<li><a class="nav-link" href="/gingresos"><i class="fas fa-poll"></i>Ingresos</a></li>@endcan
         </ul>
       </li>
-      @can('ver-menu')<li><a class="nav-link" href="/cronogramas"><i class="fas fa-calendar-alt"></i><span>Cronograma</span></a></li>@endcan
+      @can('ver-cronograma')<li><a class="nav-link" href="/cronogramas"><i class="fas fa-calendar-alt"></i><span>Cronograma</span></a></li>@endcan
     </ul>
 </li>

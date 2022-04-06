@@ -75,11 +75,12 @@
                                                             <span class="badge badge-danger">Inactivo</span>
                                                         @endif
                                                     </td>
-
+                                                    
                                                     <td class="text-center">
+                                                        @can('show-alumnos')
                                                         <a class="btn btn-primary"
                                                             href="{{ route('alumnos.show', $alumno->id) }}""><i class="fa fa-eye"></i></a>
-
+                                                        @endcan
 
                                                         @can('editar-alumnos')
                                                             <a class="btn btn-info"

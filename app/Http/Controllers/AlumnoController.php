@@ -23,6 +23,7 @@ class AlumnoController extends Controller
         $this->middleware('permission:crear-alumnos', ['only' => ['create', 'store']]);
         $this->middleware('permission:editar-alumnos', ['only' => ['edit', 'update']]);
         $this->middleware('permission:borrar-alumnos', ['only' => ['destroy']]);
+        $this->middleware('permission:show-alumnos', ['only' => ['show']]);
     }
     /**
      * Display a listing of the resource.
