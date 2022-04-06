@@ -7,8 +7,10 @@ use Illuminate\Database\Eloquent\Model;
 
 class AlumnosHasPeriodos extends Model
 {
+    // protected $table = 'alumnos_has_periodos';
+    
     protected $fillable = [
-        'alumnos_id',
+        'alumno_id',
         'periodo_id',
         'curso_id',
         'creado_por',
@@ -16,13 +18,13 @@ class AlumnosHasPeriodos extends Model
     ];
     //Relacion inversa 
     public function alumno(){
-        return $this->belongsTo('App\Models\Alumno', 'id');
+        return $this->belongsTo('App\Models\Alumno', 'alumno_id');
     }
     public function periodo(){
-        return $this->belongsTo('App\Models\Periodo');
+        return $this->belongsTo('App\Models\Periodo', 'periodo_id');
     }
     public function curso(){
-        return $this->belongsTo('App\Models\Curso');
+        return $this->belongsTo('App\Models\Curso','curso_id');
     }
     //Relacion uno a muchos
     public function asistencias(){

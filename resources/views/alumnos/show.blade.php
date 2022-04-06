@@ -78,12 +78,11 @@
                                         </tr>
                                         <tr>
                                             <th> Curso : </th>
-                                            @foreach ($alumnoshasperiodos as $alumnoshasperiodo)
+                                            @foreach ($alumnoshasperiodos as $alumnos_cursos)
                                                 <td>
-                                                    <div class="test"> {{ $alumnoshasperiodo->alumno_id }}</div>
+                                                    <div>{{$alumnos_cursos->curso->cursos}}</div>
                                                 </td>
                                             @endforeach
-
                                         </tr>
                                         <tr>
                                             <th> Pago : </th>
@@ -95,7 +94,7 @@
                                             <th> Metodo de Pago : </th>
                                             @foreach ($metodohasalumnos as $metodohasalumno)
                                                 <td>
-                                                    <div>{{ $metodohasalumno->alumno_id }}</div>
+                                                    <div>{{ $metodohasalumno->metodo->metodo_pago }}</div>
                                                 </td>
                                             @endforeach
                                         </tr>
@@ -107,7 +106,7 @@
                                         </tr>
                                         <tr>
                                             <th> Referencia : </th>
-                                            <td>{{ $alumnos->numero_referencia }}</td>
+                                            <td>{{ $metodohasalumno->numero_referencia }}</td>
                                         </tr>
                                         <tr>
                                             <th> Patrocinador : </th>
@@ -119,7 +118,7 @@
                                         </tr>
                                         <tr>
                                             <th> Estado : </th>
-                                            <td>{{ $alumnos->estados->estado }}</td>
+                                            <td <span class="badge badge-success"></span>{{ $alumnos->estados->estado }}</td>
                                         </tr>
 
                                     </tbody>
@@ -138,7 +137,3 @@
             </div>
     </section>
 @endsection
-<script>
-    test = document.querySelector('.test')
-    console.log(test)
-</script>

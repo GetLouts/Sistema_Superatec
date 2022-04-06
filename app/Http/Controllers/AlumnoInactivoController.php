@@ -8,10 +8,12 @@ use App\Models\Curso;
 use App\Models\Estado;
 use App\Models\Metodo;
 use App\Models\AlumnosHasPeriodos;
-use App\Models\MetodosHasAlumnos;
 use App\Models\PeriodosHasCursos;
+use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\DB;
+use App\Models\MetodosHasAlumnos;
 use Illuminate\Support\Arr;
+use Barryvdh\DomPDF\Facade\PDF;
 
 class AlumnoInactivoController extends Controller
 {
@@ -52,7 +54,16 @@ class AlumnoInactivoController extends Controller
             ->orderBy('cedula', 'asc')
             ->paginate(10);
 
-        return view('alumnos.index', compact('alumnos', 'texto'));
+        return view('alumnosinactivos.index', compact('alumnos', 'texto'));
+    }
+    public function pdf()
+    {
+
+        $pdf = PDF::loadView('alumnos.pdf');
+        $pdf->loadHTML('<h1>Test</h1>');
+        return $pdf->stream();
+
+       return view('alumnos.pdf', compact('alumnos'));
     }
 
     /**
@@ -62,7 +73,14 @@ class AlumnoInactivoController extends Controller
      */
     public function create()
     {
-        //
+        // $cursos = Curso::all();
+        // $cursos = Periodo::where('id', $periodo activo)->get();
+        $estados = Estado::all();
+        //$metodos = Metodo::all();
+        //$metodohasalumnos = MetodosHasAlumnos::all();
+        $cursos = PeriodosHasCursos::where('periodo_id', 1)->get();
+        // dd($cursos->first()->cursos);
+        return view('alumnosinactivos.crear', compact('cursos', 'estados'));
     }
 
     /**
@@ -73,6 +91,12 @@ class AlumnoInactivoController extends Controller
      */
     public function store(Request $request)
     {
+        /*Validator::make($request->all(), [
+            'alumno_id' => 'required',
+            'curso_id' => 'required',
+            'periodo_id' => 'required',
+        ])->validate();*/
+
         $alumnos = new Alumno();
 
         $alumnos->nombres = $request->nombres;
@@ -85,20 +109,24 @@ class AlumnoInactivoController extends Controller
         $alumnos->nivel_de_estudio = $request->nivel_de_estudio;
         $alumnos->fecha_nac = $request->fecha_nac;
         $alumnos->comunidad = $request->comunidad;
-        //$alumnos->curso = $request->curso;
-        // $alumnos->metodo_pago = $request->metodo_pago;
-        //$alumnos->fecha_pago = $request->fecha_pago;
         $alumnos->patrocinador = $request->patrocinador;
-        //$alumnos->fecha_registro = $request->fecha_registro;
+        $alumnos->fecha_registro = $request->fecha_registro;
+        //script para subir imagen al servidor
+        if ($request->hasFile("imagen")) {
+            $imagen = $request->file("imagen");
+            $nombreimagen = $alumnos->id . "." . $imagen->getClientOriginalName();
+            $ruta = public_path("img/alumnos/");
+            $imagen->move($ruta, $nombreimagen);
+            $alumnos->imagen = $nombreimagen;
+        }
+
         $alumnos->estado_id = $request->estado_id;
         $alumnos->creado_por = auth()->user()->id;
         $alumnos->actualizado_por = auth()->user()->id;
 
-
-
         $alumnos->save();
 
-        return redirect()->route('alumnosinactivos.index');
+        return redirect()->route('metodos.create', ['id' => $alumnos->id]);
     }
 
     /**
@@ -111,10 +139,11 @@ class AlumnoInactivoController extends Controller
     {
         $alumnos = Alumno::find($id);
         $cursos = PeriodosHasCursos::where('periodo_id', 1)->get();
-        $alumnoshasperiodos = AlumnosHasPeriodos::all();
-        $metodohasalumnos = MetodosHasAlumnos::all();
+
+        $alumnoshasperiodos = AlumnosHasPeriodos::where('alumno_id','=', $id)->get();
+        $metodohasalumnos = MetodosHasAlumnos::where('alumno_id','=', $id)->get();
         $metodos = Metodo::all();
-        return view('alumnos.show', compact('alumnos', 'id', 'cursos', 'alumnoshasperiodos', 'metodohasalumnos', 'metodos'));
+        return view('alumnosinactivos.show', compact('alumnos', 'id', 'alumnoshasperiodos', 'cursos', 'metodohasalumnos', 'metodos'));
     }
 
     /**
@@ -123,13 +152,15 @@ class AlumnoInactivoController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Request $request, $id)
     {
         $alumnos = Alumno::find($id);
-        $cursos = Curso::all();
+        $cursos = PeriodosHasCursos::where('periodo_id', 1)->get();
         $estados = Estado::all();
         $metodos = Metodo::all();
-        return view('alumnosinactivos.editar', compact('alumnos', 'cursos', 'estados', 'metodos'));
+        $metodohasalumnos = MetodosHasAlumnos::where('alumno_id','=', $id)->get();
+
+        return view('alumnosinactivos.editar', compact('alumnos', 'cursos', 'estados', 'metodos', 'metodohasalumnos'));
     }
 
     /**
@@ -152,16 +183,31 @@ class AlumnoInactivoController extends Controller
             'nivel_de_estudio' => 'required',
             'fecha_nac' => 'required',
             'comunidad' => 'required',
-            'patrocinador' => 'required',
             'fecha_registro' => 'required',
             'estado_id' => 'required',
-
-
+            'imagen' => 'null',
         ]);
 
         $input = $request->all();
         $alumno = Alumno::find($id);
         $alumno->update($input);
+        if ($request->hasFile("imagen")) {
+            $imagen = $request->file("imagen");
+            $nombreimagen =  $imagen->getClientOriginalName();
+            $ruta = public_path("img/alumnos/");
+            $imagen->move($ruta, $nombreimagen);
+            $alumno->imagen = $nombreimagen;
+            $alumno->save();
+        }
+        $this->validate($request, [
+            'pago' => 'required',
+            'fecha_pago' => 'required',
+            'numero_referencia' => 'required',
+            'imagen' => 'null',
+        ]);
+        $input = $request->all();
+        $metodohasalumnos = MetodosHasAlumnos::find($id);
+        $metodohasalumnos->update($input);
 
         return redirect()->route('alumnosinactivos.index');
     }

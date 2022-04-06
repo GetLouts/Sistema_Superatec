@@ -9,7 +9,7 @@
         </div>
         <div class="section-body">
             <div class="row">
-                <div class="col-lg-4">
+                {{-- <div class="col-lg-4">
                     <div class="card">
                         <div class="card-body">
                             {!! Form::open(array('route'=>'cursos.store', 'method'=>'POST', 'enctype'=>'multipart/form-data')) !!}
@@ -41,8 +41,8 @@
                             </div>
                         </div>
                     </div>
-                </div>
-                <div class="col-lg-8">
+                </div> --}}
+                <div class="col-lg-12">
                     <div class="card">
                         <div class="card-body">
                             @if ($errors->any())
@@ -137,7 +137,7 @@
         </div>
     </section>
 @endsection
-<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script> 
+{{-- <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script> 
 <script>   
     $(document).ready(function (e) {   
         $('#imagen').change(function(){            
@@ -148,4 +148,4 @@
             reader.readAsDataURL(this.files[0]); 
         });
     });
-</script>
+</script> --}}

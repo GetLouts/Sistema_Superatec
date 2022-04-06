@@ -19,7 +19,7 @@ class MetodosHasAlumnos extends Model
     ];
     //Relacion inversa 
     public function metodo(){
-        return $this->belongsTo('App\Models\Metodo');
+        return $this->belongsTo('App\Models\Metodo', 'metodo_id');
     }
     public function alumno(){
         return $this->belongsTo('App\Models\Alumno');

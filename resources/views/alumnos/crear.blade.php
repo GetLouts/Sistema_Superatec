@@ -143,7 +143,7 @@
                                         </div>
                                     </div>
                                 </td>
-                                <td>
+                                {{-- <td>
                                     <div class="col-xs-12 col-sm-12 col-md-6">
                                         <label for="name">Estado</label>
                                         <select name="estado_id" class="form-control">
@@ -153,7 +153,7 @@
                                             @endforeach
                                         </select>
                                     </div>
-                                </td>
+                                </td> --}}
                                 <td>
                                                                 
                                     <div class="col-xs-12 col-sm-12 col-md-6">
