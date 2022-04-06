@@ -64,15 +64,12 @@
                                 </td>
                                 <td>
                                     <div class="col-xs-12 col-sm-12 col-md-6">
-                                        <div class="form-group">
-                                            <label for="name">Modalidad</label>
-                                            <select name="modalidad" class="form-control">
-                                                <option hidden selected>--> Selecione la Modalidad <--</option>
+                                        <label for="name">Modalidad</label>
+                                            <select name="modalidad_id" class="form-control">
                                                     @foreach ($modalidades as $modalida)
-                                                        <option>{{$modalida->modalidad}}</option>      
+                                                        <option value="{{ $modalida->id }}"> {{ $modalida->modalidad }}</option>    
                                                     @endforeach
                                             </select>
-                                        </div>
                                     </div>     
                                     <div class="col-xs-12 col-sm-12 col-md-6">
                                         <label for="name">Descripción del Curso</label>

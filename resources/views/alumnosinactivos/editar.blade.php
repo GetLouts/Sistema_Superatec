@@ -24,7 +24,7 @@
                                 </div>
                             @endif
 
-                            {!! Form::model($alumnos, ['method' => 'PATCH','route' => ['alumnos.update', $alumnos->id]]) !!}
+                            {!! Form::model($alumnos, ['method' => 'PATCH', 'enctype'=>'multipart/form-data', 'route' => ['alumnos.update', $alumnos->id]]) !!}
                             <div class="row">
                                 <td>
                                     <div class="col-xs-12 col-sm-12 col-md-6">
@@ -102,14 +102,18 @@
                                     <select name="curso" class="form-control">
                                        
                                         @foreach ($cursos as $curso)
-                                            <option value="{{ $curso->id }}">{{ $curso->cursos }}</option>                                                   
+                                            <option value="{{ $curso->id }}">{{ $curso->cursos->cursos }}</option>                                                   
                                         @endforeach
                                     </select>
                                 </div>
                                 <div class="col-xs-12 col-sm-12 col-md-6">
+                                    <label for="metodohasalumno">Pago</label>
                                     <div class="form-group">
-                                        <label for="name">Pago</label>
-                                        {!! Form::text('pago', null, array('class'=>'form-control')) !!}
+                                        
+                                        @foreach ($metodohasalumnos as $metodohasalumno)
+                                            <input value="{{ $metodohasalumno->id }}">{{ $metodohasalumno->pago }}                                                   
+                                        @endforeach
+                
                                     </div>
                                 </div>
                             </td>

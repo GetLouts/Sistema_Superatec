@@ -13,7 +13,7 @@
                     <div class="card">
                         <div class="card-body">
 
-                            {!! Form::model($alumnos, ['method' => 'PATCH','route' => ['alumnos.show', $alumnos->id]]) !!}
+                            {!! Form::model($alumnos, ['method' => 'PATCH','route' => ['alumnosinactivos.show', $alumnos->id]]) !!}
                             <div class="row">
                                 <td>
                                     <div class="col-xs-12 col-sm-12 col-md-6">

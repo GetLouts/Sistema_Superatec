@@ -63,7 +63,7 @@ class AlumnoController extends Controller
         $pdf->loadHTML('<h1>Test</h1>');
         return $pdf->stream();
 
-       // return view('alumnos.pdf', compact('alumnos'));
+       return view('alumnos.pdf', compact('alumnos'));
     }
 
     /**
@@ -139,10 +139,11 @@ class AlumnoController extends Controller
     {
         $alumnos = Alumno::find($id);
         $cursos = PeriodosHasCursos::where('periodo_id', 1)->get();
-        $alumnoshasperiodos = AlumnosHasPeriodos::all();
-        $metodohasalumnos = MetodosHasAlumnos::all();
+
+        $alumnoshasperiodos = AlumnosHasPeriodos::where('alumno_id','=', $id)->get();
+        $metodohasalumnos = MetodosHasAlumnos::where('alumno_id','=', $id)->get();
         $metodos = Metodo::all();
-        return view('alumnos.show', compact('alumnos', 'id', 'cursos', 'alumnoshasperiodos', 'metodohasalumnos', 'metodos'));
+        return view('alumnos.show', compact('alumnos', 'id', 'alumnoshasperiodos', 'cursos', 'metodohasalumnos', 'metodos'));
     }
 
     /**
