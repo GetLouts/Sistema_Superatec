@@ -48,7 +48,12 @@
                                         </tr>
                                         <tr>
                                             <th for="name">Estado:</th>
-                                            <td> {{ $cursos->estados->estado }} </td>
+                                            @if ($cursos->estado_id == 1)
+                                                <td <span class="badge badge-success">Activo</span></td>
+                                            @else
+                                                <td <span class="badge badge-danger">Inactivo</span></td>
+                                            @endif
+                                                
                                         </tr>
                                     </tbody>
                                 </table>
