@@ -16,14 +16,13 @@
                             <div class="col-xl-12">
                                 <form action="{{ route('alumnos.index') }}" method="get">
                                     <div class="form-row justify-content-between mb-1">
-
                                         <div class="anadir text-center">
                                             <a class="btn btn-success mr-2" href="{{ route('alumnos.create') }}">Nuevo
                                                 Alumno</a>
                                             <a class="btn btn-danger" href="{{ route('alumnos.pdf') }}"><i
                                                     class="fa fa-file-pdf pt-1" style="font-size: 20px;"></i></a>
-                                                    <a class="btn btn-success" href="{{ route('alumnos.excel') }}"><i
-                                                        class="fa fa-file-excel pt-1 Ml-5-" style="font-size: 20px;"></i></a>
+                                            <a class="btn btn-success" href="{{ route('alumnos.excel') }}"><i
+                                                    class="fa fa-file-excel pt-1 Ml-5-" style="font-size: 20px;"></i></a>
                                         </div>
                                         <div class="search d-flex">
                                             <input type="text" class="form-control mr-2" name="texto"
@@ -79,6 +78,7 @@
                                                     <td class="text-center">
                                                         <a class="btn btn-primary"
                                                             href="{{ route('alumnos.show', $alumno->id) }}""><i class="
+                                                            
                                                             
                                                             
                                                             
