@@ -147,10 +147,9 @@
                                     <label for="metodohasalumno">Pago</label>
                                     <div class="form-group">
                                         
-                                        @foreach ($metodohasalumnos as $metodohasalumno)
-                                            <input value="{{ $metodohasalumno->id }}">{{ $metodohasalumno->pago }}                                                   
-                                        @endforeach
-                
+                                    @foreach ($metodohasalumnos as $metodohasalumno)
+                                        {!! Form::text('pago', $metodohasalumno->pago, array('class'=>'form-control')) !!}
+                                    @endforeach
                                     </div>
                                 </div>
                             </td>
@@ -167,7 +166,7 @@
                                 <div class="col-xs-12 col-sm-12 col-md-6">
                                     <div class="form-group">
                                         <label for="name">Fecha del Pago</label>
-                                        {!! Form::date('fecha_pago', null, array('class'=>'form-control')) !!}
+                                        {!! Form::date('fecha_pago', $metodohasalumno->fecha_pago, array('class'=>'form-control')) !!}
                                     </div>
                                 </div>
                             </td>
@@ -175,7 +174,9 @@
                                 <div class="col-xs-12 col-sm-12 col-md-6">
                                     <div class="form-group">
                                         <label for="name">Referencia</label>
-                                        {!! Form::text('numero_referencia', null, array('class'=>'form-control')) !!}
+                                        @foreach ($metodohasalumnos as $metodohasalumno)
+                                        {!! Form::text('numero_referencia', $metodohasalumno->numero_referencia, array('class'=>'form-control')) !!}
+                                        @endforeach
                                     </div>
                                 </div>
                                 <div class="col-xs-12 col-sm-12 col-md-6">

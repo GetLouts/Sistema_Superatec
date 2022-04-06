@@ -78,15 +78,7 @@
 
                                                     <td class="text-center">
                                                         <a class="btn btn-primary"
-                                                            href="{{ route('alumnos.show', $alumno->id) }}""><i class="
-                                                            
-                                                            
-                                                            
-                                                            
-                                                            
-                                                            
-                                                            
-                                                            fa fa-eye"></i></a>
+                                                            href="{{ route('alumnos.show', $alumno->id) }}""><i class="fa fa-eye"></i></a>
 
 
                                                         @can('editar-alumnos')
