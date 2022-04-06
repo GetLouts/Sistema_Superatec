@@ -63,7 +63,7 @@ class AlumnoInactivoController extends Controller
         $pdf->loadHTML('<h1>Test</h1>');
         return $pdf->stream();
 
-       // return view('alumnos.pdf', compact('alumnos'));
+       return view('alumnos.pdf', compact('alumnos'));
     }
 
     /**
@@ -139,10 +139,11 @@ class AlumnoInactivoController extends Controller
     {
         $alumnos = Alumno::find($id);
         $cursos = PeriodosHasCursos::where('periodo_id', 1)->get();
-        $alumnoshasperiodos = AlumnosHasPeriodos::all();
-        $metodohasalumnos = MetodosHasAlumnos::all();
+
+        $alumnoshasperiodos = AlumnosHasPeriodos::where('alumno_id','=', $id)->get();
+        $metodohasalumnos = MetodosHasAlumnos::where('alumno_id','=', $id)->get();
         $metodos = Metodo::all();
-        return view('alumnos.show', compact('alumnos', 'id', 'cursos', 'alumnoshasperiodos', 'metodohasalumnos', 'metodos'));
+        return view('alumnosinactivos.show', compact('alumnos', 'id', 'alumnoshasperiodos', 'cursos', 'metodohasalumnos', 'metodos'));
     }
 
     /**
@@ -157,9 +158,9 @@ class AlumnoInactivoController extends Controller
         $cursos = PeriodosHasCursos::where('periodo_id', 1)->get();
         $estados = Estado::all();
         $metodos = Metodo::all();
-        $metodohasalumnos = MetodosHasAlumnos::all();
+        $metodohasalumnos = MetodosHasAlumnos::where('alumno_id','=', $id)->get();
 
-        return view('alumnosinactivos.editar', compact('alumnos', 'alumnos', 'cursos', 'estados', 'metodos', 'metodohasalumnos'));
+        return view('alumnosinactivos.editar', compact('alumnos', 'cursos', 'estados', 'metodos', 'metodohasalumnos'));
     }
 
     /**
@@ -182,8 +183,6 @@ class AlumnoInactivoController extends Controller
             'nivel_de_estudio' => 'required',
             'fecha_nac' => 'required',
             'comunidad' => 'required',
-            'pago' => 'required',
-            'patrocinador' => 'required',
             'fecha_registro' => 'required',
             'estado_id' => 'required',
             'imagen' => 'null',
@@ -200,6 +199,15 @@ class AlumnoInactivoController extends Controller
             $alumno->imagen = $nombreimagen;
             $alumno->save();
         }
+        $this->validate($request, [
+            'pago' => 'required',
+            'fecha_pago' => 'required',
+            'numero_referencia' => 'required',
+            'imagen' => 'null',
+        ]);
+        $input = $request->all();
+        $metodohasalumnos = MetodosHasAlumnos::find($id);
+        $metodohasalumnos->update($input);
 
         return redirect()->route('alumnosinactivos.index');
     }

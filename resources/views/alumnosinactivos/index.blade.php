@@ -35,7 +35,7 @@
                                     <th style="color: #fff;" class="text-center">Acciones</th>
                                 </thead>
                                 <tbody>
-                                    @if (count($alumnos) >= 0)
+                                    @if (count($alumnos) <= 0)
                                     <tr>
                                         <td class="badge-danger"></td>
                                         <td class="badge-danger"></td>
@@ -46,7 +46,7 @@
 
 
                                     </tr>
-                                @endif
+                                @endif  
                                     @foreach ($alumnos as $alumno)
                                     <tr>
                                         @if($alumno->estado_id==2)

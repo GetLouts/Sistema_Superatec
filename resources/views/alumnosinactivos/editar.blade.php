@@ -1,15 +1,52 @@
 @extends('layouts.app')
 @section('title')
-    Editar Alumno Inactivo
+    Editar Alumno
 @endsection
 @section('content')
     <section class="section">
         <div class="section-header">
-            <h3 class="page__heading">Editar Alumno Inactivo</h3>
+            <h3 class="page__heading">Editar Alumno</h3>
         </div>
         <div class="section-body">
             <div class="row">
-                <div class="col-lg-12">
+                <div class="col-lg-4">
+                    <div class="card">
+                        <div class="card-body">
+                            {!! Form::model($alumnos, ['method' => 'PATCH', 'enctype'=>'multipart/form-data', 'route' => ['alumnos.update', $alumnos->id]]) !!}
+                            <div class="text-center">
+                                <hr>
+                                @if($alumnos->imagen !==null)
+                                <img src="{{ asset("/img/alumnos/$alumnos->imagen") }}" alt="" width="100%"  id="imagenSeleccionada">
+                                @else
+                                <img src="{{asset('img/sinfoto.jpg')}}" alt="" width="100%"  id="imagenSeleccionada">
+                                @endif
+                                
+                                <div class="col-xs-12 col-sm-12 col-md-12">
+                                    <div class="form-group">
+                                        <input type="file" name="imagen" accept="image/*" hidden>
+                                        <div class="grid grid-cols-1 mt-5 mx-7">
+                                            <label class="uppercase md:text-sm text-xs text-gray-500 text-light font-semibold mb-1">Subir Imagen</label>
+                                                <div class="flex items-center justify-center w-full">
+                                                    <label class="flex flex-col border-4 border-dashed w-full h-32 hover:bg-gray-100 hover:border-purple-300 group">
+                                                        <div class="flex flex-col items-center justify-center pt-7">
+                                                        
+                                                        <p class="btn btn-primary">Seleccionar Imagen</p>
+                                                        </div>
+                                                        <div class="col-xs-12 col-sm-12 col-md-12">
+                                                            <div class="form-group">
+                                                                <input id="imagen" type="file" name="imagen" accept="image/*" hidden>
+                                                            </div>
+                                                        </div>
+                                                    </label>
+                                                </div>
+                                            </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-8">
                     <div class="card">
                         <div class="card-body">
                             @if ($errors->any())
@@ -110,10 +147,9 @@
                                     <label for="metodohasalumno">Pago</label>
                                     <div class="form-group">
                                         
-                                        @foreach ($metodohasalumnos as $metodohasalumno)
-                                            <input value="{{ $metodohasalumno->id }}">{{ $metodohasalumno->pago }}                                                   
-                                        @endforeach
-                
+                                    @foreach ($metodohasalumnos as $metodohasalumno)
+                                        {!! Form::text('pago', $metodohasalumno->pago, array('class'=>'form-control')) !!}
+                                    @endforeach
                                     </div>
                                 </div>
                             </td>
@@ -130,7 +166,7 @@
                                 <div class="col-xs-12 col-sm-12 col-md-6">
                                     <div class="form-group">
                                         <label for="name">Fecha del Pago</label>
-                                        {!! Form::date('fecha_pago', null, array('class'=>'form-control')) !!}
+                                        {!! Form::date('fecha_pago', $metodohasalumno->fecha_pago, array('class'=>'form-control')) !!}
                                     </div>
                                 </div>
                             </td>
@@ -138,7 +174,9 @@
                                 <div class="col-xs-12 col-sm-12 col-md-6">
                                     <div class="form-group">
                                         <label for="name">Referencia</label>
-                                        {!! Form::text('numero_referencia', null, array('class'=>'form-control')) !!}
+                                        @foreach ($metodohasalumnos as $metodohasalumno)
+                                        {!! Form::text('numero_referencia', $metodohasalumno->numero_referencia, array('class'=>'form-control')) !!}
+                                        @endforeach
                                     </div>
                                 </div>
                                 <div class="col-xs-12 col-sm-12 col-md-6">
@@ -178,3 +216,15 @@
     </section>
 @endsection
 
+<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script> 
+<script>   
+    $(document).ready(function (e) {   
+        $('#imagen').change(function(){            
+            let reader = new FileReader();
+            reader.onload = (e) => { 
+                $('#imagenSeleccionada').attr('src', e.target.result); 
+            }
+            reader.readAsDataURL(this.files[0]); 
+        });
+    });
+</script>

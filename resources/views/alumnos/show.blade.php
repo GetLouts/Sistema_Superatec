@@ -118,7 +118,7 @@
                                         </tr>
                                         <tr>
                                             <th> Estado : </th>
-                                            <td>{{ $alumnos->estados->estado }}</td>
+                                            <td <span class="badge badge-success"></span>{{ $alumnos->estados->estado }}</td>
                                         </tr>
 
                                     </tbody>
