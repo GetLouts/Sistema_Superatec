@@ -120,7 +120,7 @@ class AlumnoController extends Controller
             $alumnos->imagen = $nombreimagen;
         }
 
-        $alumnos->estado_id = $request->estado_id;
+        $alumnos->estado_id = 1;
         $alumnos->creado_por = auth()->user()->id;
         $alumnos->actualizado_por = auth()->user()->id;
 
