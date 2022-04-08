@@ -72,7 +72,7 @@
                                     <div class="col-xs-12 col-sm-12 col-md-6">
                                         <div class="form-group">
                                             <label for="name">Pago</label>
-                                            {!! Form::text('pago', null, array('class'=>'form-control')) !!}
+                                            {!! Form::number('pago', null, array('class'=>'form-control')) !!}
                                         </div>
                                     </div>
                                 </td>

@@ -93,7 +93,11 @@ class AlumnosHasPeriodosController extends Controller
      */
     public function edit($id)
     {
-        //
+        $alumnos = Alumno::find($id);
+        $cursos = Curso::all();
+        $alumnoshasperiodos = AlumnosHasPeriodos::all();
+        $metodohasalumnos = MetodosHasAlumnos::all();
+        return view('alumnos.editar', compact('alumnos', 'id', 'cursos', 'alumnoshasperiodos', 'metodohasalumnos'));
     }
 
     /**
@@ -105,12 +109,7 @@ class AlumnosHasPeriodosController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $this->validate($request, [
-            'pago' => 'required',
-            'fecha_pago' => 'required',
-            'numero_referencia' => 'required',
-            'imagen' => 'null',
-        ]);
+        //
     }
 
     /**
