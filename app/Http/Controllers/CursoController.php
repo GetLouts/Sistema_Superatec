@@ -145,6 +145,6 @@ class CursoController extends Controller
     public function destroy($id)
     {
         DB::table('cursos')->where('id', $id)->delete();
-        return redirect()->route('cursos.index');
+        return redirect()->route('cursos.index')->with('eliminar', 'ok');
     }
 }

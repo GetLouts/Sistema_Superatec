@@ -206,9 +206,7 @@ class AlumnoController extends Controller
             'numero_referencia' => 'required',
             'imagen' => 'null',
         ]);
-        $input = $request->all();
-        $metodohasalumnos = MetodosHasAlumnos::find($id);
-        $metodohasalumnos->update($input);
+        $alumno = MetodosHasAlumnos::find($id);
 
         return redirect()->route('alumnos.index');
     }
@@ -222,6 +220,6 @@ class AlumnoController extends Controller
     public function destroy($id)
     {
         Alumno::find($id)->delete();
-        return redirect()->route('alumnos.index');
+        return redirect()->route('alumnos.index')->with('eliminar', 'ok');
     }
 }

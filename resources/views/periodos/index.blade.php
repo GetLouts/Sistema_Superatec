@@ -46,7 +46,7 @@
 
 
                                                     @can('borrar-periodo')
-                                                        {!! Form::open(['method' => 'DELETE', 'route' => ['periodos.destroy', $periodo->id], 'style' => 'display:inline','class'=>'btn-eliminar']) !!}
+                                                        {!! Form::open(['method' => 'DELETE', 'route' => ['periodos.destroy', $periodo->id], 'style' => 'display:inline', 'class' => 'btn-eliminar']) !!}
                                                         {!! Form::button('<i class="fa fa-trash"></i>', ['type' => 'submit', 'class' => 'btn btn-danger']) !!}
                                                         {!! Form::close() !!}
                                                     @endcan
@@ -67,27 +67,33 @@
     </section>
 @endsection
 @section('scripts')
+    @if (session('eliminar') == 'ok')
+        <script>
+            Swal.fire(
+                'Borrado!',
+                'El Periodo Ha Sido Borrado.',
+                'success'
+            )
+        </script>
+    @endif
     <script>
-        $('.btn-eliminar').submit(function(e){
+        $('.btn-eliminar').submit(function(e) {
             e.preventDefault();
 
             Swal.fire({
-            title: 'Seguro de Borrar El Periodo?',
-            text: "No podras revertir esto!",
-            icon: 'warning',
-            showCancelButton: true,
-            confirmButtonColor: '#47c363',
-            cancelButtonColor: '#d33',
-            confirmButtonText: 'Si, Borrar'
-        }).then((result) => {
-            if (result.isConfirmed) {
-                Swal.fire(
-                    'Deleted!',
-                    'Your file has been deleted.',
-                    'success'
-                )
-            }
-        })
+                title: 'Seguro de Borrar El Periodo?',
+                text: "No podras revertir esto!",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#6777ef',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Si, Borrar',
+                cancelButtonText: 'Cancelar'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    this.submit();
+                }
+            })
         });
     </script>
 @endsection

@@ -61,7 +61,7 @@
                                                             class="fa fa-plus"></i></button>
 
                                                     @can('borrar-usuario')
-                                                        {!! Form::open(['method' => 'DELETE', 'route' => ['cursos.destroy', $curso->id], 'style' => 'display:inline']) !!}
+                                                        {!! Form::open(['method' => 'DELETE', 'route' => ['cursos.destroy', $curso->id], 'style' => 'display:inline', 'class' => 'btn-eliminar']) !!}
                                                         {!! Form::button('<i class="fa fa-trash"></i>', ['type' => 'submit', 'class' => 'btn btn-danger']) !!}
                                                         {!! Form::close() !!}
                                                     @endcan
@@ -110,5 +110,34 @@
             });
         });
     </script>
-@endsection
 
+    @if (session('eliminar') == 'ok')
+        <script>
+            Swal.fire(
+                'Borrado!',
+                'El Curso Ha Sido Borrado.',
+                'success'
+            )
+        </script>
+    @endif
+    <script>
+        $('.btn-eliminar').submit(function(e) {
+            e.preventDefault();
+
+            Swal.fire({
+                title: 'Seguro de Borrar El Curso?',
+                text: "No podras revertir esto!",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#6777ef',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Si, Borrar',
+                cancelButtonText: 'Cancelar'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    this.submit();
+                }
+            })
+        });
+    </script>
+@endsection

@@ -90,7 +90,7 @@
 
 
                                                         @can('borrar-alumnos')
-                                                            {!! Form::open(['method' => 'DELETE', 'route' => ['alumnos.destroy', $alumno->id], 'style' => 'display:inline']) !!}
+                                                            {!! Form::open(['method' => 'DELETE', 'route' => ['alumnos.destroy', $alumno->id], 'style' => 'display:inline', 'class' => 'btn-eliminar']) !!}
                                                             {!! Form::button('<i class="fa fa-trash"></i>', ['type' => 'submit', 'class' => 'btn btn-danger']) !!}
                                                             {!! Form::close() !!}
                                                         @endcan
@@ -111,33 +111,34 @@
         </div>
     </section>
 @endsection
-<!--
-<script>
-    (function() {
-        'use strict'
+@section('scripts')
+    @if (session('eliminar') == 'ok')
+        <script>
+            Swal.fire(
+                'Borrado!',
+                'El Alumno Ha Sido Borrado.',
+                'success'
+            )
+        </script>
+    @endif
+    <script>
+        $('.btn-eliminar').submit(function(e) {
+            e.preventDefault();
 
-        var forms = document.querySelectorAll('.formEliminar')
-        array.prototype.slice.call(forms)
-            .forEach(function(form) {
-                form.addEventListener('submit', function(event) {
-                    event.proventDefault()
-                    event.stopPropagation()
-                    Swal.fire({
-                        title: 'Confirma la eliminacion del registro?',
-                        icon: 'info',
-                        showCancelButton: true,
-                        confirmButtonColor: '#20c997',
-                        cancelButtonColor: '#6c757d',
-                        confirmButtonText: 'Confirmar',
-                    }).then((result) => {
-                        if (result.isConfirmed) {
-                            this.submit();
-                            Swal.fire('!Eliminado!',
-                                'El registro ha sido eliminado exitosamente', 'success');
-                        }
-                    })
-                }, false)
+            Swal.fire({
+                title: 'Seguro de Borrar El Alumno?',
+                text: "No podras revertir esto!",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#6777ef',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Si, Borrar',
+                cancelButtonText: 'Cancelar'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    this.submit();
+                }
             })
-    })()
-</script>
--->
+        });
+    </script>
+@endsection

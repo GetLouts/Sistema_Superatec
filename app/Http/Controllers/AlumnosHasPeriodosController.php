@@ -109,7 +109,15 @@ class AlumnosHasPeriodosController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $this->validate($request, [
+            'pago' => 'required',
+            'fecha_pago' => 'required',
+            'numero_referencia' => 'required',
+            'imagen' => 'null',
+        ]);
+        $input = $request->all();
+        $metodohasalumnos = MetodosHasAlumnos::find($id);
+        $metodohasalumnos->update($input);
     }
 
     /**

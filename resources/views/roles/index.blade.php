@@ -19,7 +19,7 @@
                             <div class="table-responsive">
                             <table class="table table-striped mt-2">
                                 <thead style="background-color: #6777ef;">
-                                    <th style="color: #fff;" class="text-center">Rol</th>
+                                    <th style="color: #fff;" class="text-center">Roles</th>
                                     <th style="color: #fff;" class="text-center">Acciones</th>
                                 </thead>
                                 <tbody>
@@ -36,7 +36,7 @@
                                             @endcan
 
                                             @can('borrar-rol')
-                                            {!! Form::open(['method'=> 'DELETE', 'route'=> ['roles.destroy', $role->id],'style'=>'display:inline']) !!}
+                                            {!! Form::open(['method'=> 'DELETE', 'route'=> ['roles.destroy', $role->id],'style'=>'display:inline', 'class' => 'btn-eliminar']) !!}
                                                 {!! Form::button('<i class="fa fa-trash"></i>',  ['type' => 'submit', 'class'=> 'btn btn-danger']) !!}
                                             {!! Form::close() !!}
                                             @endcan
@@ -55,5 +55,36 @@
             </div>
         </div>
     </section>
+@endsection
+@section('scripts')
+    @if (session('eliminar') == 'ok')
+        <script>
+            Swal.fire(
+                'Borrado!',
+                'El Rol Ha Sido Borrado.',
+                'success'
+            )
+        </script>
+    @endif
+    <script>
+        $('.btn-eliminar').submit(function(e) {
+            e.preventDefault();
+
+            Swal.fire({
+                title: 'Seguro de Borrar El Rol?',
+                text: "No podras revertir esto!",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#6777ef',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Si, Borrar',
+                cancelButtonText: 'Cancelar'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    this.submit();
+                }
+            })
+        });
+    </script>
 @endsection
 
