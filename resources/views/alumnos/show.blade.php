@@ -106,7 +106,10 @@
                                         </tr>
                                         <tr>
                                             <th> Referencia : </th>
-                                            <td>{{ $metodohasalumno->numero_referencia }}</td>
+                                            @foreach ($metodohasalumnos as $metodohasalumno)
+                                                <td>{{ $metodohasalumno->numero_referencia }}</td>
+                                            @endforeach
+
                                         </tr>
                                         <tr>
                                             <th> Patrocinador : </th>

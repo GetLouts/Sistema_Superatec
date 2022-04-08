@@ -39,8 +39,7 @@
                                 <table class="table table-striped mt-2">
                                     <thead style="background-color: #6777ef;">
                                         <th style="color: #fff;" class="text-center" class="col-lg-2">Nombres</th>
-                                        <th style="color: #fff;" class="text-center" class="col-lg-2">Apellidos
-                                        </th>
+                                        <th style="color: #fff;" class="text-center" class="col-lg-2">Apellidos</th>
                                         <th style="color: #fff;" class="text-center" class="col-lg-2">Email</th>
                                         <th style="color: #fff;" class="text-center" class="col-lg-2">Cedula</th>
                                         <th style="color: #fff;" class="text-center" class="col-lg-2">Estado</th>
@@ -79,19 +78,24 @@
                                                     <td class="text-center">
                                                         @can('show-alumnos')
                                                         <a class="btn btn-primary"
-                                                            href="{{ route('alumnos.show', $alumno->id) }}""><i class="fa fa-eye"></i></a>
+                                                            href="{{ route('alumnos.show', $alumno->id) }}"><abbr title="Ver Alumno"><i class="fa fa-eye"></i></abbr></a>
                                                         @endcan
 
                                                         @can('editar-alumnos')
                                                             <a class="btn btn-info"
-                                                                href="{{ route('alumnos.edit', $alumno->id) }}"><i
-                                                                    class="fa fa-pen"></i></a>
+                                                                href="{{ route('alumnos.edit', $alumno->id) }}"><abbr title="Editar Alumno"><i
+                                                                    class="fa fa-pen"></i></abbr></a>
+                                                        @endcan
+                                                        @can('editar-alumnos')
+                                                            <a class="btn btn-success"
+                                                                href="{{ route('metodos.create', $alumno->id) }}"><abbr title="Agregar Cursos y Metodos de pago"><i
+                                                                    class="fa fa-book"></i></abbr></a>
                                                         @endcan
 
 
                                                         @can('borrar-alumnos')
                                                             {!! Form::open(['method' => 'DELETE', 'route' => ['alumnos.destroy', $alumno->id], 'style' => 'display:inline', 'class' => 'btn-eliminar']) !!}
-                                                            {!! Form::button('<i class="fa fa-trash"></i>', ['type' => 'submit', 'class' => 'btn btn-danger']) !!}
+                                                            {!! Form::button('<abbr title="Borrar Alumno"><i class="fa fa-trash"></i></abbr>', ['type' => 'submit', 'class' => 'btn btn-danger']) !!}
                                                             {!! Form::close() !!}
                                                         @endcan
                                                 @endif

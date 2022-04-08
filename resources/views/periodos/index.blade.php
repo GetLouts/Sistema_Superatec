@@ -40,14 +40,14 @@
                                                     @endcan
                                                     @can('editar-periodo')
                                                         <a class="btn btn-info"
-                                                            href="{{ route('periodos.edit', $periodo->id) }}"><i
-                                                                class="fa fa-pen"></i></a>
+                                                            href="{{ route('periodos.edit', $periodo->id) }}"><abbr title="Editar Periodo"><i
+                                                                class="fa fa-pen"></i></abbr></a>
                                                     @endcan
 
 
                                                     @can('borrar-periodo')
                                                         {!! Form::open(['method' => 'DELETE', 'route' => ['periodos.destroy', $periodo->id], 'style' => 'display:inline', 'class' => 'btn-eliminar']) !!}
-                                                        {!! Form::button('<i class="fa fa-trash"></i>', ['type' => 'submit', 'class' => 'btn btn-danger']) !!}
+                                                        {!! Form::button('<abbr title="Borrar Periodo"><i class="fa fa-trash"></i></abbr>', ['type' => 'submit', 'class' => 'btn btn-danger']) !!}
                                                         {!! Form::close() !!}
                                                     @endcan
                                                 </td>

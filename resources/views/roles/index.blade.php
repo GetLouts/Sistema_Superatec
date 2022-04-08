@@ -32,12 +32,12 @@
                                     @endcan
                                     
                                             @can('editar-rol')
-                                                <a class="btn btn-primary" href="{{route('roles.edit',$role->id)}}"><i class="fa fa-pen"></i></a>
+                                                <a class="btn btn-primary" href="{{route('roles.edit',$role->id)}}"><abbr title="Editar Rol"><i class="fa fa-pen"></i></abbr></a>
                                             @endcan
 
                                             @can('borrar-rol')
                                             {!! Form::open(['method'=> 'DELETE', 'route'=> ['roles.destroy', $role->id],'style'=>'display:inline', 'class' => 'btn-eliminar']) !!}
-                                                {!! Form::button('<i class="fa fa-trash"></i>',  ['type' => 'submit', 'class'=> 'btn btn-danger']) !!}
+                                                {!! Form::button('<abbr title="Borrar Rol"><i class="fa fa-trash"></i></abbr>',  ['type' => 'submit', 'class'=> 'btn btn-danger']) !!}
                                             {!! Form::close() !!}
                                             @endcan
                                         </td>
