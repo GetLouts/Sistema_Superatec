@@ -51,7 +51,7 @@ Route::group(['middleware' => ['auth']], function(){
 	Route::resource('gcomunidad', GraficacomunidadController::class);
 	Route::resource('cursos', CursoController::class);
 	Route::resource('galumnos', GraficaalumnoController::class);
-	Route::resource('gcursos', GraficacursoController::class);
+	// Route::resource('gcursos', GraficacursoController::class);
 	Route::resource('gpatrocinadores', GraficapatrocinadorController::class);
 	Route::resource('gedades', GraficaedadesController::class);
 	Route::resource('gingresos', GraficaingresoController::class);
@@ -67,5 +67,6 @@ Route::controller(FullCalenderController::class)->group(function(){
 Route::get('alumnos/pdf', [App\Http\Controllers\AlumnoController::class, 'pdf'])->name('alumnos.pdf');
 Route::get('alumnos/excel', [App\Http\Controllers\AlumnoController::class, 'excel'])->name('alumnos.excel');
 
-Route::get('/chart', [App\Http\Controllers\GraficaController::class, 'charts'])->name('chart');
+Route::get('/gcursos', [App\Http\Controllers\GraficaController::class, 'charts'])->name('chart');
+Route::get('/gcomunidad', [App\Http\Controllers\GraficaController::class, 'charts2'])->name('chart2');
 
