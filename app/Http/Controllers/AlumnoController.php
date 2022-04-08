@@ -57,16 +57,6 @@ class AlumnoController extends Controller
 
         return view('alumnos.index', compact('alumnos', 'texto'));
     }
-    public function pdf()
-    {
-
-        $pdf = PDF::loadView('alumnos.pdf');
-        $pdf->loadHTML('<h1>Test</h1>');
-        return $pdf->stream();
-
-       return view('alumnos.pdf', compact('alumnos'));
-    }
-
     /**
      * Show the form for creating a new resource.
      *
@@ -226,4 +216,14 @@ class AlumnoController extends Controller
         Alumno::find($id)->delete();
         return redirect()->route('alumnos.index')->with('eliminar', 'ok');
     }
+    public function pdf(Request $request)
+    {
+        $alumnos = Alumno::all();
+           
+        view()->share('alumnos.pdf', $alumnos);
+        $pdf = PDF::loadView('alumnos.pdf', ['alumnos' => $alumnos]);
+     
+        return $pdf->stream('alumnos.pdf');
+    }
+
 }

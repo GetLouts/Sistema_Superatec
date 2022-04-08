@@ -36,7 +36,8 @@ Route::get('/', function () {
 });
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-
+Route::get('alumnos/pdf', [App\Http\Controllers\AlumnoController::class, 'pdf'])->name('alumnos.pdf');
+Route::get('alumnos/excel', [App\Http\Controllers\AlumnoController::class, 'excel'])->name('alumnos.excel');
 Route::get('/charts/orders', [App\Http\Controllers\GraficacomunidadController::class, 'ordersChart'])->name('charts.orders');
 Auth::routes();
 
@@ -64,5 +65,4 @@ Route::controller(FullCalenderController::class)->group(function(){
     Route::post('/fullcalenderAjax', 'ajax');
 });
 
-Route::get('alumnos/pdf', [App\Http\Controllers\AlumnoController::class, 'pdf'])->name('alumnos.pdf');
-Route::get('alumnos/excel', [App\Http\Controllers\AlumnoController::class, 'excel'])->name('alumnos.excel');
+

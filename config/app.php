@@ -179,6 +179,8 @@ return [
 
         Spatie\Permission\PermissionServiceProvider::class,
 
+        //Libreria PDF
+        Barryvdh\DomPDF\ServiceProvider::class,
     ],
 
     /*
