@@ -14,6 +14,7 @@ use Illuminate\Support\Facades\DB;
 use App\Models\MetodosHasAlumnos;
 use Illuminate\Support\Arr;
 use Barryvdh\DomPDF\Facade\PDF;
+use Maatwebsite\Excel\Facades\Excel;
 
 class AlumnoController extends Controller
 {
@@ -224,6 +225,10 @@ class AlumnoController extends Controller
         $pdf = PDF::loadView('alumnos.pdf', ['alumnos' => $alumnos]);
      
         return $pdf->stream('alumnos.pdf');
+    }
+    public function excel()
+    {
+        return Excel::download(new Alumno, 'alumnos.xlsx');
     }
 
 }
