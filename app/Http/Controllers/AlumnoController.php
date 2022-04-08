@@ -200,6 +200,18 @@ class AlumnoController extends Controller
             $alumno->imagen = $nombreimagen;
             $alumno->save();
         }
+        $metodohasalumnos = MetodosHasAlumnos::where('alumno_id',$id);
+        $metodohasalumnos->fill([
+            'pago' => $request->pago,
+            'fecha_pago' => $request->fecha_pago,
+            'numero_referencia' => $request->numero_referencia,
+            'metodo_id' => $request->metodo_id,
+            'alumno_id' => $request->alumno_id,
+        ]);
+
+      
+        
+        $metodohasalumnos->save();
         return redirect()->route('alumnos.index');
     }
 
