@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 use App\Models\Alumno;
+use App\Models\AlumnosHasPeriodos;
 use App\Models\PeriodosHasCursos;
 
 use Illuminate\Http\Request;
@@ -26,15 +27,29 @@ class GraficaController extends Controller
     {
 
         $alumnos = Alumno::all();
-        $periodosXcurso = PeriodosHasCursos::all();
+        // $periodosXcurso = PeriodosHasCursos::all();
         $data = [];
         foreach ($alumnos as $alumno) {
-            $data['data'][] = $alumno->periodo_id;
+            $data['data'][] = $alumno->id;
             $data['label'][] = $alumno->comunidad;
         }
         $data = json_encode($data);
 
         return view('graficas.gcomunidad', compact('data'));
+    }
+
+    public function charts3()
+    {
+
+        $ingresos = AlumnosHasPeriodos::all();
+        $data = [];
+        foreach ($ingresos as $ingreso) {
+            $data['label'][] = $ingreso->periodo_id;
+            $data['data'][] = $ingreso->id;
+        }
+        $data = json_encode($data);
+
+        return view('graficas.gingresos', compact('data'));
     }
     
 }

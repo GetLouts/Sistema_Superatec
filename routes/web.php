@@ -69,4 +69,4 @@ Route::get('alumnos/excel', [App\Http\Controllers\AlumnoController::class, 'exce
 
 Route::get('/gcursos', [App\Http\Controllers\GraficaController::class, 'charts'])->name('chart');
 Route::get('/gcomunidad', [App\Http\Controllers\GraficaController::class, 'charts2'])->name('chart2');
-
+Route::get('/gingresos', [App\Http\Controllers\GraficaController::class, 'charts3'])->name('chart3');

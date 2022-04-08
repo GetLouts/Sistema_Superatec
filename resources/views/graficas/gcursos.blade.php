@@ -12,8 +12,8 @@
             <div class="row justify-content-center">
                 <div class="col-lg-12">
                     <div class="card justify-content-center">
-                        <div class="card-body text-center" style="width: 550px; height:550px;">
-                            <canvas id="mychart" style="border: 1px solid red"></canvas>
+                        <div class="card-body text-center">
+                            <canvas id="mychart"></canvas>
                             <script>
                                 $(document).ready(function() {
                                     var cData = JSON.parse('<?php echo $data; ?>');
@@ -22,11 +22,11 @@
                                     // console.log(ldata)
                                     const ctx = document.getElementById('mychart').getContext('2d');
                                     const myChart = new Chart(ctx, {
-                                        type: 'doughnut',
+                                        type: 'bar',
                                         data: {
                                             labels: ['Periodo1', 'Periodo 2', 'Periodo 3', 'Periodo 4'],
                                             datasets: [{
-                                                labels: 'Cursos',
+                                                labels: 'Cantidad de Cursos',
                                                 data: [ldata, 8, 12, 18],
                                                 backgroundColor: [
                                                     'rgba(255, 99, 132, 0.2)',
@@ -49,10 +49,6 @@
                                         },
                                         options: {
                                             responsive: true,
-                                            title: {
-                                                display: true,
-                                                text: 'Cantidad de Cursos'
-                                            },
                                             scales: {
                                                 y: {
                                                     beginAtZero: true
