@@ -46,7 +46,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-lg-8"> <!-- ALUMNOS -->
+                <div class="col-lg-8">
                     <div class="card">
                         <div class="card-body">
                             @if ($errors->any())
@@ -135,64 +135,13 @@
                             </td>
                             <td>
                                 <div class="col-xs-12 col-sm-12 col-md-6">
-                                    <div class="form-group">
-                                        <label for="name">Patrocinador</label>
-                                        {!! Form::text('patrocinador', null, array('class'=>'form-control')) !!}
-                                    </div>
-                                </div>
-                                    <div class="col-xs-12 col-sm-12 col-md-6">
-                                    <div class="form-group">
-                                        <label for="name">Fecha de Registro</label>
-                                        {!! Form::date('fecha_registro', null, array('class'=>'form-control')) !!}
-                                    </div>
-                                </div>
-                            </td>
-                            <td>
-                                <div class="col-xs-12 col-sm-12 col-md-6">
-                                    <label for="name">Estado</label>
-                                    <select name="estado_id" class="form-control">
-   
-                                        @foreach ($estados as $estado)
-                                            <option value="{{ $estado->id }}">{{ $estado->estado }}</option>      
-                                        @endforeach
-                                    </select>
-                                </div>
-                            </td>
-                                <div class="col-xs-12 col-sm-12 col-md-12">
-                                    <br>
-                                    <button type="submit" class="btn btn-success">Actualizar Alumno</button>
-                                    <a class="btn btn-primary" href="{{route('alumnos.index') }}">Volver</a>
-                                </div>
-                            </div>
-                            {!! Form::close() !!}
-                    </div>
-                </div>
-                <div class="col-lg-12"> <!-- CURSOS Y METODOS -->
-                    <div class="card">
-                        <div class="card-body">
-                            @if ($errors->any())
-                                <div class="alert alert-dark alert-dismissible fade show" role="alert">
-                                    <strong>Revise los campos></strong>
-                                    @foreach ($errors->all() as $error)
-                                        <span class="badge badge-danger">{{ $error }}</span>
-                                    @endforeach
-                                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                                        <span aria-hidden="true">&times;</span>
-                                    </button>
-                                </div>
-                            @endif
-
-                            {!! Form::model($metodohasalumnos, ['method' => 'PATCH', 'enctype'=>'multipart/form-data', 'route' => ['metodos.update', $alumnos->id]]) !!}
-                            <div class="row">
-                            <td>
-                                <div class="col-xs-12 col-sm-12 col-md-6">
                                     <label for="name">Curso</label>
                                     <select name="curso" class="form-control">
                                        
                                         @foreach ($cursos as $curso)
                                             <option value="{{ $curso->id }}">{{ $curso->cursos->cursos }}</option>                                                   
                                         @endforeach
-                                    </select> 
+                                    </select>
                                 </div>
                                 <div class="col-xs-12 col-sm-12 col-md-6">
                                     <label for="metodohasalumno">Pago</label>
@@ -230,9 +179,32 @@
                                         @endforeach
                                     </div>
                                 </div>
+                                <div class="col-xs-12 col-sm-12 col-md-6">
+                                    <div class="form-group">
+                                        <label for="name">Patrocinador</label>
+                                        {!! Form::text('patrocinador', null, array('class'=>'form-control')) !!}
+                                    </div>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="col-xs-12 col-sm-12 col-md-6">
+                                    <div class="form-group">
+                                        <label for="name">Fecha de Registro</label>
+                                        {!! Form::date('fecha_registro', null, array('class'=>'form-control')) !!}
+                                    </div>
+                                </div>
+                                <div class="col-xs-12 col-sm-12 col-md-6">
+                                    <label for="name">Estado</label>
+                                    <select name="estado_id" class="form-control">
+   
+                                        @foreach ($estados as $estado)
+                                            <option value="{{ $estado->id }}">{{ $estado->estado }}</option>      
+                                        @endforeach
+                                    </select>
+                                </div>
                             </td>
                                 <div class="col-xs-12 col-sm-12 col-md-12">
-                                    <button type="submit" class="btn btn-success">Actualizar</button>
+                                    <button type="submit" class="btn btn-success">Actualizar Alumno</button>
                                     <a class="btn btn-primary" href="{{route('alumnos.index') }}">Volver</a>
                                 </div>
                             </div>
