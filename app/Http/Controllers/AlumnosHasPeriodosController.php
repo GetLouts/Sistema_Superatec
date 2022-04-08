@@ -118,6 +118,8 @@ class AlumnosHasPeriodosController extends Controller
         $input = $request->all();
         $metodohasalumnos = MetodosHasAlumnos::find($id);
         $metodohasalumnos->update($input);
+
+        return redirect()->route('alumnos.index');
     }
 
     /**

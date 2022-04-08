@@ -200,14 +200,6 @@ class AlumnoController extends Controller
             $alumno->imagen = $nombreimagen;
             $alumno->save();
         }
-        $this->validate($request, [
-            'pago' => 'required',
-            'fecha_pago' => 'required',
-            'numero_referencia' => 'required',
-            'imagen' => 'null',
-        ]);
-        $alumno = MetodosHasAlumnos::find($id);
-
         return redirect()->route('alumnos.index');
     }
 
