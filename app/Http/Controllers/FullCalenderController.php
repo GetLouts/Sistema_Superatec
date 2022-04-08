@@ -7,6 +7,13 @@ use Illuminate\Http\Request;
 
 class FullCalenderController extends Controller
 {
+    function __construct()
+    {
+        $this->middleware('permission:ver-cronograma|crear-cronograma|editar-cronograma|borrar-cronograma')->only('index');
+        $this->middleware('permission:crear-cronograma', ['only' => ['create', 'store']]);
+        $this->middleware('permission:editar-cronograma', ['only' => ['edit', 'update']]);
+        $this->middleware('permission:borrar-cronograma', ['only' => ['destroy']]);
+    }
     /**
      * Write code on Method
      *

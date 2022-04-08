@@ -2,13 +2,14 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
+//use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 class Alumno extends Model
 {
-    use HasFactory;
+    //use HasFactory;
 
+    protected $table = 'alumnos';
     protected $fillable = [
         'nombres',
         'apellidos',
@@ -20,7 +21,6 @@ class Alumno extends Model
         'nivel_de_estudio',
         'fecha_nac',
         'comunidad',
-        'numero_referencia',
         'patrocinador',
         'imagen',
         'estado_id',

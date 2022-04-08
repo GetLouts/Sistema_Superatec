@@ -23,6 +23,7 @@ class AlumnoController extends Controller
         $this->middleware('permission:crear-alumnos', ['only' => ['create', 'store']]);
         $this->middleware('permission:editar-alumnos', ['only' => ['edit', 'update']]);
         $this->middleware('permission:borrar-alumnos', ['only' => ['destroy']]);
+        $this->middleware('permission:show-alumnos', ['only' => ['show']]);
     }
     /**
      * Display a listing of the resource.
@@ -63,7 +64,7 @@ class AlumnoController extends Controller
         $pdf->loadHTML('<h1>Test</h1>');
         return $pdf->stream();
 
-       // return view('alumnos.pdf', compact('alumnos'));
+       return view('alumnos.pdf', compact('alumnos'));
     }
 
     /**
@@ -120,7 +121,7 @@ class AlumnoController extends Controller
             $alumnos->imagen = $nombreimagen;
         }
 
-        $alumnos->estado_id = $request->estado_id;
+        $alumnos->estado_id = 1;
         $alumnos->creado_por = auth()->user()->id;
         $alumnos->actualizado_por = auth()->user()->id;
 
@@ -139,10 +140,11 @@ class AlumnoController extends Controller
     {
         $alumnos = Alumno::find($id);
         $cursos = PeriodosHasCursos::where('periodo_id', 1)->get();
-        $alumnoshasperiodos = AlumnosHasPeriodos::all();
-        $metodohasalumnos = MetodosHasAlumnos::all();
+
+        $alumnoshasperiodos = AlumnosHasPeriodos::where('alumno_id','=', $id)->get();
+        $metodohasalumnos = MetodosHasAlumnos::where('alumno_id','=', $id)->get();
         $metodos = Metodo::all();
-        return view('alumnos.show', compact('alumnos', 'id', 'cursos', 'alumnoshasperiodos', 'metodohasalumnos', 'metodos'));
+        return view('alumnos.show', compact('alumnos', 'id', 'alumnoshasperiodos', 'cursos', 'metodohasalumnos', 'metodos'));
     }
 
     /**
@@ -157,9 +159,9 @@ class AlumnoController extends Controller
         $cursos = PeriodosHasCursos::where('periodo_id', 1)->get();
         $estados = Estado::all();
         $metodos = Metodo::all();
-        $metodohasalumnos = MetodosHasAlumnos::all();
+        $metodohasalumnos = MetodosHasAlumnos::where('alumno_id','=', $id)->get();
 
-        return view('alumnos.editar', compact('alumnos', 'alumnos', 'cursos', 'estados', 'metodos', 'metodohasalumnos'));
+        return view('alumnos.editar', compact('alumnos', 'cursos', 'estados', 'metodos', 'metodohasalumnos'));
     }
 
     /**
@@ -182,8 +184,6 @@ class AlumnoController extends Controller
             'nivel_de_estudio' => 'required',
             'fecha_nac' => 'required',
             'comunidad' => 'required',
-            'pago' => 'required',
-            'patrocinador' => 'required',
             'fecha_registro' => 'required',
             'estado_id' => 'required',
             'imagen' => 'null',
@@ -200,6 +200,15 @@ class AlumnoController extends Controller
             $alumno->imagen = $nombreimagen;
             $alumno->save();
         }
+        $this->validate($request, [
+            'pago' => 'required',
+            'fecha_pago' => 'required',
+            'numero_referencia' => 'required',
+            'imagen' => 'null',
+        ]);
+        $input = $request->all();
+        $metodohasalumnos = MetodosHasAlumnos::find($id);
+        $metodohasalumnos->update($input);
 
         return redirect()->route('alumnos.index');
     }

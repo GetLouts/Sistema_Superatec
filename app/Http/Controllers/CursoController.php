@@ -12,6 +12,13 @@ use Illuminate\Http\Request;
 
 class CursoController extends Controller
 {
+    function __construct()
+    {
+        $this->middleware('permission:ver-cursos|crear-cursos|editar-cursos|borrar-cursos')->only('index');
+        $this->middleware('permission:crear-cursos', ['only' => ['create', 'store']]);
+        $this->middleware('permission:editar-cursos', ['only' => ['edit', 'update']]);
+        $this->middleware('permission:borrar-cursos', ['only' => ['destroy']]);
+    }
     /**
      * Display a listing of the resource.
      *
