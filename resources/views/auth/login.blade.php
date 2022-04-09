@@ -43,11 +43,11 @@
                         <div class="invalid-feedback">
                             {{ $errors->first('password') }}
                         </div>
-                        <div class="custom-control custom-checkbox">
+                        {{-- <div class="custom-control custom-checkbox">
                             <input type="checkbox" name="remember" class="custom-control-input" tabindex="3" id="remember"
                                 {{ Cookie::get('remember') !== null ? 'checked' : '' }}>
                             <label class="custom-control-label" for="remember">Recordar Contraseña</label>
-                        </div>
+                        </div> --}}
                     </div>
                     <div class="inicio ">
                         <button type="submit" class="btn btn-lg btn-block btn-success mt-2" tabindex="4" id="inicio">
