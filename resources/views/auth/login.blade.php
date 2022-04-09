@@ -50,8 +50,9 @@
                         </div> --}}
                     </div>
                     <div class="inicio ">
+                        <br>
                         <button type="submit" class="btn btn-lg btn-block btn-success mt-2" tabindex="4" id="inicio">
-                            Iniciar Sesion
+                            Iniciar Sesión
                         </button>
                     </div>
                 </div>
