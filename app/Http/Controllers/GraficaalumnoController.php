@@ -26,7 +26,7 @@ class GraficaalumnoController extends Controller
         ->groupBy(DB::raw("Month(created_at)"))
         ->pluck('month');
 
-        $datas = array(0,0,0,0,0,0,0,0,0,0,0,0);
+        $datas = array(0,0,0,0,0,0,0,0,0,0,0,0,0);
         foreach ($months as $index => $month) {
             $datas[$month] = $alumnosData[$index];
         }

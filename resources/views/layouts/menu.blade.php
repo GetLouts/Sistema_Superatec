@@ -19,8 +19,8 @@
         @can('ver-menu-graficas')<li><a class="nav-link" href="/gcomunidad"><i class="fas fa-poll"></i>Comunidad</a></li>@endcan
         @can('ver-menu-graficas')<li><a class="nav-link" href="/galumnos"><i class="fas fa-poll"></i>Alumnos</a></li>@endcan
         @can('ver-menu-graficas')<li><a class="nav-link" href="/gcursos"><i class="fas fa-poll"></i>Cursos</a></li>@endcan
-        @can('ver-menu-graficas')<li><a class="nav-link" href="/gpatrocinadores"><i class="fas fa-poll"></i>Patrocinadores</a></li>@endcan
-        @can('ver-menu-graficas')<li><a class="nav-link" href="/gedades"><i class="fas fa-poll"></i>Edades</a></li>@endcan
+        {{-- @can('ver-menu-graficas')<li><a class="nav-link" href="/gpatrocinadores"><i class="fas fa-poll"></i>Patrocinadores</a></li>@endcan
+        @can('ver-menu-graficas')<li><a class="nav-link" href="/gedades"><i class="fas fa-poll"></i>Edades</a></li>@endcan --}}
         @can('ver-menu-graficas')<li><a class="nav-link" href="/gingresos"><i class="fas fa-poll"></i>Ingresos</a></li>@endcan
         </ul>
       </li>
