@@ -11,6 +11,7 @@ use App\Models\MetodosHasAlumnos;
 use App\Models\AlumnosHasPeriodos;
 use Illuminate\Http\Request;
 use App\Enums\HttpStatus;
+use Barryvdh\DomPDF\Facade\PDF;
 
 class AlumnosHasPeriodosController extends Controller
 {
@@ -131,5 +132,14 @@ class AlumnosHasPeriodosController extends Controller
     public function destroy($id)
     {
         //
+    }
+    public function pdf(Request $request)
+    {
+        $metodohasalumnos = MetodosHasAlumnos::all();
+           
+        view()->share('alumnos.pdf', $metodohasalumnos);
+        $pdf = PDF::loadView('alumnos.pdf', ['metodohasalumnos' => $metodohasalumnos]);
+     
+        return $pdf->stream('alumnos.pdf');
     }
 }

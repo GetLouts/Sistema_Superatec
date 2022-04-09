@@ -13,8 +13,10 @@ use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\DB;
 use App\Models\MetodosHasAlumnos;
 use Illuminate\Support\Arr;
-use Barryvdh\DomPDF\Facade\PDF;
+
 use Maatwebsite\Excel\Facades\Excel;
+
+use App\Exports\AlumnosExport;
 
 class AlumnoController extends Controller
 {
@@ -217,18 +219,10 @@ class AlumnoController extends Controller
         Alumno::find($id)->delete();
         return redirect()->route('alumnos.index')->with('eliminar', 'ok');
     }
-    public function pdf(Request $request)
-    {
-        $alumnos = Alumno::all();
-           
-        view()->share('alumnos.pdf', $alumnos);
-        $pdf = PDF::loadView('alumnos.pdf', ['alumnos' => $alumnos]);
-     
-        return $pdf->stream('alumnos.pdf');
-    }
+
     public function excel()
     {
-        return Excel::download(new Alumno, 'alumnos.xlsx');
+        return Excel::download(new AlumnosExport, 'alumnos.xlsx');
     }
 
 }

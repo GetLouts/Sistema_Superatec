@@ -12,21 +12,19 @@
     <table class="table table-striped mt-2">
         <thead>
             <tr>
-                <th>Nombres</th>
-                <th>Apellidos</th>
-                <th>Email</th>
-                <th>Cedula</th>
-                <th>Estado</th>
+                <th>ID</th>
+                <th>Pago</th>
+                <th>Fecha de Pago</th>
+                <th>Numero de Referencia</th>
             </tr>
         </thead>
         <tbody>
-            @foreach ($alumnos as $alumno)
+            @foreach ($metodohasalumnos as $metodohasalumno)
                 <tr>
-                    <td>{{ $alumno->nombres }}</td>
-                    <td>{{ $alumno->apellidos }}</td>
-                    <td>{{ $alumno->correo }}</td>
-                    <td>{{ $alumno->cedula }}</td>
-                    <td>{{ $alumno->estado }}</td>
+                    <td>{{ $metodohasalumno->id }}</td>
+                    <td>{{ $metodohasalumno->pago }}</td>
+                    <td>{{ $metodohasalumno->fecha_pago }}</td>
+                    <td>{{ $metodohasalumno->numero_referencia }}</td>
                 </tr>
             @endforeach
         </tbody>

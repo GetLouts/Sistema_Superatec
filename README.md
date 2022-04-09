@@ -13,8 +13,7 @@ _Ejecutar los comandos para poner el proyecto a funcionar._
 
 * `composer install` Instalacion de libreria necesarias
 * `php artisan key:generate` Crear la clave de la aplicacion
-* `php artisan db:seed --class=SuperAdminSeeder` Tener la bd
-* `php artisan db:seed --class=TablaPermisosSeeder` Tener la bd
+* `php artisan migrate:fresh --seed`
 * `php artisan serve` Activar el servidor para pruebas
 
 ## Credenciales de prueba
@@ -24,5 +23,17 @@ _Ejecutar los comandos para poner el proyecto a funcionar._
 **Contraseña:** = administrador
 
 
-## Para hacer Migracion por si se crea una columna nueva
-* `php artisan migrate:fresh --seed`
+## Para hacer instalar el paquete de excel
+## Requiremientos
+* `PHP: ^7.2\|^8.0`
+* `Laravel: ^5.8`
+* `PhpSpreadsheet: ^1.21`  `composer require phpoffice/phpspreadsheet "^1.8.0"`
+* `psr/simple-cache: ^1.0` `composer require psr/simple-cache:^1.0 maatwebsite/excel`
+
+* `composer require maatwebsite/excel`
+* `Además, si usa xampp , asegúrese de que estas extensiones estén habilitadas en el archivo C:\xampp\php\php.  ini antes de intentar instalar la biblioteca.
+extension=mbstring
+extension=fileinfo
+extension=gd`
+
+* `php artisan vendor:publish --provider="Maatwebsite\Excel\ExcelServiceProvider" --tag=config`
