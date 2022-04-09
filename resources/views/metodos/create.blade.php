@@ -9,7 +9,7 @@
         </div>
         <div class="section-body">
             <div class="row">
-                <div class="col-lg-4">
+                {{-- <div class="col-lg-4">
                     <div class="card">
                         <div class="card-body">
                             {!! Form::open(array('route'=> ['metodos.store', $alumno->id], 'method'=>'POST', 'enctype'=>'multipart/form-data', 'id'=>'formalumno')) !!}
@@ -41,8 +41,8 @@
                             </div>
                         </div>
                     </div>
-                </div>
-                <div class="col-lg-8">
+                </div> --}}
+                <div class="col-lg-12">
                     <div class="card">
                         <div class="card-body">
                             @if ($errors->any())
