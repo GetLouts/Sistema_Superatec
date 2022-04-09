@@ -86,11 +86,12 @@
                                                                 href="{{ route('alumnos.edit', $alumno->id) }}"><abbr title="Editar Alumno"><i
                                                                     class="fa fa-pen"></i></abbr></a>
                                                         @endcan
-                                                        @can('editar-alumnos')
+
+                                                        {{-- @can('editar-alumnos')
                                                             <a class="btn btn-success"
                                                                 href="{{ route('metodos.create', $alumno->id) }}"><abbr title="Agregar Cursos y Metodos de pago"><i
                                                                     class="fa fa-book"></i></abbr></a>
-                                                        @endcan
+                                                        @endcan --}}
 
 
                                                         @can('borrar-alumnos')

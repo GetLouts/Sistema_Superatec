@@ -1,11 +1,11 @@
 @extends('layouts.app')
 @section('title')
-    Registro de Curso y Metodos de Pago
+    Registro de Curso y Métodos de Pago
 @endsection
 @section('content')
     <section class="section">
         <div class="section-header">
-            <h3 class="page__heading">Cursos y Metodos de Pago</h3>
+            <h3 class="page__heading">Cursos y Métodos de Pago</h3>
         </div>
         <div class="section-body">
             <div class="row">
@@ -71,16 +71,16 @@
                                 </div>
                                     <div class="col-xs-12 col-sm-12 col-md-6">
                                         <div class="form-group">
-                                            <label for="name">Pago</label>
+                                            <label for="name">Pagó</label>
                                             {!! Form::number('pago', null, array('class'=>'form-control')) !!}
                                         </div>
                                     </div>
                                 </td>
                                 <td>
                                     <div class="col-xs-12 col-sm-12 col-md-6">
-                                        <label for="name">Metodo de Pago</label>
+                                        <label for="name">Método de Pago</label>
                                         <select name="metodo_pago" class="form-control">
-                                            <option hidden selected>--> Selecione un Metodo de Pago <--</option>
+                                            <option hidden selected>--> Selecione un Método de Pago <--</option>
                                             @foreach ($metodos as $metodo)
                                                 <option value="{{ $metodo->id }}">{{ $metodo->metodo_pago }}</option>      
                                             @endforeach

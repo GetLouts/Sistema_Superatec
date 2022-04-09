@@ -144,7 +144,7 @@
                                     </select>
                                 </div>
                                 <div class="col-xs-12 col-sm-12 col-md-6">
-                                    <label for="metodohasalumno">Pago</label>
+                                    <label for="metodohasalumno">Pagó</label>
                                     <div class="form-group">
                                         
                                     @foreach ($metodohasalumnos as $metodohasalumno)
@@ -155,7 +155,7 @@
                             </td>
                             <td>
                                 <div class="col-xs-12 col-sm-12 col-md-6">
-                                    <label for="name">Metodo de Pago</label>
+                                    <label for="name">Método de Pago</label>
                                     <select name="metodo_pago" class="form-control">
                                        
                                         @foreach ($metodos as $metodo)
