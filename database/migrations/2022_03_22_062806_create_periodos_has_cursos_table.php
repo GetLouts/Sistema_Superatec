@@ -21,8 +21,8 @@ return new class extends Migration
             $table->unsignedBigInteger('actualizado_por')->nullable();
             $table->timestamps();
 
-            $table->foreign('periodo_id')->references('id')->on('periodos');
-            $table->foreign('curso_id')->references('id')->on('cursos');
+            $table->foreign('periodo_id')->references('id')->on('periodos')->onDelete('cascade');
+            $table->foreign('curso_id')->references('id')->on('cursos')->onDelete('cascade');
             $table->foreign('creado_por')->references('id')->on('users');
             $table->foreign('actualizado_por')->references('id')->on('users');
         });

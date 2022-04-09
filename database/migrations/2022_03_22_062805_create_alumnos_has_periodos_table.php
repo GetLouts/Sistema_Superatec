@@ -23,8 +23,8 @@ return new class extends Migration
             $table->timestamps();
 
             $table->foreign('alumno_id')->references('id')->on('alumnos')->onDelete('cascade');
-            $table->foreign('periodo_id')->references('id')->on('periodos');
-            $table->foreign('curso_id')->references('id')->on('cursos');
+            $table->foreign('periodo_id')->references('id')->on('periodos')->onDelete('cascade');
+            $table->foreign('curso_id')->references('id')->on('cursos')->onDelete('cascade');
             $table->foreign('creado_por')->references('id')->on('users');
             $table->foreign('actualizado_por')->references('id')->on('users');
         });

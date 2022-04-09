@@ -40,13 +40,13 @@
                                         <td class="text-center">
                                             @endcan
                                             @can('editar-usuario')
-                                            <a class="btn btn-info" href="{{ route('usuarios.edit', $usuario->id)}}"><i class="fa fa-pen"></i></a>
+                                            <a class="btn btn-info" href="{{ route('usuarios.edit', $usuario->id)}}"><abbr title="Editar Usuario"><i class="fa fa-pen"></i></abbr></a>
                                             @endcan
                                             
                                             
                                             @can('borrar-usuario')
-                                            {!! Form::open(['method'=> 'DELETE', 'route'=> ['usuarios.destroy', $usuario->id],'style'=>'display:inline']) !!}
-                                                {!! Form::button('<i class="fa fa-trash"></i>',  ['type' => 'submit', 'class'=> 'btn btn-danger']) !!}
+                                            {!! Form::open(['method'=> 'DELETE', 'route'=> ['usuarios.destroy', $usuario->id],'style'=>'display:inline', 'class' => 'btn-eliminar']) !!}
+                                                {!! Form::button('<abbr title="Borrar Usuario"><i class="fa fa-trash"></i></abbr>',  ['type' => 'submit', 'class'=> 'btn btn-danger']) !!}
                                             {!! Form::close() !!}
                                             @endcan
                                         </td>
@@ -64,4 +64,35 @@
             </div>
         </div>
     </section>
+@endsection
+@section('scripts')
+    @if (session('eliminar') == 'ok')
+        <script>
+            Swal.fire(
+                'Borrado!',
+                'El Usuario Ha Sido Borrado.',
+                'success'
+            )
+        </script>
+    @endif
+    <script>
+        $('.btn-eliminar').submit(function(e) {
+            e.preventDefault();
+
+            Swal.fire({
+                title: 'Seguro de Borrar El Usuario?',
+                text: "No podras revertir esto!",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#6777ef',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Si, Borrar',
+                cancelButtonText: 'Cancelar'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    this.submit();
+                }
+            })
+        });
+    </script>
 @endsection

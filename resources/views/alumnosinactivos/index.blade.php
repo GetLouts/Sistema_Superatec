@@ -62,15 +62,17 @@
                                           </td>
                                           
                                         <td class="text-center">
-                                            <a class="btn btn-primary" href="{{ route('alumnosinactivos.show', $alumno->id)}}""><i class="fa fa-eye"></i></a>
+                                            @can('show-alumnos')
+                                            <a class="btn btn-primary" href="{{ route('alumnosinactivos.show', $alumno->id)}}"><abbr title="Ver Alumno Inactivo"><i class="fa fa-eye"></i></abbr></a>
+                                            @endcan
                                             @can('editar-alumnos')
-                                            <a class="btn btn-info" href="{{ route('alumnosinactivos.edit', $alumno->id)}}"><i class="fa fa-pen"></i></a>
+                                            <a class="btn btn-info" href="{{ route('alumnosinactivos.edit', $alumno->id)}}"><abbr title="Editar Alumno Inactivo"><i class="fa fa-pen"></i></abbr></a>
                                             @endcan
                                             
                                             
                                             @can('borrar-alumnos')
-                                            {!! Form::open(['method'=> 'DELETE', 'route'=> ['alumnosinactivos.destroy', $alumno->id],'style'=>'display:inline']) !!}
-                                                {!! Form::button('<i class="fa fa-trash"></i>',  ['type' => 'submit', 'class'=> 'btn btn-danger']) !!}
+                                            {!! Form::open(['method'=> 'DELETE', 'route'=> ['alumnosinactivos.destroy', $alumno->id],'style'=>'display:inline', 'class' => 'btn-eliminar']) !!}
+                                                {!! Form::button('<abbr title="Borrar Alumno Inactivo"><i class="fa fa-trash"></i></abbr>',  ['type' => 'submit', 'class'=> 'btn btn-danger']) !!}
                                             {!! Form::close() !!}
                                             @endcan
                                             @endif
@@ -91,3 +93,34 @@
     </section>
 @endsection
 
+@section('scripts')
+    @if (session('eliminar') == 'ok')
+        <script>
+            Swal.fire(
+                'Borrado!',
+                'El Alumno Inactivo Ha Sido Borrado.',
+                'success'
+            )
+        </script>
+    @endif
+    <script>
+        $('.btn-eliminar').submit(function(e) {
+            e.preventDefault();
+
+            Swal.fire({
+                title: 'Seguro de Borrar El Alumno Inactivo?',
+                text: "No podras revertir esto!",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#6777ef',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Si, Borrar',
+                cancelButtonText: 'Cancelar'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    this.submit();
+                }
+            })
+        });
+    </script>
+@endsection

@@ -85,13 +85,13 @@
                                             @endforeach
                                         </tr>
                                         <tr>
-                                            <th> Pago : </th>
+                                            <th> Pagó : </th>
                                             @foreach ($metodohasalumnos as $metodohasalumno)
                                                 <td>{{ $metodohasalumno->pago }}</td>
                                             @endforeach
                                         </tr>
                                         <tr>
-                                            <th> Metodo de Pago : </th>
+                                            <th> Método de Pago : </th>
                                             @foreach ($metodohasalumnos as $metodohasalumno)
                                                 <td>
                                                     <div>{{ $metodohasalumno->metodo->metodo_pago }}</div>
@@ -106,7 +106,10 @@
                                         </tr>
                                         <tr>
                                             <th> Referencia : </th>
-                                            <td>{{ $metodohasalumno->numero_referencia }}</td>
+                                            @foreach ($metodohasalumnos as $metodohasalumno)
+                                                <td>{{ $metodohasalumno->numero_referencia }}</td>
+                                            @endforeach
+
                                         </tr>
                                         <tr>
                                             <th> Patrocinador : </th>

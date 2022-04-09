@@ -13,7 +13,10 @@ use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\DB;
 use App\Models\MetodosHasAlumnos;
 use Illuminate\Support\Arr;
-use Barryvdh\DomPDF\Facade\PDF;
+
+use Maatwebsite\Excel\Facades\Excel;
+
+use App\Exports\AlumnosExport;
 
 class AlumnoController extends Controller
 {
@@ -57,16 +60,6 @@ class AlumnoController extends Controller
 
         return view('alumnos.index', compact('alumnos', 'texto'));
     }
-    public function pdf()
-    {
-
-        $pdf = PDF::loadView('alumnos.pdf');
-        $pdf->loadHTML('<h1>Test</h1>');
-        return $pdf->stream();
-
-       return view('alumnos.pdf', compact('alumnos'));
-    }
-
     /**
      * Show the form for creating a new resource.
      *
@@ -200,15 +193,9 @@ class AlumnoController extends Controller
             $alumno->imagen = $nombreimagen;
             $alumno->save();
         }
-        $this->validate($request, [
-            'pago' => 'required',
-            'fecha_pago' => 'required',
-            'numero_referencia' => 'required',
-            'imagen' => 'null',
-        ]);
         $input = $request->all();
         $metodohasalumnos = MetodosHasAlumnos::find($id);
-        $metodohasalumnos->update($input);
+        $metodohasalumnos->update($input);      
 
         return redirect()->route('alumnos.index');
     }
@@ -222,6 +209,12 @@ class AlumnoController extends Controller
     public function destroy($id)
     {
         Alumno::find($id)->delete();
-        return redirect()->route('alumnos.index');
+        return redirect()->route('alumnos.index')->with('eliminar', 'ok');
     }
+
+    public function excel()
+    {
+        return Excel::download(new AlumnosExport, 'alumnos.xlsx');
+    }
+
 }

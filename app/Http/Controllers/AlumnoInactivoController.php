@@ -221,6 +221,6 @@ class AlumnoInactivoController extends Controller
     public function destroy($id)
     {
         Alumno::find($id)->delete();
-        return redirect()->route('alumnosinactivos.index');
+        return redirect()->route('alumnosinactivos.index')->with('eliminar', 'ok');
     }
 }
