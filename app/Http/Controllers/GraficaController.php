@@ -51,5 +51,5 @@ class GraficaController extends Controller
 
         return view('graficas.gingresos', compact('data'));
     }
-    //con esto 
+    
 }
