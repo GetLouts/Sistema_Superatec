@@ -40,7 +40,7 @@ class GraficaController extends Controller
 
     public function charts3()
     {
-
+//terminado con esto
         $ingresos = AlumnosHasPeriodos::all();
         $data = [];
         foreach ($ingresos as $ingreso) {
