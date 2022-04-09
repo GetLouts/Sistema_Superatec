@@ -48,7 +48,6 @@ class GraficaController extends Controller
             $data['data'][] = $ingreso->id;
         }
         $data = json_encode($data);
-
         return view('graficas.gingresos', compact('data'));
     }
     
