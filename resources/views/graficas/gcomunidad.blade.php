@@ -22,10 +22,10 @@
                                 var myChart = new Chart(ctx, {
                                     type: 'bar',
                                     data: {
-                                        labels: [cData.label[0], cData.label[1], 'Propatria', 'Isum'],
+                                        labels: [cData.label[0], cData.label[1], cData.label[2], cData.label[3], cData.label[4], cData.label[5], cData.label[6], cData.label[7], cData.label[8], cData.label[9], cData.label[10], cData.label[11], cData.label[12], cData.label[13], cData.label[14], cData.label[15]],
                                         datasets: [{
                                             label: 'Comunidades',
-                                            data: [cData.data[0], cData.data[1], 5, 10],
+                                            data: [cData.data[0], cData.data[1], cData.data[2], cData.data[3], cData.data[4], cData.data[5], cData.data[6], cData.data[7], cData.data[8], cData.data[9], cData.data[10], cData.data[11], cData.data[12], cData.data[13], cData.data[14], cData.data[15]],
                                             backgroundColor: [
                                                 'rgba(255, 99, 132, 0.2)',
                                                 'rgba(54, 162, 235, 0.2)',

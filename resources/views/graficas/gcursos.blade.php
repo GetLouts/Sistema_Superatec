@@ -27,7 +27,7 @@
                                             labels: ['Periodo1', 'Periodo 2', 'Periodo 3', 'Periodo 4'],
                                             datasets: [{
                                                 labels: 'Cantidad de Cursos',
-                                                data: [ldata, 8, 12, 18],
+                                                data: [ldata],
                                                 backgroundColor: [
                                                     'rgba(255, 99, 132, 0.2)',
                                                     'rgba(54, 162, 235, 0.2)',
