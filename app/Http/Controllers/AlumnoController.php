@@ -85,11 +85,20 @@ class AlumnoController extends Controller
      */
     public function store(Request $request)
     {
-        /*Validator::make($request->all(), [
-            'alumno_id' => 'required',
-            'curso_id' => 'required',
-            'periodo_id' => 'required',
-        ])->validate();*/
+        Validator::make($request->all(), [
+            'nombres' => 'required',
+            'apellidos' => 'required',
+            'cedula' => 'required',
+            'telefono' => 'required',
+            'telefono_local' => 'required',
+            'direccion' => 'required',
+            'correo' => 'required',
+            'nivel_de_estudio' => 'required',
+            'fecha_nac' => 'required',
+            'comunidad' => 'required',
+            'patrocinador' => 'required',
+            'fecha_registro' => 'required',
+        ])->validate();
 
         $alumnos = new Alumno();
 

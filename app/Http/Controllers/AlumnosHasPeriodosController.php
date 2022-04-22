@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use Validator;
+
 use App\Models\Alumno;
 use App\Models\Metodo;
 use App\Models\Curso;
@@ -10,6 +10,7 @@ use App\Models\PeriodosHasCursos;
 use App\Models\MetodosHasAlumnos;
 use App\Models\AlumnosHasPeriodos;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
 use App\Enums\HttpStatus;
 use Barryvdh\DomPDF\Facade\PDF;
 
@@ -47,6 +48,13 @@ class AlumnosHasPeriodosController extends Controller
      */
     public function store(Request $request, $id)
     {
+        Validator::make($request->all(), [
+            'curso' => 'required',
+            'metodo_pago' => 'required',
+            'pago' => 'required', 
+            'fecha_pago' => 'required', 
+            'numero_referencia' => 'required', 
+        ])->validate();
         $alumnoshasperiodos = new AlumnosHasPeriodos();
 
         $alumnoshasperiodos->alumno_id = $id;

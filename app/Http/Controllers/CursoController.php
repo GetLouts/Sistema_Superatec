@@ -7,6 +7,7 @@ use App\Models\Estado;
 use App\Models\Modalidad;
 use App\Models\PeriodosHasCursos;
 use App\Models\Periodo;
+use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 
@@ -53,6 +54,16 @@ class CursoController extends Controller
      */
     public function store(Request $request)
     {
+        Validator::make($request->all(), [
+            'cursos' => 'required', 
+            'descripcion' => 'required', 
+            'cantidad_alumnos' => 'required', 
+            'clases' => 'required',
+            'fecha_inicio' => 'required',
+            'codigo' => 'required',
+            'modalidad_id' => 'required',
+            'estado_id' => 'required',  
+        ])->validate();
         $cursos = new Curso();
         $cursos->cursos = $request->cursos;
         $cursos->descripcion = $request->descripcion;
@@ -101,6 +112,7 @@ class CursoController extends Controller
      */
     public function edit($id)
     {
+        
         $cursos = Curso::find($id);
         $estados = Estado::all();
         $modalidades = Modalidad::all();
@@ -117,7 +129,7 @@ class CursoController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $this->validate($request, [
+        Validator::make($request->all(), [
             'cursos' => 'required', 
             'descripcion' => 'required', 
             'cantidad_alumnos' => 'required', 
@@ -126,7 +138,8 @@ class CursoController extends Controller
             'codigo' => 'required',
             'modalidad_id' => 'required',
             'estado_id' => 'required',  
-        ]);
+        ])->validate();
+
         $input = $request->all();
         $cursos = Curso::find($id);
         $cursos->cursos = $request->input('cursos');
